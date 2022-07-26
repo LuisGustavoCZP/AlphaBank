@@ -6,8 +6,7 @@
             <p>Use "/server/sql/constructor.sql" to import all data to your database postgres</p>
         </li>
         <li>
-            <p>Create a <code>.env</code> file on <code>server</code> folder with these argments:</p>
-            <kbd><kbd><samp>/server/</samp></kbd>⇒<kbd><samp>.env</samp></kbd></kbd>
+            <p>Create a <code>.env</code> file on <code>server</code> folder <kbd><kbd><samp>/server/</samp></kbd>⇒<kbd><samp>.env</samp></kbd></kbd> with these argments:</p>
             <pre align="left">
                 <code>PORT=8000</code>
                 <code>POSTGRES_CONNECTION_STRING='postgresql://<strong>username</strong>:<strong>password</strong>@localhost:5432/<strong>database_name'</strong></code></pre>
