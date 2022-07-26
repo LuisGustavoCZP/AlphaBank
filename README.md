@@ -9,8 +9,7 @@
             <p>Create a <span color="red">.env<span> file on "/server/" with these argments:</p>
             <code>
                 PORT=8000
-                POSTGRES_CONNECTION_STRING='postgresql://username
-                :<div color="red">password</div>@localhost:5432/<div color="green">express-typescript'</div>
+                POSTGRES_CONNECTION_STRING='postgresql://username:<strong>password</strong>@localhost:5432/<strong>express-typescript'</strong>
             </code>
         </li>
         <li>
