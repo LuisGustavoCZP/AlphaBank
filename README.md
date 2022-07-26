@@ -13,7 +13,7 @@
                 <code>POSTGRES_CONNECTION_STRING='postgresql://<strong>username</strong>:<strong>password</strong>@localhost:5432/<strong>database_name'</strong></code></pre>
         </li>
         <li>
-            <p>Use this commands on the root of project</p>
+            <p>Use this commands on the <code>root</code> of project</p>
             <ul align="left">
                 <li><code>
                 run npm install
