@@ -6,11 +6,11 @@
             <p>Use "/server/sql/constructor.sql" to import all data to your database postgres</p>
         </li>
         <li>
-            <p>Create a <span color="red">.env<span> file on "/server/" with these argments:</p>
-            <code>
-                <p>PORT=8000</p>
-                <p>POSTGRES_CONNECTION_STRING='postgresql://<strong>username</strong>:<strong>password</strong>@localhost:5432/<strong>express-typescript'</strong></p>
-            </code>
+            <p>Create a <samp>.env</samp> file on "server" folder with these argments:</p>
+            <kbd><kbd><samp>/server/</samp></kbd>⇒<kbd><samp>.env</samp></kbd></kbd>
+            <pre align="left">
+                <code>PORT=8000</code>
+                <code>POSTGRES_CONNECTION_STRING='postgresql://<strong>username</strong>:<strong>password</strong>@localhost:5432/<strong>express-typescript'</strong></code></pre>
         </li>
         <li>
             <p>Use this commands on the root of project</p>
