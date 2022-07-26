@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "install": "cd web && npm i && cd ../server && npm i",
-    "dev:client": "cd web && npm run dev",
+    "dev:client": "cd web && npm run dev:watch",
     "dev:server": "cd server && npm run dev",
-    "dev": "start \"Server\" npm run dev:server && start \"Client\" npm run dev:client",
+    "dev": "start \"Server\" npm run dev:server && \"Client\" npm run dev:client",
     "build": "cd web && npm run build && cd ../server && npm run build"
   },
   "repository": {
