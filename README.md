@@ -4,23 +4,23 @@
     <ol align="left">
         <li>
             <p>Use the file <code>/server/sql/constructor.sql</code> to import all data to your postgres database.</p>
+            <div align="center"><kbd><kbd><samp>/server/</samp></kbd>⇒<kbd><samp>/sql/</samp></kbd>⇒<kbd><samp>constructor.sql</samp></kbd></kbd></div>
+            <br>
         </li>
         <li>
             <p>Create a <code>.env</code> file on <code>server</code> folder <kbd><kbd><samp>/server/</samp></kbd>⇒<kbd><samp>.env</samp></kbd></kbd> with these argments:</p>
             <pre>
                 <code>PORT=<kbd>8000</kbd></code>
                 <code>POSTGRES_CONNECTION_STRING='postgresql://<kbd>username</kbd>:<kbd>password</kbd>@localhost:5432/<kbd>database_name</kbd>'</code></pre>
+            <br>
         </li>
         <li>
             <p>Use this commands on the <code>root</code> of project</p>
             <ul>
-                <li><code>
-                run npm install
-                </code></li>
-                <li><code>
-                run npm dev
-                </code></li>
+                <li><code>run npm install</code> - Install all dependencies on the client and server</li>
+                <li><code>run npm dev</code> - Iniciate a dev mode on client and server</li>
             </ul>
+            <br>
         </li>
     </ol>
 </section>
