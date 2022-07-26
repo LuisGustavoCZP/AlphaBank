@@ -1,0 +1,23 @@
+{
+  "name": "react-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd web && npm i && cd ../server && npm i",
+    "dev:client": "cd web && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "dev": "start \"Server\" npm run dev:server && start \"Client\" npm run dev:client",
+    "build": "cd web && npm run build && cd ../server && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisGustavoCZP/react-typescript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuisGustavoCZP/react-typescript/issues"
+  },
+  "homepage": "https://github.com/LuisGustavoCZP/react-typescript#readme"
+}
