@@ -8,6 +8,8 @@ const app: Express = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(express.static("../web/dist"));
+
 app.use("/ping", ping);
 //app.use("/user", user);
 app.use("/account", account);
