@@ -3,7 +3,7 @@
     <h2>Instructions</h2>
     <ol>
         <li>
-            <p>Use the file <code>/server/sql/constructor.sql</code> to import all data to your database postgres</p>
+            <p>Use the file <code>/server/sql/constructor.sql</code> to import all data to your postgres database.</p>
         </li>
         <li>
             <p>Create a <code>.env</code> file on <code>server</code> folder <kbd><kbd><samp>/server/</samp></kbd>⇒<kbd><samp>.env</samp></kbd></kbd> with these argments:</p>
