@@ -1,10 +1,12 @@
 <h1 align="center"> Projeto AlphaBank </h1>
 <section align="center">
- Para iniciar o projeto
- ```
+ <h2>Para iniciar o projeto</h2>
+ <code>
  run npm install
+ </code>
+ <code>
  run npm dev
- ```
+ </code>
 </section>
 <section align="center">
  <h2>Autores</h2>
