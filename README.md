@@ -8,8 +8,8 @@
         <li>
             <p>Create a <code>.env</code> file on <code>server</code> folder <kbd><kbd><samp>/server/</samp></kbd>⇒<kbd><samp>.env</samp></kbd></kbd> with these argments:</p>
             <pre align="left">
-                <code>PORT=8000</code>
-                <code>POSTGRES_CONNECTION_STRING='postgresql://<strong>username</strong>:<strong>password</strong>@localhost:5432/<strong>database_name'</strong></code></pre>
+                <code>PORT=<kbd>8000</kbd></code>
+                <code>POSTGRES_CONNECTION_STRING='postgresql://<kbd>username</kbd>:<kbd>password</kbd>@localhost:5432/<kbd>database_name</kbd>'</code></pre>
         </li>
         <li>
             <p>Use this commands on the <code>root</code> of project</p>
