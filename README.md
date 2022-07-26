@@ -11,8 +11,9 @@
  </ul>
 </section>
 <section align="center">
- <h2>Figma Layout</h2>
- <a href="https://www.figma.com/file/2Ll2FtXbzRcW2TsZbcTzZp/Bunker?node-id=4%3A15">Link</a>
+ <h2>Based on layout By Rey</h2>
+ <a href="https://www.figma.com/file/2Ll2FtXbzRcW2TsZbcTzZp/Bunker?node-id=4%3A15">Figma Project</a>
+ <a href="https://www.figma.com/proto/2Ll2FtXbzRcW2TsZbcTzZp/Bunker?page-id=4%3A15&node-id=7%3A155&viewport=355%2C526%2C0.08&scaling=min-zoom&starting-point-node-id=7%3A155&show-proto-sidebar=1">Figma Present</a>
 </section>
 <section align="center">
  <h2>Features</h2>
