@@ -1,7 +1,7 @@
 <h1 align="center"> Projeto AlphaBank </h1>
 <section align="center">
  <h2>Para iniciar o projeto</h2>
- <ul>
+ <ul align="left">
  <li><code>
  run npm install
  </code></li>
