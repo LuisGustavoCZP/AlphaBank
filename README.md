@@ -11,6 +11,11 @@
  </ul>
 </section>
 <section align="center">
+ <h2>Features</h2>
+ <ol>
+ </ol>
+</section>
+<section align="center">
  <h2>Autores</h2>
  <table>
   <tr>
