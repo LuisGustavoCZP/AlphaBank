@@ -1,19 +1,19 @@
 <h1 align="center"> Projeto AlphaBank </h1>
 <section align="center">
     <h2>Instructions</h2>
-    <ol>
+    <ol align="left">
         <li>
             <p>Use the file <code>/server/sql/constructor.sql</code> to import all data to your postgres database.</p>
         </li>
         <li>
             <p>Create a <code>.env</code> file on <code>server</code> folder <kbd><kbd><samp>/server/</samp></kbd>⇒<kbd><samp>.env</samp></kbd></kbd> with these argments:</p>
-            <pre align="left">
+            <pre>
                 <code>PORT=<kbd>8000</kbd></code>
                 <code>POSTGRES_CONNECTION_STRING='postgresql://<kbd>username</kbd>:<kbd>password</kbd>@localhost:5432/<kbd>database_name</kbd>'</code></pre>
         </li>
         <li>
             <p>Use this commands on the <code>root</code> of project</p>
-            <ul align="left">
+            <ul>
                 <li><code>
                 run npm install
                 </code></li>
