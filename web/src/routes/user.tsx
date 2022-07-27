@@ -1,14 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Route } from 'react-router-dom';
+import { UserPage } from '../pages/user';
 
-export function RegisterRoute ()
+export function UserRoute ()
 {
     return (
         <Route
-            path="/register"
-            element={
-                <h1>Register</h1>
-            }
+            path="/user"
+            element={<UserPage />}
         />
     );
 }

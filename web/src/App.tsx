@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, RouterProps } from 'react-router-dom';
 import { Router } from './routes';
 /* import './App.css'; */
 import './styles/global.css';
@@ -7,7 +7,7 @@ import './styles/global.css';
 function App()
 {
 	return (
-		<div className="App">
+		<div className="max-portrait">
 			<BrowserRouter>
 				<Router />
 			</BrowserRouter>
