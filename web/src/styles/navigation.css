@@ -2,7 +2,11 @@
 @layer components {
 
     .nav-item {
-        @apply flex flex-col w-fit h-fit py-2 px-2 m-1 justify-center items-center;
+        @apply flex flex-col w-fit h-fit py-2 px-1 text-xs m-1 justify-center items-center text-white;
+    }
+
+    .nav-item > span {
+        @apply mt-1;
     }
 
     .nav-btn {
