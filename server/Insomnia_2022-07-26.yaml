@@ -1,0 +1,1077 @@
+_type: export
+__export_format: 4
+__export_date: 2022-07-26T22:07:22.423Z
+__export_source: insomnia.desktop.app:v2022.4.2
+resources:
+  - _id: req_f95cf9b727c14102ad2876dc80cf0c78
+    parentId: fld_460a8ede814d4bb592bd708dd18eee80
+    modified: 1656698562181
+    created: 1656384100862
+    url: "{{ _.host }}{{ _.route }}/create"
+    name: Create Karol
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "name": "Karoline",
+            "email": "karoline@gmail.com",
+            "birthdate": "1994-08-13",
+            "cpf": "068.005.849-05"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_b1bbd7e8af8a42c895dba34fe6eb24f8
+    authentication: {}
+    metaSortKey: -1655001381518.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_460a8ede814d4bb592bd708dd18eee80
+    parentId: fld_8cec2960c17847008ca9021aeee769cf
+    modified: 1656699874152
+    created: 1656384086807
+    name: Account
+    description: ""
+    environment:
+      route: /account
+    environmentPropertyOrder:
+      "&":
+        - route
+    metaSortKey: -1656699866923
+    _type: request_group
+  - _id: fld_8cec2960c17847008ca9021aeee769cf
+    parentId: wrk_aac8425b0288460e92911d4ec4444e49
+    modified: 1656699866873
+    created: 1656699866873
+    name: Test
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1656699866873
+    _type: request_group
+  - _id: wrk_aac8425b0288460e92911d4ec4444e49
+    parentId: null
+    modified: 1656349827694
+    created: 1656349827694
+    name: express-typescript.yaml
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_4fe066d36898422d88392334810bd8ef
+    parentId: fld_460a8ede814d4bb592bd708dd18eee80
+    modified: 1656695270147
+    created: 1656528175365
+    url: "{{ _.host }}{{ _.route }}/create"
+    name: Create Luis
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "name": "Luis Gustavo",
+            "email": "luisgustavoczp@gmail.com",
+            "birthdate": "1993-01-13",
+            "cpf": "082.839.549-06"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_b1bbd7e8af8a42c895dba34fe6eb24f8
+    authentication: {}
+    metaSortKey: -1655001381468.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2447dcc4cf1c4e84811746618680348b
+    parentId: fld_5395dd753f994866b56e99a30dfb306e
+    modified: 1656733244953
+    created: 1656530614163
+    url: "{{ _.host }}/extract"
+    name: Extract Karol
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"account":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "1",
+        		"cpf":"068.005.849-05"
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_20db50786b6249bda0fab4bacafba1b9
+    authentication: {}
+    metaSortKey: -1656530564726
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_5395dd753f994866b56e99a30dfb306e
+    parentId: fld_8ca40858dce5422cbaa6d52ff97887d4
+    modified: 1656530563114
+    created: 1656530563114
+    name: Extract
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1656530563114
+    _type: request_group
+  - _id: fld_8ca40858dce5422cbaa6d52ff97887d4
+    parentId: fld_8cec2960c17847008ca9021aeee769cf
+    modified: 1656699878706
+    created: 1656517960875
+    name: Transaction
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1656699866873
+    _type: request_group
+  - _id: req_5a38e267fb9c43eab8a8210488dac901
+    parentId: fld_5395dd753f994866b56e99a30dfb306e
+    modified: 1656697947695
+    created: 1656530564676
+    url: "{{ _.host }}/extract"
+    name: Extract Luis
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"account":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "1",
+        		"cpf":"082.839.549-06"
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_20db50786b6249bda0fab4bacafba1b9
+    authentication: {}
+    metaSortKey: -1656530564676
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_bb024c62e7d34591ac5947964a04078f
+    parentId: fld_f3665bcf44ae4f319a1d4dedc839d362
+    modified: 1656977182997
+    created: 1656531646472
+    url: "{{ _.host }}/deposit"
+    name: Deposit Luis $100
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"destination":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "1",
+        		"cpf":"082.839.549-06"
+        	},
+        	"quanty":100.00
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1656528485146
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f3665bcf44ae4f319a1d4dedc839d362
+    parentId: fld_8ca40858dce5422cbaa6d52ff97887d4
+    modified: 1656531933562
+    created: 1656531646463
+    name: Deposit
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1656529524105
+    _type: request_group
+  - _id: req_6e0d1046449d4965bdf51ac2c0c09cff
+    parentId: fld_f3665bcf44ae4f319a1d4dedc839d362
+    modified: 1656977097322
+    created: 1656535028144
+    url: "{{ _.host }}/deposit"
+    name: Deposit Luis $3
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"destination":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "1",
+        		"cpf":"082.839.549-06"
+        	},
+        	"quanty":3.00
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1656528485121
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b51df58a13c54a8ebb61ea9ebd3decfa
+    parentId: fld_f3665bcf44ae4f319a1d4dedc839d362
+    modified: 1656977091987
+    created: 1656531646477
+    url: "{{ _.host }}/deposit"
+    name: Deposit Karol $103
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"destination":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "0",
+        		"cpf":"068.005.849-05"
+        	},
+        	"quanty":103.00
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1656528485096
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1c9752311c364d41ba1821e37815bec6
+    parentId: fld_50bd101e0ef64b70886f52d7a7dddba4
+    modified: 1656977683606
+    created: 1656526699497
+    url: "{{ _.host }}/transference"
+    name: Transference To Me
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "0",
+        		"cpf":"082.839.549-06"
+        	},
+        	"password": "123456",
+        	"destination":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "0",
+        		"cpf":"082.839.549-06"
+        	},
+        	"quanty":100.00
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1656528485196
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_50bd101e0ef64b70886f52d7a7dddba4
+    parentId: fld_8ca40858dce5422cbaa6d52ff97887d4
+    modified: 1656528485096
+    created: 1656528485096
+    name: Transference
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1656528485096
+    _type: request_group
+  - _id: req_c09fdc74b0cc4565bf5d8d4e191ef6d6
+    parentId: fld_50bd101e0ef64b70886f52d7a7dddba4
+    modified: 1656597255126
+    created: 1656517964989
+    url: "{{ _.host }}/transference"
+    name: Transference K->L
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "0",
+        		"cpf":"068.005.849-05"
+        	},
+        	"destination":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "1",
+        		"cpf":"082.839.549-06"
+        	},
+        	"quanty":100.00
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1656528485146
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_abae36666efd4f97b6ca42458d931558
+    parentId: fld_1566a7ce111a4a86a6ef5adca39c9363
+    modified: 1656540718468
+    created: 1656531928703
+    url: "{{ _.host }}/withdraw"
+    name: Withdraw Karol
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "0",
+        		"cpf":"068.005.849-05"
+        	},
+        	"quanty":96.00
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1656528485146
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_1566a7ce111a4a86a6ef5adca39c9363
+    parentId: fld_8ca40858dce5422cbaa6d52ff97887d4
+    modified: 1656531928695
+    created: 1656531928695
+    name: Withdraw
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1656525854040.75
+    _type: request_group
+  - _id: req_331ae2f48fff4cbf990f24fe73341489
+    parentId: fld_1566a7ce111a4a86a6ef5adca39c9363
+    modified: 1656540716923
+    created: 1656531928709
+    url: "{{ _.host }}/withdraw"
+    name: Withdraw Luis
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "10",
+        		"agency_identifier": "0",
+        		"account": "20",
+        		"account_identifier": "1",
+        		"cpf":"082.839.549-06"
+        	},
+        	"quanty":100.00
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1656528485096
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1433b12ee2e04eba83c3fe1d5b3a9052
+    parentId: fld_e7560d5592884b1a9ab03988ec3a288f
+    modified: 1658873170163
+    created: 1656695253899
+    url: "{{ _.host }}/account/create"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "name": "{{ _.user.name }}",
+            "email": "{{ _.user.email }}",
+            "birthdate": "{{ _.user.birthdate }}",
+            "cpf": "{{ _.user.cpf }}",
+        		"password": "{{ _.user.password }}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_b1bbd7e8af8a42c895dba34fe6eb24f8
+    authentication: {}
+    metaSortKey: -1655001381493.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_e7560d5592884b1a9ab03988ec3a288f
+    parentId: fld_9eb5efcd69be40e5bf86086f28f3c3b7
+    modified: 1656970624812
+    created: 1656695224690
+    name: Luis
+    description: ""
+    environment:
+      user:
+        name: "{{ _.luis.user.name }}"
+        email: "{{ _.luis.user.email }}"
+        birthdate: "{{ _.luis.user.birthdate }}"
+        cpf: "{{ _.luis.user.cpf }}"
+        password: "{{ _.luis.user.password }}"
+      origin:
+        agency: "{{ _.luis.origin.agency }}"
+        agency_identifier: "{{ _.luis.origin.agency_identifier }}"
+        account: "{{ _.luis.origin.account }}"
+        account_identifier: "{{ _.luis.origin.account_identifier }}"
+    environmentPropertyOrder:
+      "&":
+        - user
+        - origin
+      "&~|user":
+        - name
+        - email
+        - birthdate
+        - cpf
+        - password
+      "&~|origin":
+        - agency
+        - agency_identifier
+        - account
+        - account_identifier
+    metaSortKey: -1656695224690
+    _type: request_group
+  - _id: fld_9eb5efcd69be40e5bf86086f28f3c3b7
+    parentId: wrk_aac8425b0288460e92911d4ec4444e49
+    modified: 1656977291839
+    created: 1656699822051
+    name: Contas
+    description: ""
+    environment:
+      luis:
+        user:
+          name: Luis Gustavo
+          email: luisgustavoczp@gmail.com
+          birthdate: 1993-01-13
+          cpf: 082.839.549-06
+          password: "123456"
+        origin:
+          agency: "{% response 'body', 'req_1433b12ee2e04eba83c3fe1d5b3a9052',
+            'b64::JC5kYXRhLmFnZW5jeQ==::46b', 'never', 60 %}"
+          agency_identifier: "{% response 'body', 'req_1433b12ee2e04eba83c3fe1d5b3a9052',
+            'b64::JC5kYXRhLmFnZW5jeV9pZGVudGlmaWVy::46b', 'never', 60 %}"
+          account: "{% response 'body', 'req_1433b12ee2e04eba83c3fe1d5b3a9052',
+            'b64::JC5kYXRhLmFjY291bnQ=::46b', 'never', 60 %}"
+          account_identifier: "{% response 'body', 'req_1433b12ee2e04eba83c3fe1d5b3a9052',
+            'b64::JC5kYXRhLmFjY291bnRfaWRlbnRpZmllcg==::46b', 'never', 60 %}"
+      karol:
+        user:
+          name: Karoline
+          email: karoline@gmail.com
+          birthdate: 1994-08-13
+          cpf: 068.005.849-05
+          password: abc123
+        origin:
+          agency: "{% response 'body', 'req_fcfbd9102a534006822a6b3d5f679c65',
+            'b64::JC5kYXRhLmFnZW5jeQ==::46b', 'never', 60 %}"
+          agency_identifier: "{% response 'body', 'req_fcfbd9102a534006822a6b3d5f679c65',
+            'b64::JC5kYXRhLmFnZW5jeV9pZGVudGlmaWVy::46b', 'never', 60 %}"
+          account: "{% response 'body', 'req_fcfbd9102a534006822a6b3d5f679c65',
+            'b64::JC5kYXRhLmFjY291bnQ=::46b', 'never', 60 %}"
+          account_identifier: "{% response 'body', 'req_fcfbd9102a534006822a6b3d5f679c65',
+            'b64::JC5kYXRhLmFjY291bnRfaWRlbnRpZmllcg==::46b', 'never', 60 %}"
+    environmentPropertyOrder:
+      "&":
+        - luis
+        - karol
+      "&~|luis":
+        - user
+        - origin
+      "&~|luis~|user":
+        - name
+        - email
+        - birthdate
+        - cpf
+        - password
+      "&~|luis~|origin":
+        - agency
+        - agency_identifier
+        - account
+        - account_identifier
+      "&~|karol":
+        - user
+        - origin
+      "&~|karol~|user":
+        - name
+        - email
+        - birthdate
+        - cpf
+        - password
+      "&~|karol~|origin":
+        - agency
+        - agency_identifier
+        - account
+        - account_identifier
+    metaSortKey: -1656699822051
+    _type: request_group
+  - _id: req_5c0f6ba1ed1840079da8267e53e9b869
+    parentId: fld_e7560d5592884b1a9ab03988ec3a288f
+    modified: 1658873172295
+    created: 1656695337738
+    url: "{{ _.host }}/extract"
+    name: Extract
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"account":
+        	{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"password": "{{ _.user.password }}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_6e13782548c44fb8b24f1ae1cf739a60
+    authentication: {}
+    metaSortKey: -1655001381443.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6e3e994c14be4b21a0d16a5049f4cdfa
+    parentId: fld_e7560d5592884b1a9ab03988ec3a288f
+    modified: 1658873173699
+    created: 1656699203842
+    url: "{{ _.host }}/withdraw"
+    name: Withdraw
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"password": "{{ _.user.password }}",
+        	"quanty":"{% prompt 'Saque', 'Valor', '100', '', false, true %}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1655001381343.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a99c1489c43e4236af15a5ee64607369
+    parentId: fld_e7560d5592884b1a9ab03988ec3a288f
+    modified: 1658873174986
+    created: 1656699599016
+    url: "{{ _.host }}/transference"
+    name: Transference to Karol
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"password": "{{ _.user.password }}",
+        	"destination":{
+        		"agency": "{{ _.karol.origin.agency }}",
+        		"agency_identifier": "{{ _.karol.origin.agency_identifier }}",
+        		"account": "{{ _.karol.origin.account }}",
+        		"account_identifier": "{{ _.karol.origin.account_identifier }}",
+        		"cpf":"{{ _.karol.user.cpf }}"
+        	},
+        	"quanty":"{% prompt 'Tranferencia', 'Valor', '100', '', false, true %}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1655001381293.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6a0862c3379c4f5d8b7028d3db7fbad0
+    parentId: fld_e7560d5592884b1a9ab03988ec3a288f
+    modified: 1658873176440
+    created: 1656977704999
+    url: "{{ _.host }}/transference"
+    name: Transference to Me
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"password": "{{ _.user.password }}",
+        	"destination":{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"quanty":"{% prompt 'Tranferencia', 'Valor', '100', '', false, true %}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1655001381268.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cabf6d887c314628a0cd88c761550e43
+    parentId: fld_e7560d5592884b1a9ab03988ec3a288f
+    modified: 1658873177152
+    created: 1656698937653
+    url: "{{ _.host }}/deposit"
+    name: Deposit
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"destination":{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"quanty":"{% prompt 'Deposito', 'Valor', '100', '', false, true %}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1655001381243.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fcfbd9102a534006822a6b3d5f679c65
+    parentId: fld_a68d5f0735e7416ca726f66399b1e97f
+    modified: 1656977116420
+    created: 1656698541563
+    url: "{{ _.host }}/account/create"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "name": "{{ _.user.name }}",
+            "email": "{{ _.user.email }}",
+            "birthdate": "{{ _.user.birthdate }}",
+            "cpf": "{{ _.user.cpf }}",
+        		"password": "{{ _.user.password }}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_b1bbd7e8af8a42c895dba34fe6eb24f8
+    authentication: {}
+    metaSortKey: -1655001381493.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_a68d5f0735e7416ca726f66399b1e97f
+    parentId: fld_9eb5efcd69be40e5bf86086f28f3c3b7
+    modified: 1656976482127
+    created: 1656698541560
+    name: Karol
+    description: ""
+    environment:
+      user:
+        name: "{{ _.karol.user.name }}"
+        email: "{{ _.karol.user.email }}"
+        birthdate: "{{ _.karol.user.birthdate }}"
+        cpf: "{{ _.karol.user.cpf }}"
+        password: "{{ _.karol.user.password }}"
+      origin:
+        agency: "{{ _.karol.origin.agency }}"
+        agency_identifier: "{{ _.karol.origin.agency_identifier }}"
+        account: "{{ _.karol.origin.account }}"
+        account_identifier: "{{ _.karol.origin.account_identifier }}"
+    environmentPropertyOrder:
+      "&":
+        - user
+        - origin
+      "&~|user":
+        - name
+        - email
+        - birthdate
+        - cpf
+        - password
+      "&~|origin":
+        - agency
+        - agency_identifier
+        - account
+        - account_identifier
+    metaSortKey: -1656695224640
+    _type: request_group
+  - _id: req_60e28f4326104b48bbbb602049264c83
+    parentId: fld_a68d5f0735e7416ca726f66399b1e97f
+    modified: 1656977129130
+    created: 1656698541568
+    url: "{{ _.host }}/extract"
+    name: Extract
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"account":
+        	{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"password": "{{ _.user.password }}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_20db50786b6249bda0fab4bacafba1b9
+    authentication: {}
+    metaSortKey: -1655001381443.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1509419d9e484c76ab7be53d926bdabe
+    parentId: fld_a68d5f0735e7416ca726f66399b1e97f
+    modified: 1656977075443
+    created: 1656699511069
+    url: "{{ _.host }}/withdraw"
+    name: Withdraw
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"password": "{{ _.user.password }}",
+        	"quanty":"{% prompt 'Saque', 'Valor', '100', '', false, true %}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1655001381343.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_579da9e3f8914b16a3090436b4f48dba
+    parentId: fld_a68d5f0735e7416ca726f66399b1e97f
+    modified: 1656977174837
+    created: 1656733353280
+    url: "{{ _.host }}/transference"
+    name: Transference to Luis
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"origin":{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"password": "{{ _.user.password }}",
+        	"destination":{
+        		"agency": "{{ _.luis.origin.agency }}",
+        		"agency_identifier": "{{ _.luis.origin.agency_identifier }}",
+        		"account": "{{ _.luis.origin.account }}",
+        		"account_identifier": "{{ _.luis.origin.account_identifier }}",
+        		"cpf":"{{ _.luis.user.cpf }}"
+        	},
+        	"quanty":"{% prompt 'Tranferencia', 'Valor', '100', '', false, true %}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1655001381293.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_bfeaeecee41f430a854b4ca031c7c673
+    parentId: fld_a68d5f0735e7416ca726f66399b1e97f
+    modified: 1656977147048
+    created: 1656699501184
+    url: "{{ _.host }}/deposit"
+    name: Deposit
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"destination":{
+        		"agency": "{{ _.origin.agency }}",
+        		"agency_identifier": "{{ _.origin.agency_identifier }}",
+        		"account": "{{ _.origin.account }}",
+        		"account_identifier": "{{ _.origin.account_identifier }}",
+        		"cpf":"{{ _.user.cpf }}"
+        	},
+        	"quanty":"{% prompt 'Deposito', 'Valor', '100', '', false, true %}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97251ec51e03464499049f97ed4cbba5
+    authentication: {}
+    metaSortKey: -1655001381243.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_bec0f9bfa57a6960b79d003b041c60b6281cbca2
+    parentId: wrk_aac8425b0288460e92911d4ec4444e49
+    modified: 1656970830308
+    created: 1656349827706
+    name: Base Environment
+    data:
+      host: http://localhost:8000
+    dataPropertyOrder:
+      "&":
+        - host
+    color: null
+    isPrivate: false
+    metaSortKey: 1656349827706
+    _type: environment
+  - _id: jar_bec0f9bfa57a6960b79d003b041c60b6281cbca2
+    parentId: wrk_aac8425b0288460e92911d4ec4444e49
+    modified: 1656349827710
+    created: 1656349827710
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_773b150ffcc340e5ba35faf55dadc05b
+    parentId: wrk_aac8425b0288460e92911d4ec4444e49
+    modified: 1656349827695
+    created: 1656349827695
+    fileName: express-typescript.yaml
+    contents: ""
+    contentType: yaml
+    _type: api_spec

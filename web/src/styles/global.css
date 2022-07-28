@@ -1,4 +1,11 @@
 @tailwind base;
+
+@layer base {
+    body {
+        @apply flex w-screen h-screen justify-center items-center;
+    }
+}
+
 @tailwind components;
 @tailwind utilities;
 
@@ -13,5 +20,26 @@
 
     .btn-cancel-base{
         @apply bg-[#E24B2D] hover:bg-[#F2664A] disabled:bg-[#E24B2D80] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded
+    }
+
+    .max-portrait {
+        @apply w-full h-full;
+        max-width:360px;
+        max-height:640px;
+    }
+    
+    .max-landscape {
+        @apply w-full h-full;
+        max-width:640px;
+        max-height:360px;
+    }
+
+    .btn {
+        @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2;
+        user-select: none;
+    }
+
+    .btn.cancel {
+        color: #E24B2D;
     }
 }

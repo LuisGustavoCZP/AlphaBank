@@ -2,10 +2,10 @@
   "name": "web",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev:build": "npm-watch build",
     "dev": "vite",
+    "tailwind": "npx tailwindcss -i ./src/styles/global.css -o ./build/output.css",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
