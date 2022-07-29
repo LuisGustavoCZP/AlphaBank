@@ -5,11 +5,13 @@ import { UserRoute } from './user';
 import { LoginRoute } from './login';
 import { RegisterRoute } from './register';
 import { ExtractRoute } from './extract';
+import { HomeRoute } from './home';
 
 export function Router () 
 { 
     return (
         <Routes>
+            { HomeRoute()}
             { LoginRoute() }
             { RegisterRoute() }
             { UserRoute() }

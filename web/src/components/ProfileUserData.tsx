@@ -6,7 +6,7 @@ interface PropTypes{
     cpf: string;
 }
 
-export function ProfileData (props: PropTypes)
+export function ProfileUserData (props: PropTypes)
 {
     return (
         <div className="bg-[#F3F9F9] p-1 rounded text-[#727272] text-sm">

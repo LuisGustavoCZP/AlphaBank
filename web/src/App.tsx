@@ -3,7 +3,6 @@ import { BrowserRouter, RouterProps } from 'react-router-dom';
 import { Router } from './routes';
 /* import './App.css'; */
 
-
 function App()
 {
 	return (
