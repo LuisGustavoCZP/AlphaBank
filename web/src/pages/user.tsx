@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { Navigator } from "../components/navigator";
+import { Navigator } from "../components/Navigator";
 import { ExtractPage, TransferPage } from "./"
 
 function SubPage (getAction : string)

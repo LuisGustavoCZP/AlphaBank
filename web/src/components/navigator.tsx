@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Navigate, Link } from 'react-router-dom';
 import { Bank, ArrowsLeftRight, UploadSimple, DownloadSimple, UserCircle } from "phosphor-react";
-import { NavigatorItem } from './navigator-item';
+import { NavigatorItem } from './NavigatorItem';
 import '../styles/navigation.css';
 /* import { useState } from 'react'; */
 
