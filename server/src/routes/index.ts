@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import ping from "./ping";
 import account from "./account";
+import user from "./user";
 import transaction from './transaction';
 
 const app: Express = express();
@@ -14,11 +15,12 @@ app.use(cors());
 app.use("/", express.static("../web/dist"));
 
 app.use("/ping", ping);
-//app.use("/user", user);
+app.use("/user", user);
 app.use("/account", account);
 //app.use("/transaction")
 app.use(transaction);
 
+/* app.use("/login", express.static("../web/dist")); */
 app.use("/:page", express.static("../web/dist/index.html"));
 
 export default app;

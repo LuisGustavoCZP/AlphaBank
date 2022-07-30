@@ -9,9 +9,7 @@ export function TransferRoute ()
     return (
         <Route path="/transfer" element=
         {  
-            <Private>
-                <><Navigator /><TransferPage /></>
-            </Private>
+            <TransferPage />
         } />
     );
 }

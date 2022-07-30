@@ -1,11 +1,18 @@
 /* eslint-disable react/react-in-jsx-scope */
+import { Navigator } from '../components/Navigator';
+import { Private } from '../routes';
 
 export function WithdrawPage ()
 {
     return (
-        <div>
-            <h1>Sacar</h1>
-            
-        </div>
+        <Private>
+            <div>
+                <Navigator></Navigator>
+                <main>
+                    <h1>Sacar</h1>
+                    
+                </main>
+            </div>
+        </Private>
     );
 }

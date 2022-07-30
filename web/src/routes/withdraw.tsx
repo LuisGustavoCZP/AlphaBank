@@ -9,9 +9,7 @@ export function WithdrawRoute ()
     return (
         <Route path="/withdraw" element=
         {  
-            <Private>
-                <><Navigator /><WithdrawPage /></>
-            </Private>
+            <WithdrawPage />
         } />
     );
 }
