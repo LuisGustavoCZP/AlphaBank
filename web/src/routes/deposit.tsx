@@ -2,15 +2,15 @@
 import { Route } from 'react-router-dom';
 import { Public, Private } from '.';
 import { Navigator } from '../components/navigator';
-import { ExtractPage } from '../pages/';
+import { DepositPage } from '../pages/';
 
-export function ExtractRoute ()
+export function DepositRoute ()
 {
     return (
-        <Route path="/extract" element=
+        <Route path="/deposit" element=
         {  
             <Private>
-                <><Navigator /><ExtractPage /></>
+                <><Navigator /><DepositPage /></>
             </Private>
         } />
     );

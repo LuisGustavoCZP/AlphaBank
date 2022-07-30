@@ -1,10 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-export function ExtractPage ()
+export function HomePage ()
 {
     return (
         <div>
-            <h1>Extrato</h1>
+            <h1>Home</h1>
             
         </div>
     );
