@@ -10,26 +10,27 @@ import { WithdrawRoute } from './withdraw';
 import { ExtractRoute } from './extract';
 import { HomeRoute } from './home';
 import { ProfileRoute } from './profile';
+import { useUser } from '../providers/UserProvider';
 
 interface ChildrenTypes {
     children: ReactElement;
   }
   
 export function Private ({ children }: ChildrenTypes) {
-    const user = true;//useUser();
+    const user = useUser();
 
     if (!user) {
-        return <Navigate to="/home" />;
+        return <Navigate to="/login" />;
     }
 
     return children;
 }
 
 export function Public ({ children }: ChildrenTypes) {
-    const user = true;//useUser();
+    const user = useUser();
 
     if (user) {
-        return <Navigate to="/deposit" />;
+        return <Navigate to="/home" />;
     }
 
     return children;
@@ -40,7 +41,6 @@ export function Router ()
     return (
         <Routes>
             {<Route path='/' element={<Navigate to="/extract"/>} />}
-            { HomeRoute() }
             { LoginRoute() }
             { RegisterRoute() }
             { ProfileRoute() }

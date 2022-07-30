@@ -2,6 +2,7 @@
 
 import { ArrowLeft } from "phosphor-react";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { DataBox, DataBoxLabels } from "./DataBox";
 import { ProfileAccountsData } from "./ProfileAccountsData";
 import { ProfileUserData } from "./ProfileUserData";
@@ -33,7 +34,7 @@ export function ProfilePage ()
     return (
         <div className="bg-[#eaedf0] flex-col items-center justify-center">
             <div className="relative flex-col bg-[#337782] w-full h-52 mb-10 rounded-b-3xl">
-                <ArrowLeft className="absolute left-6 top-6" size={32} color='white' />
+                <Link to={'/'}><ArrowLeft className="absolute left-6 top-6" size={32} color='white' /></Link>
                 <div className="absolute flex items-end justify-center m-auto left-0 right-0 top-0 bottom-0 w-40 h-28 text-center">
                     <div className="absolute bg-white w-20 h-20 m-auto left-0 right-0 top-0 rounded-full">
 
