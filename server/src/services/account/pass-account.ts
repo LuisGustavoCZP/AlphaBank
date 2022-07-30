@@ -1,5 +1,6 @@
 import { ExceptionTreatment, BCrypt } from "../../utils";
-import { Account, APIResponse } from "../../models";
+import { Account, APIResponse, User } from "../../models";
+import { UsersTable } from "../../clients/postgres";
 import PasswordValidator from "../../validators/strings/password";
 
 class PassAccountService 
@@ -15,7 +16,13 @@ class PassAccountService
             }
             const pw = validPassword.data;
 
-            if(!await BCrypt.check(pw, account.password))
+            const owner = await UsersTable.select({id:account.owner});
+            if(!owner || owner.length == 0) 
+            {
+                throw new Error(`400: this account doesn't exist`)
+            }
+            
+            if(!await BCrypt.check(pw, owner[0].password))
             {
                 throw new Error(`404: wrong password`);
             }

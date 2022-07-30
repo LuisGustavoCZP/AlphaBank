@@ -1,24 +1,17 @@
 import { v4 } from "uuid";
-import { ExceptionTreatment, BCrypt } from "../../utils";
+import { ExceptionTreatment } from "../../utils";
 import { Account, APIResponse, User } from "../../models";
 import { CreateUserService } from "../user";
 import { AccountsTable } from "../../clients/postgres";
-import PasswordValidator from "../../validators/strings/password";
 
 class CreateAccountService 
 {
-    public async execute (user: User, password: string) : Promise<APIResponse<Account>>
+    public async execute (user: User) : Promise<APIResponse<Account>>
     {
         try 
         {
+            //, pass : string pw
             const resp = await CreateUserService.execute(user);
-
-            const validPassword = new PasswordValidator(password);
-            if(validPassword.errors)
-            {
-                throw new Error(`400: ${validPassword.errors}`)
-            }
-            const pw = await BCrypt.encrypt(validPassword.data);
 
             const ac = await AccountsTable.nextAccount();
             const ag = await AccountsTable.nextAgency();
@@ -30,7 +23,6 @@ class CreateAccountService
                 agency_identifier: ag.slice(-1),
                 account: ac.slice(0, -1),
                 account_identifier: ac.slice(-1),
-                password: pw,
                 balance: 0
             } as Account;
 

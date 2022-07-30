@@ -8,9 +8,9 @@ class CreateAccount
     {
         try 
         {
-            const password = req.body["password"];
-            delete req.body["password"];
-            const response = await CreateAccountService.execute(req.body, password);
+            /* const password = req.body["password"];
+            delete req.body["password"]; */
+            const response = await CreateAccountService.execute(req.body/* , password */);
             new ResponseWriter().success(res, 201, response)
         }
         catch(e)
