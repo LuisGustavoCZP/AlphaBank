@@ -2,9 +2,9 @@
 
 import { ArrowLeft } from "phosphor-react";
 import { useEffect, useState } from "react";
-import { DataBox, DataBoxLabels } from "./DataBox";
-import { ProfileAccountsData } from "./ProfileAccountsData";
-import { ProfileUserData } from "./ProfileUserData";
+import { DataBox, DataBoxLabels } from "../components/DataBox";
+import { ProfileAccountsData } from "../components/ProfileAccountsData";
+import { ProfileUserData } from "../components/ProfileUserData";
 
 export function ProfilePage ()
 {

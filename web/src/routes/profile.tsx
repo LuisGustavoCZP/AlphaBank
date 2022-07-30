@@ -1,13 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Route } from 'react-router-dom';
-import { UserPage } from '../pages/user';
+import { ProfilePage } from '../pages/profile';
 
-export function UserRoute ()
+export function ProfileRoute ()
 {
     return (
         <Route
             path="/user"
-            element={<UserPage />}
+            element={<ProfilePage />}
         />
     );
 }
