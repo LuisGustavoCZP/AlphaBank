@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Navigate, Link } from 'react-router-dom';
-import { Bank, ArrowsLeftRight, UploadSimple, DownloadSimple, UserCircle } from "phosphor-react";
+import { Bank, ArrowsLeftRight, UploadSimple, DownloadSimple, UserCircle, CaretDown, CaretUp, Eye, EyeClosed } from "phosphor-react";
 import { NavigatorItem } from './NavigatorItem';
 import '../styles/navigation.css';
 /* import { useState } from 'react'; */
@@ -19,7 +19,9 @@ export function Navigator (props : any)
                 </ul>
             </nav>
             <div className='flex relative h-10 w-full justify-center'>
-                <section className='absolute h-16 p-2 w-3/4 bg-slate-300 rounded-lg'></section>
+                <section className='absolute h-16 p-2 w-3/4 bg-slate-300 rounded-lg'>
+                    <h3><span>Agência: 1510-5</span><span>Conta: 95785-3</span><CaretDown size={32} /></h3>
+                </section>
             </div>
         </header>
     );
