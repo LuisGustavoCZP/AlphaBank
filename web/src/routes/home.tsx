@@ -8,11 +8,6 @@ import { ProfilePage } from '../components/ProfilePage';
 export function HomeRoute ()
 {
     return (
-        <Route
-            path="/"
-            element={
-                <ProfilePage></ProfilePage>                
-            }
-        />
+        <Route path='/' element={<Navigate to="/user"/>} />
     );
 }

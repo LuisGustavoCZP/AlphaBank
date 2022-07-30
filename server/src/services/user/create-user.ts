@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { APIResponse, User } from "../../models";
-import { ExceptionTreatment } from "../../utils";
+import { ExceptionTreatment, BCrypt } from "../../utils";
 import UserDataValidator from "../../validators/user-data";
 import UsersTable from "../../clients/postgres/user";
 
@@ -18,18 +18,26 @@ class CreateUserService
             {
                 throw new Error(`400: ${validUserData.errors}`)
             }
-            
+
             const selectedUser = await UsersTable.select({cpf:validUserData.data.cpf});
             if(selectedUser && selectedUser.length > 0)
             {
+                const finalUser = selectedUser[0];
+
+                if(!await BCrypt.check(validUserData.data.password as string, finalUser.password))
+                {
+                    throw new Error(`404: wrong password`);
+                }
                 //console.log("Achou ", selectedUser);
                 return {
-                    data: selectedUser[0],
+                    data: finalUser,
                     messages: []
                 } as APIResponse;
             }
 
             validUserData.data.id = v4();
+            validUserData.data.password = await BCrypt.encrypt(validUserData.data.password as string);
+
             const insertedUser = await UsersTable.insert(validUserData.data as User);
 
             if (insertedUser)

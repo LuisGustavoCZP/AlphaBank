@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Route } from 'react-router-dom';
+import { RegisterPage } from '../pages/';
 
 export function RegisterRoute ()
 {
@@ -7,7 +8,7 @@ export function RegisterRoute ()
         <Route
             path="/register"
             element={
-                <h1>Register</h1>
+                <RegisterPage />
             }
         />
     );

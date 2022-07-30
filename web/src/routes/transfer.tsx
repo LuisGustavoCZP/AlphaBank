@@ -1,16 +1,16 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Route } from 'react-router-dom';
-import { Public, Private } from '.';
+import { Private } from '.';
 import { Navigator } from '../components/Navigator';
-import { ExtractPage } from '../pages/';
+import { TransferPage } from '../pages/';
 
-export function ExtractRoute ()
+export function TransferRoute ()
 {
     return (
-        <Route path="/extract" element=
+        <Route path="/transfer" element=
         {  
             <Private>
-                <><Navigator /><ExtractPage /></>
+                <><Navigator /><TransferPage /></>
             </Private>
         } />
     );

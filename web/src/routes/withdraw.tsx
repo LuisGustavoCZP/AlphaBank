@@ -2,15 +2,15 @@
 import { Route } from 'react-router-dom';
 import { Public, Private } from '.';
 import { Navigator } from '../components/Navigator';
-import { ExtractPage } from '../pages/';
+import { WithdrawPage } from '../pages/';
 
-export function ExtractRoute ()
+export function WithdrawRoute ()
 {
     return (
-        <Route path="/extract" element=
+        <Route path="/withdraw" element=
         {  
             <Private>
-                <><Navigator /><ExtractPage /></>
+                <><Navigator /><WithdrawPage /></>
             </Private>
         } />
     );
