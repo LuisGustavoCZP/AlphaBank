@@ -10,7 +10,7 @@ class CreateExtract
         {
             const {account} = req.body;
             //console.log("Passou por aqui!");
-
+            console.log("Cookie foi", req.cookies.token);
             const response = await CreateExtractService.execute(account, req.cookies.token);
             new ResponseWriter().success(res, 200, response)
         }

@@ -10,13 +10,15 @@ class CreateExtractService
         try 
         {
             const acc = await SelectAccountService.execute(account);
-            if(userid == acc.data.owner) 
+            if(userid != acc.data.owner) 
             {
                 throw new Error(`400: token is missing`);
             }
 
-            const owner = await UsersTable.select({id:acc.data.owner});
-            
+            const owner = (await UsersTable.select({id:acc.data.owner}))[0] as any;
+            delete owner["id"];
+            delete owner["password"];
+
             const resp = await TransactionTable.select({account:acc.data.id}) as Partial<Transaction>[];
             
             resp.forEach(element => {
@@ -24,8 +26,9 @@ class CreateExtractService
             });
             //console.log(resp);
             const resAcc = acc.data as any;
+            delete resAcc["id"];
             delete resAcc["owner"];
-            delete resAcc["password"];
+            //delete resAcc["password"];
             //delete resAcc["created_at"];
             delete resAcc["updated_at"];
             return {
