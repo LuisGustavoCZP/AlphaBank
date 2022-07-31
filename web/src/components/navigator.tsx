@@ -13,17 +13,16 @@ const regexBalance = new RegExp("[\\d]", "gi");
 
 export function Navigator (props : any)
 {
-    const { user } = useUser();
-    const [acc, setAcc] = useState(user?.accounts[0]);
+    const { userData, showBalance, showingBalance, account, selectAccount } = useUser();
+    /* const [acc, setAcc] = useState(user?.accounts[0]); */
     const [opened, setOpened] = useState(false);
-    const [visible, setVisible] = useState(true);
 
-    let balance = currency.format(acc? acc.balance : 0).replace('R$', '');
-    if(!visible) balance = balance.replace(regexBalance, "*");
+    let balance = currency.format(account? account.balance : 0).replace('R$', '');
+    if(!showingBalance) balance = balance.replace(regexBalance, "*");
 
     return (
         <header className='nav-header rounded-b-3xl mb-10'>
-            <span className='flex justify-between mt-9 mb-2 text-white w-10/12 text-xl'><h4>Bem vindo, {user?.user.name}</h4><Link to={'/user'}><UserCircle size={28} /></Link></span>
+            <span className='flex justify-between mt-9 mb-2 text-white w-10/12 text-xl'><h4>Bem vindo, {userData?.user.name}</h4><Link to={'/user'}><UserCircle size={28} /></Link></span>
             <nav>
                 <ul className='flex flex-row w-full'>
                     <NavigatorItem title='Extract' to='/extract'><Bank size={36} /></NavigatorItem>
@@ -35,7 +34,7 @@ export function Navigator (props : any)
             <div className='flex relative h-10 w-full justify-center'>
                 <section className='absolute p-1 w-10/12 bg-slate-300 rounded-lg'>
                     <h3 className='flex flex-row justify-between text-base'>
-                        <AccountText className='header-gold' account={acc} />
+                        <AccountText className='header-gold' account={account} />
                         {
                             opened?
                                 <CaretUp size={24} onClick={()=>{setOpened(false);}} />
@@ -48,11 +47,11 @@ export function Navigator (props : any)
                         opened?
                             <ul>
                                 {
-                                    user?.accounts.map((account, index) => 
+                                    userData?.accounts.map((acc, index) => 
                                     {
                                         return (
                                             <li key={index}>
-                                                <button className='flex flex-row w-full justify-between text-base btn' onClick={() => {setAcc(account); setOpened(false);}}>
+                                                <button className='flex flex-row w-full justify-between text-base btn' onClick={() => {if(selectAccount) selectAccount(acc); setOpened(false);}}>
                                                     <AccountText account={acc} />
                                                 </button>
                                             </li>
@@ -63,13 +62,13 @@ export function Navigator (props : any)
                         :
                             <h4 className='flex flex-row items-center mx-4 my-2 h-9'>
                                 {
-                                    visible?
-                                        <Eye size={24} onClick={()=>{setVisible(false);}} />
+                                    showingBalance?
+                                        <Eye size={24} onClick={()=>{if (showBalance) showBalance(false);}} />
                                     :
-                                        <EyeClosed size={24} onClick={()=>{setVisible(true);}} />
+                                        <EyeClosed size={24} onClick={()=>{if (showBalance) showBalance(true);}} />
                                 }
                                 <p className='flex flex-row mx-2 items-end'>
-                                    <span className='text-3xl balance-main'>{visible?balance:""}</span>
+                                    <span className='text-3xl balance-main'>{showingBalance?balance:""}</span>
                                     <span className='flex text-lg h-full justify-end balance-side'>R$</span>
                                 </p>
                             </h4>

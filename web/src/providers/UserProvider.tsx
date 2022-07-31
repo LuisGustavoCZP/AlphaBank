@@ -3,9 +3,13 @@ import { ReactNode, createContext, useState, useContext, useEffect } from 'react
 
 interface ContextTypes 
 {
-  user: IUserData;
+  userData: IUserData;
   loading: boolean;
   login: (login: string, password: string) => void
+  showBalance: (show : boolean) => void
+  showingBalance : boolean
+  account : IAccount
+  selectAccount : (account : IAccount) => void
 }
 
 interface IUser
@@ -56,7 +60,7 @@ async function UserCookie (callback : any)
     const responseJson = await response.json();
     console.log(responseJson);
     const user = responseJson.data;
-    if(responseJson && user.user) callback(user);
+    callback(user);
   } catch (error) {
       console.log(error);
       return (null as unknown) as IUserData;        
@@ -87,8 +91,19 @@ async function UserLogin (cpf: string, password: string) : Promise<IUserData>
 
 export const UserProvider = ({ children }: UserProviderTypes) => 
 {
-  const [user, setUser] = useState<IUserData>(); 
+  const [userData, setUserData] = useState<IUserData>(); 
+  const [showingBalance, setShowingBalance] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [account, setAccount] = useState<IAccount>();
+
+  function userApply (user : IUserData)
+  {
+    if(user && user.user) 
+    {
+      setUserData(user);
+      if(user.accounts.length > 0) setAccount(user.accounts[0]);
+    }
+  }
 
   const login = async (
     login: string,
@@ -97,22 +112,36 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
   {
     setLoading(true);
     const user = await UserLogin(login, password);
-    user.password = password;
-    if(user && user.user) setUser(user)
+    userApply(user);
     setLoading(false);
+  }
+
+  const showBalance = (show = !showingBalance) =>
+  {
+    setShowingBalance(show);
+  }
+
+  const selectAccount = (_account : IAccount) =>
+  {
+    setAccount(_account);
   }
 
   useEffect(()=>
   {
-    UserCookie(setUser);
+    setLoading(true);
+    UserCookie((user : IUserData) => {userApply(user); setLoading(false);});
   }, [])
 
   return (
     <UserContext.Provider
       value={{
-        user,
+        userData,
         loading,
-        login
+        login,
+        showBalance,
+        showingBalance,
+        account,
+        selectAccount
       }}
     >
       {children}

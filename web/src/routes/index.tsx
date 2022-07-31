@@ -17,10 +17,10 @@ interface ChildrenTypes {
   }
   
 export function Private ({ children }: ChildrenTypes) {
-    const {user, loading} = useUser();
-    console.log(user);
+    const {userData, loading} = useUser();
+    //console.log(userData);
 
-    if (!user) {
+    if (!userData) {
         return <Navigate to="/login" />;
     }
 
@@ -28,9 +28,9 @@ export function Private ({ children }: ChildrenTypes) {
 }
 
 export function Public ({ children }: ChildrenTypes) {
-    const {user, loading} = useUser();
+    const {userData, loading} = useUser();
 
-    if (user) {
+    if (userData) {
         return <Navigate to="/extract" />;
     }
 
