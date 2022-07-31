@@ -1,11 +1,11 @@
 import { ExceptionTreatment } from "../../utils";
 import { APIResponse } from "../../models";
-import { TransactionTable, UsersTable } from "../../clients/postgres";
-import { PassUserService } from "../user";
+import { UsersTable } from "../../clients/postgres";
+import { PassUserService, SelectUserService } from "./";
 
-class CreateExtractService 
+class LoginUserService 
 {
-    public async execute (user: {cpf: string, password: string}) : Promise<APIResponse>
+    public async execute (user: {cpf: string, password: string}) : Promise<APIResponse<any>>
     {
         try 
         {
@@ -15,21 +15,19 @@ class CreateExtractService
             }
 
             const userOwner = owner[0];
+            
             await PassUserService.execute(userOwner.id, user.password);
-            //console.log("Extrato de", acc.data.id);
             
-            
+            const userData = await SelectUserService.execute(userOwner.id);
+
             return {
-                data: {
-                    user:userOwner,
-                    accounts:[],
-                },
+                data: userData.data,
                 messages: []
             } as APIResponse;
         }
         catch (error)
         {
-            //console.log("User error", error);
+            console.log("User error", error);
             throw new ExceptionTreatment(
                 error as Error,
                 500,
@@ -39,4 +37,4 @@ class CreateExtractService
     }
 }
 
-export default new CreateExtractService();
+export default new LoginUserService();

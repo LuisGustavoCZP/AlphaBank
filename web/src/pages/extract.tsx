@@ -48,7 +48,7 @@ export function ExtractPage ()
             <div>
                 <Navigator />
                 <div className="bg-[#eaedf0] flex-col items-center justify-center">
-                    <div className="relative flex-col bg-[#337782] w-full h-52 mb-10 rounded-b-3xl">
+                    {/* <div className="relative flex-col bg-[#337782] w-full h-52 mb-10 rounded-b-3xl">
                         <ArrowLeft className="absolute left-6 top-6" size={32} color='white' />
                         <div className="absolute flex items-end justify-center m-auto left-0 right-0 top-0 bottom-0 w-40 h-28 text-center">
                             <div className="absolute bg-white w-20 h-20 m-auto left-0 right-0 top-0 rounded-full">
@@ -56,7 +56,7 @@ export function ExtractPage ()
                             </div>
                             <span className="text-white font-medium text-xl">Dhesem Pregads</span>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="px-6 flex-col flex-nowrap gap-8 h-screen">
                         <DataBox label={DataBoxLabels.EXTRATO_DE_TRANSAÇOES}>
                             {transactionsData}

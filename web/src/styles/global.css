@@ -22,6 +22,10 @@
         @apply bg-[#E24B2D] hover:bg-[#F2664A] disabled:bg-[#E24B2D80] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded
     }
 
+    .header-gold {
+        @apply text-[#C98E26]
+    }
+
     /*.max-portrait {
         @apply w-full h-full;
         max-width:360px;

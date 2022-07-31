@@ -10,12 +10,18 @@
     }
 
     .nav-btn {
-        @apply w-fit h-fit flex justify-center py-1 px-2 items-center;
-        background-color: #75ACB1;
+        @apply w-fit h-fit flex justify-center py-1 px-2 items-center bg-[#75ACB1];
     }
 
     .nav-header {
-        @apply flex flex-col justify-center items-center w-full;
-        background-color: #337782;
+        @apply flex flex-col justify-center items-center w-full bg-[#337782];
+    }
+
+    .balance-main {
+        @apply text-[#338896];
+    }
+
+    .balance-side {
+        @apply text-[#3FA7B8];
     }
 }

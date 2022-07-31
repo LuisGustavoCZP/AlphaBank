@@ -4,15 +4,26 @@ import { Bank, ArrowsLeftRight, UploadSimple, DownloadSimple, UserCircle, CaretD
 import { NavigatorItem } from './NavigatorItem';
 import '../styles/navigation.css';
 import { useState } from 'react';
+import { useUser } from '../providers/UserProvider';
+import currency from '../libs/currency';
+import { AccountText } from './AccountText';
 /* import { useState } from 'react'; */
+
+const regexBalance = new RegExp("[\\d]", "gi");
 
 export function Navigator (props : any)
 {
+    const { user } = useUser();
+    const [acc, setAcc] = useState(user?.accounts[0]);
     const [opened, setOpened] = useState(false);
     const [visible, setVisible] = useState(true);
+
+    let balance = currency.format(acc? acc.balance : 0).replace('R$', '');
+    if(!visible) balance = balance.replace(regexBalance, "*");
+
     return (
         <header className='nav-header rounded-b-3xl mb-10'>
-            <span className='flex justify-between mt-9 mb-2 text-white w-10/12 text-xl'><h4>Bem vindo, Usuario</h4><Link to={'/user'}><UserCircle size={28} /></Link></span>
+            <span className='flex justify-between mt-9 mb-2 text-white w-10/12 text-xl'><h4>Bem vindo, {user?.user.name}</h4><Link to={'/user'}><UserCircle size={28} /></Link></span>
             <nav>
                 <ul className='flex flex-row w-full'>
                     <NavigatorItem title='Extract' to='/extract'><Bank size={36} /></NavigatorItem>
@@ -23,33 +34,44 @@ export function Navigator (props : any)
             </nav>
             <div className='flex relative h-10 w-full justify-center'>
                 <section className='absolute p-1 w-10/12 bg-slate-300 rounded-lg'>
-                    <h3 className='flex flex-row justify-between text-base'><span>Agência: 1510-5</span><span>Conta: 95785-3</span>
-                    {
-                        opened?
-                            <CaretUp size={24} onClick={()=>{setOpened(false);}} />
-                        :(
-                            <CaretDown size={24} onClick={()=>{setOpened(true);}} />
-                        )
-                    }
+                    <h3 className='flex flex-row justify-between text-base'>
+                        <AccountText className='header-gold' account={acc} />
+                        {
+                            opened?
+                                <CaretUp size={24} onClick={()=>{setOpened(false);}} />
+                            :(
+                                <CaretDown size={24} onClick={()=>{setOpened(true);}} />
+                            )
+                        }
                     </h3>
                     {
-                        opened? 
-                            <button className='flex flex-row w-full justify-between text-base btn'><span>Agência: 1510-5</span><span>Conta: 95785-3</span></button>
+                        opened?
+                            <ul>
+                                {
+                                    user?.accounts.map((account, index) => 
+                                    {
+                                        return (
+                                            <li key={index}>
+                                                <button className='flex flex-row w-full justify-between text-base btn' onClick={() => {setAcc(account); setOpened(false);}}>
+                                                    <AccountText account={acc} />
+                                                </button>
+                                            </li>
+                                        );
+                                    })
+                                }
+                            </ul>
                         :
-                            <h4 className='flex flex-row items-center h-full'>
+                            <h4 className='flex flex-row items-center mx-4 my-2 h-9'>
                                 {
                                     visible?
                                         <Eye size={24} onClick={()=>{setVisible(false);}} />
-                                    :(
+                                    :
                                         <EyeClosed size={24} onClick={()=>{setVisible(true);}} />
-                                    )
                                 }
-                                <span className='text-3xl'>
-                                    132.759,30
-                                </span>
-                                <span className='flex text-lg h-full items-end'>
-                                    R$
-                                </span>
+                                <p className='flex flex-row mx-2 items-end'>
+                                    <span className='text-3xl balance-main'>{visible?balance:""}</span>
+                                    <span className='flex text-lg h-full justify-end balance-side'>R$</span>
+                                </p>
                             </h4>
                     }
                 </section>

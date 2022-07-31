@@ -4,5 +4,6 @@ const router : Router = express.Router();
 
 //router.route("/create").post(UserController.CreateUser.handle);
 router.route("/login").post(UserController.LoginUser.handle);
+router.route("/").post(UserController.GetUser.handle);
 
 export default router;

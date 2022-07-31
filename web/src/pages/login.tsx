@@ -31,7 +31,6 @@ export function LoginPage ()
     function loginHandler (e : React.MouseEvent<HTMLButtonElement>)
     {
         console.log(`Login to ${userInput}:${passInput}`)
-        
         if(login) login(userInput, passInput);
     }
 

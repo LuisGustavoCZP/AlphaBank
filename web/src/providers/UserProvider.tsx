@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { ReactNode, createContext, useState, useContext } from 'react';
+import { ReactNode, createContext, useState, useContext, useEffect } from 'react';
 
 interface ContextTypes 
 {
@@ -29,6 +29,7 @@ interface IAccount
 interface IUserData
 {
   user: IUser
+  password: string
   accounts: IAccount[]
 }
 
@@ -37,6 +38,29 @@ export const UserContext = createContext<Partial<ContextTypes>>({});
 interface UserProviderTypes 
 {
   children: ReactNode;
+}
+
+async function UserCookie (callback : any)
+{
+  try {        
+    const response = await fetch('http://localhost:8000/user/', 
+    {
+        method: 'POST', 
+        headers: 
+        {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({})
+    });
+
+    const responseJson = await response.json();
+    console.log(responseJson);
+    const user = responseJson.data;
+    if(responseJson && user.user) callback(user);
+  } catch (error) {
+      console.log(error);
+      return (null as unknown) as IUserData;        
+  }
 }
 
 async function UserLogin (cpf: string, password: string) : Promise<IUserData>
@@ -72,11 +96,16 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
   ) => 
   {
     setLoading(true);
-
     const user = await UserLogin(login, password);
+    user.password = password;
     if(user && user.user) setUser(user)
     setLoading(false);
   }
+
+  useEffect(()=>
+  {
+    UserCookie(setUser);
+  }, [])
 
   return (
     <UserContext.Provider
