@@ -33,7 +33,6 @@ interface IAccount
 interface IUserData
 {
   user: IUser
-  password: string
   accounts: IAccount[]
 }
 

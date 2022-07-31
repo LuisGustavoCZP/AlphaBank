@@ -8,9 +8,10 @@ class CreateExtract
     {
         try 
         {
-            const {account, password} = req.body;
+            const {account} = req.body;
             //console.log("Passou por aqui!");
-            const response = await CreateExtractService.execute(account, password);
+
+            const response = await CreateExtractService.execute(account, req.cookies.token);
             new ResponseWriter().success(res, 200, response)
         }
         catch(e)

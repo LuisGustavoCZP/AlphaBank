@@ -1,21 +1,22 @@
 import { ExceptionTreatment } from "../../utils";
 import { APIResponse, Transaction, TransactionAccount } from "../../models";
 import { TransactionTable, UsersTable } from "../../clients/postgres";
-import { SelectAccountService } from "../account";
+import { PassAccountService, SelectAccountService } from "../account";
 
 class CreateExtractService 
 {
-    public async execute (account: TransactionAccount, userid: string) : Promise<APIResponse>
+    public async execute (account: TransactionAccount, password: string) : Promise<APIResponse>
     {
         try 
         {
             const acc = await SelectAccountService.execute(account);
-            if(userid == acc.data.owner) 
-            {
-                throw new Error(`400: token is missing`);
-            }
-
             const owner = await UsersTable.select({id:acc.data.owner});
+            /* if(acc.messages.length != 0) {
+                throw new Error(`404: account do not exist`);
+            } */
+
+            await PassAccountService.execute(acc.data, password);
+            //console.log("Extrato de", acc.data.id);
             
             const resp = await TransactionTable.select({account:acc.data.id}) as Partial<Transaction>[];
             
