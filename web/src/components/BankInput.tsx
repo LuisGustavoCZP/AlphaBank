@@ -11,6 +11,7 @@ export interface BankInputProps
     readonly? : boolean
     onInput? : (e : HTMLInputElement) => void
     value? : string
+    className? : string
 }
 
 let inputCount = 0;
@@ -70,7 +71,8 @@ export function BankInput (props : BankInputProps)
     {
         if(!(props.readonly))
             return (
-                <input type="text" 
+                <input type="text"
+                className="ml-2"
                 id={id}
                 typeof={props.type? bankInputTypes[props.type] : 'text'}
                 placeholder={props.placeholder?props.placeholder:''}
@@ -90,10 +92,10 @@ export function BankInput (props : BankInputProps)
 
     return (
         
-        <>
-            <label htmlFor={id}>{props.label}</label>
+        <span className={`${props.className?` ${props.className}`:''}`}>
+            <label className='mr-2' htmlFor={id}>{props.label}</label>
             { InputCreation () }
-        </>
+        </span>
     )
     
 }

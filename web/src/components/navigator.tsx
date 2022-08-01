@@ -17,8 +17,8 @@ export function Navigator (props : any)
     /* const [acc, setAcc] = useState(user?.accounts[0]); */
     const [opened, setOpened] = useState(false);
 
-    let balance = currency.format(account? account.balance : 0).replace('R$', '');
-    if(!showingBalance) balance = balance.replace(regexBalance, "*");
+    let balance = currency.format(account? account.balance : 0).replace('R$', '').trim();
+    if(!showingBalance && false != showingBalance) balance = balance.replace(regexBalance, "*");
 
     return (
         <header className='nav-header rounded-b-3xl mb-10'>
@@ -68,8 +68,8 @@ export function Navigator (props : any)
                                         <EyeClosed size={24} onClick={()=>{if (showBalance) showBalance(true);}} />
                                 }
                                 <p className='flex flex-row mx-2 items-end'>
-                                    <span className='text-3xl balance-main'>{showingBalance?balance:""}</span>
-                                    <span className='flex text-lg h-full justify-end balance-side'>R$</span>
+                                    <span className={`flex text-3xl balance-main relative justify-center items-center${!showingBalance?' select-none' : ''}`}>{balance}{!showingBalance?<span className='flex flex-grow absolute h-full w-full backdrop-blur-[6px] rounded-2xl overflow-hidden'></span>:<></>}</span>
+                                    <span className='flex text-lg h-full justify-end balance-side select-none'>R$</span>
                                 </p>
                             </h4>
                     }

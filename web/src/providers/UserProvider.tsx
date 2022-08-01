@@ -12,7 +12,7 @@ interface ContextTypes
   selectAccount : (account : IAccount) => void
 }
 
-interface IUser
+export interface IUser
 {
   name: string;
   email: string;
@@ -20,7 +20,7 @@ interface IUser
   birthdate: string;
 }
 
-interface IAccount 
+export interface IAccount 
 {
   agency: string
   agency_identifier: string
@@ -30,7 +30,7 @@ interface IAccount
   created_at : string
 }
 
-interface IUserData
+export interface IUserData
 {
   user: IUser
   accounts: IAccount[]
