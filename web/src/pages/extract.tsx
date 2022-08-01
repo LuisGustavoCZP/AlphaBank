@@ -4,9 +4,11 @@ import { Private } from '../routes';
 import { useEffect, useState } from "react";
 import { DataBox, DataBoxLabels } from "../components/DataBox";
 import { ExtractData } from "../components/ExtractData";
+import { useUser } from '../providers/UserProvider';
 
 export function ExtractPage ()
 {
+    const {userData, account} = useUser();
     const [transactionsData, setTransactionsData] = useState<JSX.Element[]>([]);
 
     useEffect(() =>
@@ -16,7 +18,7 @@ export function ExtractPage ()
             const extractDatas: any = [];
             const transactionsObject: any = {};
 
-            const resp = (await getData()).data;
+            const resp = (await getData(userData?.user.cpf, account)).data;
 
             for (const transactions of resp.transctions) {
                 const createdAt = prepareDate(transactions.created_at);
@@ -76,17 +78,17 @@ function prepareDate(dateString: string)
     return `${day}/${month}/${year}`;
 }
 
-async function getData()
+async function getData(cpf: string | undefined, account: any)
 {
     const requestJson = 
     {
         account:
         {
-            agency: "10",
-            agency_identifier: "0",
-            account: "20",
-            account_identifier: "1",
-            cpf:"082.839.549-06"
+            agency: account.agency,
+            agency_identifier: account.agency_identifier,
+            account: account.account,
+            account_identifier: account.account_identifier,
+            cpf
         }
     }
 
@@ -101,10 +103,8 @@ async function getData()
             body: JSON.stringify(requestJson)
         });
 
-        // console.log(response);
-
         const responseJson = await response.json();
-        console.log(responseJson);
+
         return responseJson;  
     } catch (error) {
         console.log(error);        
