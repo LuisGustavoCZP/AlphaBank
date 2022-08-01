@@ -1,6 +1,6 @@
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { BankInput, BankInputType } from "../components/BankInput";
-import { useUser, UserContext } from "../providers/UserProvider";
+import { useUser } from "../providers/UserProvider";
 import { Public } from "../routes";
 
 /* eslint-disable react/react-in-jsx-scope */

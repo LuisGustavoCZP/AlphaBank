@@ -1,5 +1,5 @@
 import { ExceptionTreatment, BCrypt } from "../../utils";
-import { APIResponse, User } from "../../models";
+import { APIResponse } from "../../models";
 import { UsersTable } from "../../clients/postgres";
 import PasswordValidator from "../../validators/strings/password";
 
