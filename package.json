@@ -7,7 +7,10 @@
     "install": "cd web && npm i && cd ../server && npm i",
     "dev:client": "cd web && npm run dev:build",
     "dev:server": "cd server && npm run dev",
-    "dev": "start \"Client\" npm run dev:client && start \"Server\" npm run dev:server",
+    "start:client": "start \"Client\" npm run dev:build",
+    "start:server": "start \"Server\" npm run dev:server",
+    "dev": "npm run dev:client && npm run start:server",
+    "start": "npm run start:client && npm run start:server",
     "build": "cd web && npm run build && cd ../server && npm run build"
   },
   "repository": {
