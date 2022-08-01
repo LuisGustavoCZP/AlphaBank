@@ -35,7 +35,7 @@ class CreateExtractService
                 data: {
                     user:owner,
                     account:resAcc,
-                    transctions:resp
+                    transactions:resp
                 },
                 messages: []
             } as APIResponse;

@@ -1,5 +1,6 @@
-import React, { FormEvent, useState } from "react";
-import { useUser, UserContext } from "../providers/UserProvider";
+import React, { useState } from "react";
+import { BankInput, BankInputType } from "../components/BankInput";
+import { useUser } from "../providers/UserProvider";
 import { Public } from "../routes";
 
 /* eslint-disable react/react-in-jsx-scope */
@@ -8,24 +9,20 @@ export function LoginPage ()
     const { login } = useUser();
     const [userInput, setUserInput] = useState('');
     const [passInput, setPassInput] = useState('');
-    const userRegex = new RegExp('[\\d\\.-]+', 'gi');
-    const passRegex = new RegExp('[\\w\\d]+', 'gi');
 
-    function userInputHandler (e : FormEvent<HTMLInputElement>)
+    function userInputHandler (target : HTMLInputElement)
     {
-        const t = e.target as any;
-        const v = t.value.match(userRegex);
-        console.log(v);
+        const t = target as any;
+        console.log(t.value);
         
-        setUserInput(v?v[0]:'');
+        setUserInput(t.value);
     }
 
-    function passInputHandler (e : FormEvent<HTMLInputElement>)
+    function passInputHandler (target : HTMLInputElement)
     {
-        const t = e.target as any;
-        const v = t.value.match(passRegex);
-        console.log(v);
-        setPassInput(v?v[0]:'');
+        const t = target as any;
+        console.log(t.value);
+        setPassInput(t.value);
     }
 
     function loginHandler (e : React.MouseEvent<HTMLButtonElement>)
@@ -37,8 +34,10 @@ export function LoginPage ()
     return (
         <Public>
             <section className="flex flex-col w-full h-full justify-center items-center">
-                <input type="text" onInput={userInputHandler} value={userInput}/>
-                <input type="password" onInput={passInputHandler} value={passInput}/>
+                <BankInput label="CPF" type={BankInputType.CPF} onInput={userInputHandler} value={userInput}></BankInput>
+                <BankInput label="Senha" type={BankInputType.Password} onInput={passInputHandler} value={passInput}></BankInput>
+                {/* <input type="text" onInput={userInputHandler} value={userInput}/>
+                <input type="password" onInput={passInputHandler} value={passInput}/> */}
                 <button onClick={loginHandler}>Entrar</button>
             </section>
         </Public>

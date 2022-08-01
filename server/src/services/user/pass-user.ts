@@ -1,5 +1,5 @@
 import { ExceptionTreatment, BCrypt } from "../../utils";
-import { APIResponse, User } from "../../models";
+import { APIResponse } from "../../models";
 import { UsersTable } from "../../clients/postgres";
 import PasswordValidator from "../../validators/strings/password";
 
@@ -38,7 +38,7 @@ class PassUserService
             throw new ExceptionTreatment(
                 error as Error,
                 500,
-                "an error occurred while inserting account on database"
+                "an error occurred while checking password on database"
             );
         }
     }
