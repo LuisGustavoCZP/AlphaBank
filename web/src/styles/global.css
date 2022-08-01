@@ -1,10 +1,18 @@
 @tailwind base;
 
-/*@layer base {
+@layer base {
     body {
-        @apply flex w-screen h-screen justify-center items-center;
+        @apply flex w-screen h-screen justify-center items-center overflow-hidden;
     }
-}*/
+
+    body > div {
+        @apply flex w-full h-full flex-col;
+    }
+
+    body > div > div, body > div > main {
+        @apply flex w-full h-full flex-col bg-[#EAEDF0] dark:bg-[#23292C];
+    }
+}
 
 @tailwind components;
 @tailwind utilities;

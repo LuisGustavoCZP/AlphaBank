@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "cd web && npm i && cd ../server && npm i",
-    "dev:client": "cd web && npm run dev:build",
+    "install:all": "cd web && npm i && cd ../server && npm i",
+    "dev:client": "cd web && npm run dev",
     "dev:server": "cd server && npm run dev",
     "start:client": "start \"Client\" npm run dev:build",
     "start:server": "start \"Server\" npm run dev:server",
-    "dev": "npm run dev:client && npm run start:server",
+    "dev": "npm run start:server && npm run dev:client",
     "start": "npm run start:client && npm run start:server",
     "build": "cd web && npm run build && cd ../server && npm run build"
   },

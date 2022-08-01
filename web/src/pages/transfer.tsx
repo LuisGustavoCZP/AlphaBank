@@ -4,28 +4,34 @@ import { Navigator } from '../components/Navigator';
 import { BankInput, BankInputType } from '../components/BankInput';
 import { Private } from '../routes';
 import "../styles/transactions.css";
-import { useUser } from '../providers/UserProvider';
+import { IAccount, useUser } from '../providers/UserProvider';
+import { AccountInput } from '../components/AccountInput';
+import { useState } from 'react';
 
 export function TransferPage ()
 {
     const {account} = useUser();
-    const agTxt = `${account?.agency}-${account?.agency_identifier}`;
-    const acTxt = `${account?.account}-${account?.account_identifier}`;
+    const [acc, setAcc] = useState<IAccount>();
 
     return (
         <Private>
-            <main>
+            <div>
                 <Navigator></Navigator>
-                <DataBox label={DataBoxLabels.TRANSFERÊNCIA}>
-                    <ul>
-                        <li>
-                            <h3>Origem</h3>
-                            <BankInput label='Agência' type={BankInputType.Agency} readonly value={agTxt} />
-                            <BankInput label='Conta' type={BankInputType.Account} readonly value={acTxt}/>
-                        </li>
-                    </ul>
-                </DataBox>
-            </main>
+                <main className='flex w-full h-full flex-col justify-center px-6'>
+                    <DataBox label={DataBoxLabels.TRANSFERÊNCIA}>
+                        <ul>
+                            <li>
+                                <h3>Origem</h3>
+                                <AccountInput readonly value={account}/>
+                            </li>
+                            <li>
+                                <h3>Destino</h3>
+                                <AccountInput value={acc}/>
+                            </li>
+                        </ul>
+                    </DataBox>
+                </main>
+            </div>
         </Private>
     );
 }

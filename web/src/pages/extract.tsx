@@ -18,9 +18,10 @@ export function ExtractPage ()
             const extractDatas: any = [];
             const transactionsObject: any = {};
 
+            if(!account) return;
             const resp = (await getData(userData?.user.cpf, account)).data;
 
-            for (const transactions of resp.transctions) {
+            for (const transactions of resp.transactions) {
                 const createdAt = prepareDate(transactions.created_at);
 
                 if (!Object.hasOwn(transactionsObject, createdAt)) {
@@ -100,6 +101,7 @@ async function getData(cpf: string | undefined, account: any)
             {
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
             body: JSON.stringify(requestJson)
         });
 
