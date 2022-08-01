@@ -17,7 +17,7 @@ interface IUser
   name: string;
   email: string;
   cpf: string;
-  birthDate: string;
+  birthdate: string;
 }
 
 interface IAccount 

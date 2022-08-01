@@ -1,8 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Navigator } from '../components/Navigator';
 import { Private } from '../routes';
-
-import { ArrowLeft } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { DataBox, DataBoxLabels } from "../components/DataBox";
 import { ExtractData } from "../components/ExtractData";
@@ -87,10 +85,9 @@ async function getData()
             agency: "10",
             agency_identifier: "0",
             account: "20",
-            account_identifier: "4",
+            account_identifier: "1",
             cpf:"082.839.549-06"
-        },
-        password: "123456"
+        }
     }
 
     try {        
@@ -104,8 +101,10 @@ async function getData()
             body: JSON.stringify(requestJson)
         });
 
-        const responseJson = await response.json();
+        // console.log(response);
 
+        const responseJson = await response.json();
+        console.log(responseJson);
         return responseJson;  
     } catch (error) {
         console.log(error);        
