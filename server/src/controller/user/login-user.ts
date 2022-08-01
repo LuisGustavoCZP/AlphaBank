@@ -1,6 +1,13 @@
-import { Request, Response } from "express";
+import { CookieOptions, Request, Response } from "express";
 import { LoginUserService } from "../../services";
 import { ResponseWriter } from "../../utils";
+
+const cookieOptions : CookieOptions = 
+{
+    sameSite:'none',
+    secure:true,
+    httpOnly:true,
+}
 
 class LoginUser
 {
@@ -11,7 +18,8 @@ class LoginUser
             const response = await LoginUserService.execute(req.body);
             if(response && response.data && response.data.user)
             {
-                res.cookie("token", response.data.user.id);
+                
+                res.cookie("token", response.data.user.id, cookieOptions);
                 delete response.data.user.id;
             }
 

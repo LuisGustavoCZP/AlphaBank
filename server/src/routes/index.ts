@@ -11,7 +11,12 @@ const app: Express = express();
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors());
+
+const corsOptions : cors.CorsOptions = {
+    origin:["http://localhost:8000", "http://localhost:5173"],
+    credentials:true,
+}
+app.use(cors(corsOptions));
 
 //app.use("/assets", express.static("../web/dist/assets"));
 app.use("/", express.static("../web/dist"));

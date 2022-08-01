@@ -53,6 +53,7 @@ async function UserCookie (callback : any)
         {
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({})
     });
 
@@ -76,6 +77,7 @@ async function UserLogin (cpf: string, password: string) : Promise<IUserData>
         {
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({cpf, password})
     });
 

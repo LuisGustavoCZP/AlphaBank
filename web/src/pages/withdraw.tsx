@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Navigator } from '../components/Navigator';
 import { Private } from '../routes';
+import "../styles/transactions.css";
 
 export function WithdrawPage ()
 {
