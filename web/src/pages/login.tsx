@@ -34,8 +34,8 @@ export function LoginPage ()
     return (
         <Public>
             <section className="flex flex-col w-full h-full justify-center items-center">
-                <BankInput label="CPF" type={BankInputType.CPF} onInput={userInputHandler} value={userInput}></BankInput>
-                <BankInput label="Senha" type={BankInputType.Password} onInput={passInputHandler} value={passInput}></BankInput>
+                <BankInput label="CPF" type={BankInputType.CPF} onInput={userInputHandler} value={userInput} placeholder={"Digite seu CPF"}></BankInput>
+                <BankInput label="Senha" type={BankInputType.Password} onInput={passInputHandler} value={passInput} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
                 {/* <input type="text" onInput={userInputHandler} value={userInput}/>
                 <input type="password" onInput={passInputHandler} value={passInput}/> */}
                 <button onClick={loginHandler}>Entrar</button>

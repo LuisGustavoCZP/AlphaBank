@@ -2,12 +2,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { FormEvent } from "react";
-//const userRegex = ;
+
 export interface BankInputProps
 {
-    label : string
+    label? : string
     type? : BankInputType
-    placeholder? : string
+    placeholder : string
     readonly? : boolean
     onInput? : (e : HTMLInputElement) => void
     value? : string
@@ -21,7 +21,9 @@ export enum BankInputType {
     Password = 2,
     Agency = 3,
     Account = 4,
-    Value = 5
+    Value = 5,
+    Name = 6,
+    Email = 7
 }
 
 const bankInputRegex = [
@@ -31,6 +33,8 @@ const bankInputRegex = [
     /* Agency: */   '[\\d-]+',
     /* Account: */  '(\\d-)+',
     /* Value:  */   '(\\d)+',
+    /* Name: */     '[a-zA-Z]+',
+    /* Email: */     '[\w-\.]+@([\w-]+\.)+[\w-]{2,4}'
 ];
 
 const bankInputTypes = [
@@ -40,6 +44,8 @@ const bankInputTypes = [
     /* Agency: */   'text',
     /* Account: */  'text',
     /* Value:  */   'number',
+    /* Name: */     'text',
+    /* Email: */     'text'
 ];
 
 export function inputs ()
@@ -76,6 +82,7 @@ export function BankInput (props : BankInputProps)
                 placeholder={props.placeholder?props.placeholder:''}
                 onInput={InputChanged}
                 value={props.value}
+                className="input"
                 />
             );
         else 
@@ -91,8 +98,8 @@ export function BankInput (props : BankInputProps)
     return (
         
         <>
-            <label htmlFor={id}>{props.label}</label>
             { InputCreation () }
+            <label htmlFor={id}>{props.label}</label>
         </>
     )
     

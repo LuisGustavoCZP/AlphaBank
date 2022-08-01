@@ -26,6 +26,29 @@
         @apply text-[#C98E26]
     }
 
+    .input{
+        background-color: #F7F7F7;
+        border: 1px solid #D2D2D2;
+        color: #353535;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .input:disabled{
+        background-color: #D2D2D2;
+        color: #A8A8A8;
+    }
+
+    .input:focus{
+        border: 1px solid #3FA7B8;
+    }
+
+    .input::placeholder{
+        color: #727272;
+    }
+
     /*.max-portrait {
         @apply w-full h-full;
         max-width:360px;
