@@ -7,7 +7,7 @@ export interface BankInputProps
 {
     label? : string
     type? : BankInputType
-    placeholder : string
+    placeholder? : string
     readonly? : boolean
     onInput? : (e : HTMLInputElement) => void
     value? : string
@@ -33,8 +33,8 @@ const bankInputRegex = [
     /* Agency: */   '[\\d-]+',
     /* Account: */  '(\\d-)+',
     /* Value:  */   '(\\d)+',
-    /* Name: */     '[a-zA-Z]+',
-    /* Email: */     '[\w-\.]+@([\w-]+\.)+[\w-]{2,4}'
+    /* Name: */     '[a-zA-Z ]+',
+    /* Email: */    '[\w-\.]+@([\w-]+\.)+[\w-]{2,4}'
 ];
 
 const bankInputTypes = [
@@ -45,7 +45,7 @@ const bankInputTypes = [
     /* Account: */  'text',
     /* Value:  */   'number',
     /* Name: */     'text',
-    /* Email: */     'text'
+    /* Email: */    'text'
 ];
 
 export function inputs ()
@@ -99,7 +99,7 @@ export function BankInput (props : BankInputProps)
         
         <>
             { InputCreation () }
-            <label htmlFor={id}>{props.label}</label>
+            {props.label?<label htmlFor={id}>{props.label}</label>:<></>}
         </>
     )
     

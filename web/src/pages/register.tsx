@@ -3,7 +3,7 @@ import { BankInput, BankInputType } from "../components/BankInput";
 import { Public } from "../routes";
 
 /* eslint-disable react/react-in-jsx-scope */
-export function LoginPage ()
+export function RegisterPage ()
 {
     const [nameInput, setNameInput] = useState('');
     const [cpfInput, setCpfInput] = useState('');
@@ -35,14 +35,6 @@ export function LoginPage ()
         }
     }
 
-    function userInputHandler (target : HTMLInputElement)
-    {
-        const t = target as any;
-        console.log(t.value);
-        
-        setUserInput(t.value);
-    }
-
     function passConfirmHandler (target : HTMLInputElement)
     {
         const t = target as any;
@@ -52,7 +44,7 @@ export function LoginPage ()
 
     function registerHandler (e : React.MouseEvent<HTMLButtonElement>)
     {
-        console.log(`Registring ${nameInput}`)
+        console.log(`Registring ${nameInput}`);
     }
 
     return (
