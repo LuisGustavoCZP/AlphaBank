@@ -5,6 +5,7 @@ import { Public } from "../routes";
 import { Link } from 'react-router-dom';
 import ReactLogo  from "../assets/logo.svg";
 import '../styles/inputs.css';
+import { CPFInput } from "../components/CPFInput";
 
 /* eslint-disable react/react-in-jsx-scope */
 export function LoginPage ()
@@ -19,6 +20,12 @@ export function LoginPage ()
         console.log(t.value);
         
         setUserInput(t.value);
+    }
+
+    function cpfInputHandler (value : string)
+    {
+        console.log(value);
+        setUserInput(value);
     }
 
     function passInputHandler (target : HTMLInputElement)
@@ -41,7 +48,7 @@ export function LoginPage ()
                     <div className="max-w-[75%] flex flex-col w-full h-full justify-center items-center" >
                         <img src={ReactLogo} alt="Alpha Bunker" />
                         <h3 className="titlePages">Login</h3>
-                        <BankInput type={BankInputType.CPF} onInput={userInputHandler} value={userInput} placeholder={"Digite seu CPF"}></BankInput>
+                        <CPFInput onInput={cpfInputHandler} value={userInput} placeholder={"Digite seu CPF"}/>
                         <BankInput  type={BankInputType.Password} onInput={passInputHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
                         <button className="btn-primary-base w-full" onClick={loginHandler}>Entrar</button>
                         <Link className="logintransfer" to={'/register'}>Crie sua conta</Link>

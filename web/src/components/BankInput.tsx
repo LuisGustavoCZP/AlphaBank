@@ -30,7 +30,7 @@ export enum BankInputType {
 }
 
 const bankInputRegex = [
-    /* CPF: */      /^[0-9]{1,11}/gm,
+    /* CPF: */      /^[0-9\\.-]{1,14}$/gm,
     /* Date: */     /^[0-9]{0,8}$/,
     /* Password: */ /^[A-Za-z\d]+$/,
     /* Agency: */   /^(\d){0,}(-{0,1})(\d){0,}$/,

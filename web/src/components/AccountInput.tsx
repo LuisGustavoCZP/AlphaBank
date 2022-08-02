@@ -21,7 +21,7 @@ export function AccountInput (props : AccountInputProps)
 
     const agTxt = acc?`${ag}${agI?`-${agI}`:''}`:'';
     const acTxt = acc?`${ac}${acI?`-${acI}`:''}`:'';
-    console.log("AI", agTxt, acTxt);
+    //console.log("AI", agTxt, acTxt);
 
     function InputAccount (target : HTMLInputElement)
     {
