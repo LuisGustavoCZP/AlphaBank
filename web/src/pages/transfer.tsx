@@ -1,11 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { DataBox, DataBoxLabels } from '../components/DataBox';
 import { Navigator } from '../components/Navigator';
-import { BankInput, BankInputType } from '../components/BankInput';
 import { Private } from '../routes';
 import "../styles/transactions.css";
-import { IAccount, useUser } from '../providers/UserProvider';
+import { DataBox, DataBoxLabels } from '../components/DataBox';
+import { BankInput, BankInputType } from '../components/BankInput';
 import { AccountInput } from '../components/AccountInput';
+import { IAccount, useUser } from '../providers/UserProvider';
 import { useState } from 'react';
 
 export function TransferPage ()
