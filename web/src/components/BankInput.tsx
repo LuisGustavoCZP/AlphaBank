@@ -14,6 +14,7 @@ export interface BankInputProps
     value? : string
     className? : string
     isError? : boolean
+    name? : string
 }
 
 let inputCount = 0;
@@ -31,7 +32,7 @@ export enum BankInputType {
 
 const bankInputRegex = [
     /* CPF: */      /^[0-9\\.-]{1,14}$/gm,
-    /* Date: */     /^[0-9/]{0,11}$/,
+    /* Date: */     /^[0-9/]{0,10}$/,
     /* Password: */ /^[A-Za-z\d]+$/,
     /* Agency: */   /^(\d){0,}(-{0,1})(\d){0,}$/,
     /* Account: */  /^(\d){0,}(-{0,1})(\d){0,}$/,
@@ -48,7 +49,7 @@ const bankInputTypes = [
     /* Account: */  'text',
     /* Value:  */   'number',
     /* Name: */     'text',
-    /* Email: */    'text'
+    /* Email: */    'email'
 ];
 
 export function inputs ()
@@ -84,12 +85,14 @@ export function BankInput (props : BankInputProps)
     {
         if(!(props.readonly))
             return (
-                <input type={props.type != undefined? bankInputTypes[props.type] : 'text'}
+                <input
+                type={props.type != undefined? bankInputTypes[props.type] : 'text'}
                 className="ml-2 ipt w-full"
                 id={id}
                 placeholder={props.placeholder?props.placeholder:''}
                 onInput={InputChanged}
                 value={props.value}
+                name={props.name}
                 />
             );
         else 

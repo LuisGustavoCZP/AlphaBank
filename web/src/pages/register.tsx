@@ -7,6 +7,7 @@ import ReactLogo  from "../assets/logo.svg";
 import '../styles/inputs.css';
 import { Send } from "../libs/sender";
 import { CPFInput } from "../components/CPFInput";
+import { DateInput } from "../components/DateInput";
 
 /* eslint-disable react/react-in-jsx-scope */
 export function RegisterPage ()
@@ -55,10 +56,9 @@ export function RegisterPage ()
         setNameInput(t.value);
     }
 
-    function dateHandler (target : HTMLInputElement){
-        const type = target?.type;
-        const t = target as any;
-        setDateInput(t.value);
+    function dateHandler (value : string){
+
+        setDateInput(value);
     }
 
     function passHandler (target : HTMLInputElement){
@@ -89,7 +89,7 @@ export function RegisterPage ()
         }
 
         const birthdate = dateInput.split("/").reverse().join("-");
-        console.log(birthdate);
+        //console.log(birthdate);
 
         const user = {
             name: nameInput,
@@ -100,7 +100,7 @@ export function RegisterPage ()
         }
         console.log(`Registring ${nameInput}`);
         const resp = await Send("account/create", user);
-        console.log(resp);
+        //console.log(resp);
 
         if(resp.messages.length > 0)
         {
@@ -121,12 +121,12 @@ export function RegisterPage ()
                     <div className="max-w-[75%] flex flex-col w-full h-full justify-center items-center" >
                         <img src={ReactLogo} alt="Alpha Bunker" width="103px" height="103px" />
                         <h3 className="titlePages">Crie sua conta</h3>
-                        <BankInput className="input mt-[5px]" isError={errors.name && errors.name != ''} label={errors.name?errors.name:''} type={BankInputType.Name} onInput={nameHandler} value={nameInput} placeholder={"Digite seu Nome"} ></BankInput>
-                        <BankInput className="input mt-[5px]" isError={errors.date && errors.date != ''} label={errors.date?errors.date:''} type={BankInputType.Date} onInput={dateHandler} value={dateInput} placeholder={"Digite sua Data de Nascimento"} ></BankInput>
-                        <CPFInput className="mt-[5px]" isError={errors.cpf && errors.cpf != ''} label={errors.cpf?errors.cpf:''} onInput={cpfHandler} value={cpfInput} placeholder={"Digite seu CPF"}/>
-                        <BankInput className="input mt-[5px]" isError={errors.email && errors.email != ''} label={errors.email?errors.email:''} type={BankInputType.Email} onInput={emailHandler} value={emailInput} placeholder={"Digite seu Email"} ></BankInput>
-                        <BankInput className="input mt-[5px]" isError={errors.pass && errors.pass != ''} label={errors.pass?errors.pass:''} type={BankInputType.Password} onInput={passHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
-                        <BankInput className="input mt-[5px]" isError={passCError != ''} label={passCError} type={BankInputType.Password} onInput={passConfirmHandler} value={passConfirm} placeholder={"Confirme sua Senha"}></BankInput>
+                        <BankInput name='fullname' className="input mt-[5px]" isError={errors.name && errors.name != ''} label={errors.name?errors.name:''} type={BankInputType.Name} onInput={nameHandler} value={nameInput} placeholder={"Digite seu Nome"} ></BankInput>
+                        <DateInput name='birthdate' className="input mt-[5px]" isError={errors.date && errors.date != ''} label={errors.date?errors.date:''} onInput={dateHandler} value={dateInput} placeholder={"Digite sua Data de Nascimento"} />
+                        <BankInput name='email' className="input mt-[5px]" isError={errors.email && errors.email != ''} label={errors.email?errors.email:''} type={BankInputType.Email} onInput={emailHandler} value={emailInput} placeholder={"Digite seu Email"} ></BankInput>
+                        <CPFInput name='cpf' className="mt-[5px]" isError={errors.cpf && errors.cpf != ''} label={errors.cpf?errors.cpf:''} onInput={cpfHandler} value={cpfInput} placeholder={"Digite seu CPF"}/>
+                        <BankInput name='password' className="input mt-[5px]" isError={errors.pass && errors.pass != ''} label={errors.pass?errors.pass:''} type={BankInputType.Password} onInput={passHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
+                        <BankInput name='password-confirm' className="input mt-[5px]" isError={passCError != ''} label={passCError} type={BankInputType.Password} onInput={passConfirmHandler} value={passConfirm} placeholder={"Confirme sua Senha"}></BankInput>
                         <button className="btn-primary-base w-full mt-[10px]" onClick={registerHandler}>Cadastrar</button>
                         <Link className="logintransfer" to={'/login'}>Entrar</Link>
                     </div>

@@ -35,7 +35,7 @@ export function ExtractPage ()
             }
 
             for (const [createdAt, transactions] of Object.entries(transactionsObject)) {
-                extractDatas.push(<ExtractData key={createdAt} createdAt={createdAt} transactions={transactions as any} />);
+                extractDatas.push(<li key={createdAt}><ExtractData createdAt={createdAt} transactions={transactions as any} /></li>);
             }
             
             return extractDatas;
@@ -49,19 +49,12 @@ export function ExtractPage ()
         <Private>
             <div>
                 <Navigator />
-                <main className="flex-col items-center justify-center">
-                    {/* <div className="relative flex-col bg-[#337782] w-full h-52 mb-10 rounded-b-3xl">
-                        <ArrowLeft className="absolute left-6 top-6" size={32} color='white' />
-                        <div className="absolute flex items-end justify-center m-auto left-0 right-0 top-0 bottom-0 w-40 h-28 text-center">
-                            <div className="absolute bg-white w-20 h-20 m-auto left-0 right-0 top-0 rounded-full">
-
+                <main className="flex h-full w-full flex-col items-center justify-center overflow-hidden px-6">
+                    <div className="flex flex-col items-center justify-center flex-nowrap h-full w-full overflow-hidden mt-3 mb-4">
+                        <DataBox label={DataBoxLabels.EXTRATO_DE_TRANSAÇOES} className="flex flex-col max-h-full h-fit w-full overflow-hidden mb-0">
+                            <div className='flex max-h-full h-fit w-full overflow-y-scroll justify-center'>
+                                <ul className='flex flex-col h-fit w-full'>{response()}</ul>
                             </div>
-                            <span className="text-white font-medium text-xl">Dhesem Pregads</span>
-                        </div>
-                    </div> */}
-                    <div className="px-6 flex-col flex-nowrap gap-8 h-screen">
-                        <DataBox label={DataBoxLabels.EXTRATO_DE_TRANSAÇOES}>
-                            {response()}
                         </DataBox>
                     </div>
                 </main>

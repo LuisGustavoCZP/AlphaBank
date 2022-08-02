@@ -89,11 +89,11 @@ async function UserCookie (callback : any)
     });
 
     const responseJson = await response.json();
-    console.log(responseJson);
+    //console.log(responseJson);
     const user = responseJson.data;
     callback(user);
   } catch (error) {
-      console.log(error);
+      //console.log(error);
       callback((null as unknown) as IUserData);        
   }
 }
@@ -163,7 +163,7 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
 
   const updateExtract = async (_account = account) =>
   {
-    console.log("ATualizando extrato");
+    //console.log("ATualizando extrato");
     if(!_account) return {data:{}, messages:[]};
     const acc = {
       account: 
@@ -178,7 +178,7 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
     //console.log(acc);
     const resp = await Send("extract", acc);
     /* const p = ; */
-    console.log("extrato", resp);
+    //console.log("extrato", resp);
     setExtract(resp.data);
   }
 

@@ -2,16 +2,17 @@ import { useState } from "react";
 import { BankInput, BankInputType } from "./BankInput";
 
 /* eslint-disable react/react-in-jsx-scope */
-interface MoneyInput 
+interface MoneyInputProps
 {
     className?:string
     onInput? : (value : number) => void
     value? : number
     isError? : boolean
     label? : string
+    name? : string
 }
 
-export function MoneyInput (props : MoneyInput)
+export function MoneyInput (props : MoneyInputProps)
 {
     const [money, setMoney] = useState<number>(props.value != undefined?props.value:0);
     //const txt = money?money.toFixed(2):undefined;
@@ -40,5 +41,5 @@ export function MoneyInput (props : MoneyInput)
         props.onInput(m);
     }
 
-    return (<BankInput type={BankInputType.Value} isError={props.isError} label={props.label} className={`${props.className?props.className:''}`} onInput={InputHandle} placeholder='Valor' value={money > 0?money.toFixed(2):''}></BankInput>);
+    return (<BankInput type={BankInputType.Value} name={props.name} isError={props.isError} label={props.label} className={`${props.className?props.className:''}`} onInput={InputHandle} placeholder='Valor' value={money > 0?money.toFixed(2):''}></BankInput>);
 }

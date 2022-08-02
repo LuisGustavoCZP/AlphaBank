@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BankInput, BankInputType } from "./BankInput";
 
 /* eslint-disable react/react-in-jsx-scope */
-interface CPFInputProps
+interface DateInputProps 
 {
     className?:string
     onInput? : (value : string) => void
@@ -13,27 +13,27 @@ interface CPFInputProps
     name? : string
 }
 
-export function CPFInput (props : CPFInputProps)
+export function DateInput (props : DateInputProps)
 {
-    const [cpf, setCPF] = useState<string>(props.value != undefined?props.value:'');
+    const [date, setDate] = useState<string>(props.value != undefined?props.value:'');
 
     function InputHandle (target : HTMLInputElement)
     {
         if(!props.onInput) return;
-        const f = target.value.replace(/[.-]/gi, '');
+        const f = target.value.replace(/[/]/gi, '');
         const ns = f.split('');
         
         const n = ns.length > 0 ? ns.reduce((p, c, i) => 
         {
-            if(i % 3 == 0 && i < 9) p+=".";
-            else if (i == 9) p+="-";
+            if(i % 2 == 0 && i < 5) p+="/";
+            /* else if (i == 5) p+="/"; */
             p += c;
             return p;
         }) : '';
 
-        setCPF(n)
+        setDate(n)
         props.onInput(n);
     }
 
-    return (<BankInput name={props.name} placeholder={props.placeholder} isError={props.isError} label={props.label} type={BankInputType.CPF} className={`${props.className?props.className:''}`} onInput={InputHandle} value={cpf}></BankInput>);
+    return (<BankInput name={props.name} placeholder={props.placeholder} isError={props.isError} label={props.label} type={BankInputType.Date} className={`${props.className?props.className:''}`} onInput={InputHandle} value={date}></BankInput>);
 }

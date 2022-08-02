@@ -3,10 +3,12 @@ import { IAccount } from "../providers/UserProvider"
 import { BankInput, BankInputType } from "./BankInput";
 
 interface AccountInputProps {
+    name : string
     className? : string
     value?: IAccount
     readonly?: boolean
     onAccount?: (target: IAccount) => void
+    
     /* onAgency?: (target: HTMLInputElement) => void */
 }
 /* eslint-disable react/react-in-jsx-scope */
@@ -59,8 +61,8 @@ export function AccountInput (props : AccountInputProps)
 
     return (
         <div className={`flex flex-row justify-between${props.className?` ${props.className}`:''}`}>
-            <BankInput className="flex flex-col w-4/12" label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={InputAgency} value={agTxt} />
-            <BankInput className="flex flex-col w-5/12" label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={InputAccount} value={acTxt}/>
+            <BankInput className="flex flex-col w-4/12" name={`${props.name}-agency`} label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={InputAgency} value={agTxt} />
+            <BankInput className="flex flex-col w-5/12" name={`${props.name}-account`} label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={InputAccount} value={acTxt}/>
         </div>
     );
 }

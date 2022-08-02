@@ -8,7 +8,7 @@ class GetUser
     {
         try 
         {
-            const response = await SelectUserService.execute(req.cookies.token);
+            const response = await SelectUserService.execute(req.cookies.token, false);
             if(response && response.data && response.data.user) delete response.data.user.id;
             new ResponseWriter().success(res, 201, response);
         }

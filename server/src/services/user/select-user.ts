@@ -6,13 +6,17 @@ import { AccountsUserService } from "./";
 class SelectUserService 
 {
 
-    public async execute (userid: string): Promise<APIResponse<any>>
+    public async execute (userid: string, error = true): Promise<APIResponse<any>>
     {
         try 
         {
             const selectedUser = await UsersTable.select({id: userid});
             if(!selectedUser || selectedUser.length == 0) {
-                throw new Error(`400: account do not exist`);
+                if(error) throw new Error(`400: account do not exist`);
+                else return {
+                    data: null,
+                    messages: []
+                } as APIResponse;
             }
 
             const accountDatas = await AccountsUserService.execute(userid);
