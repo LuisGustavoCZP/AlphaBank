@@ -34,7 +34,7 @@ export function TransferPage ()
                             <li className='flex flex-grow flex-col w-full'>
                                 <BankInput className='flex-grow' placeholder=''></BankInput>
                             </li>
-                            <li>
+                            <li className='flex flex-grow flex-col w-full mt-2'>
                                 <button className='btn-primary-base'>Transferir</button>
                             </li>
                         </ul>
