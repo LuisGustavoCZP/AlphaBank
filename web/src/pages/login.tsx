@@ -24,7 +24,7 @@ export function LoginPage ()
     function passInputHandler (target : HTMLInputElement)
     {
         const t = target as any;
-        console.log(t.value);
+        console.log(t.type);
         setPassInput(t.value);
     }
 

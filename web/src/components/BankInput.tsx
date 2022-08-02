@@ -30,14 +30,14 @@ export enum BankInputType {
 }
 
 const bankInputRegex = [
-    /* CPF: */      '[\\d.-]+',
-    /* Date: */     '[\\d\\.-]+',
-    /* Password: */ '[\\w\\d]+',
-    /* Agency: */   '[\\d-]+',
-    /* Account: */  '(\\d-)+',
-    /* Value:  */   '(\\d)+',
-    /* Name: */     '[a-zA-Z ]+',
-    /* Email: */    '[\\w-\.]+@([\\w-]+\\.)+[\\w-]{2,4}'
+    /* CPF: */      /^[0-9]{1,11}/gm,
+    /* Date: */     /^[0-9]{0,8}$/,
+    /* Password: */ /^[A-Za-z\d]+$/,
+    /* Agency: */   /^[\d]+$/,
+    /* Account: */  /^[\d]+$/,
+    /* Value:  */   /^[\d]+$/,
+    /* Name: */     /^[A-Za-z ]+$/,
+    /* Email: */    /^[A-Za-z\d@]+$/
 ];
 
 const bankInputTypes = [
@@ -64,12 +64,17 @@ export function BankInput (props : BankInputProps)
     const id = `input${inputs ()}`;
     function InputChanged (e : FormEvent<HTMLInputElement>)
     {
-        const regex = props.type? bankInputRegex[props.type] : undefined;
+        const regex = props.type != undefined ? bankInputRegex[props.type] : undefined;
         const target = e.target as HTMLInputElement;
         if(regex != undefined) 
         {
             const matchs = target.value.match(new RegExp(regex, 'gmi'));
-            if(matchs && matchs.length > 0) target.value = matchs[0];
+            if(matchs != null) {
+                target.value = matchs.toString();
+            }else{
+                target.value = target.value.slice(0, -1);
+            }
+            console.log(target.value);
         }
         if(props.onInput) props.onInput(target);
         //console.log(target.value);
@@ -79,10 +84,9 @@ export function BankInput (props : BankInputProps)
     {
         if(!(props.readonly))
             return (
-                <input type="text"
+                <input type={props.type != undefined? bankInputTypes[props.type] : 'text'}
                 className="ml-2 ipt w-full"
                 id={id}
-                typeof={props.type? bankInputTypes[props.type] : 'text'}
                 placeholder={props.placeholder?props.placeholder:''}
                 onInput={InputChanged}
                 value={props.value}
@@ -102,7 +106,7 @@ export function BankInput (props : BankInputProps)
         
         <>
             { InputCreation () }
-            {props.label?<label className={props.isError? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
+            {props.label != undefined ?<label className={props.isError != undefined ? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
         </>
     )
     
