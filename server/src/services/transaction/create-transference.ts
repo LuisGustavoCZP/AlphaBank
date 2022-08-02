@@ -15,7 +15,7 @@ class CreateTransferenceService
             const originAcc = await SelectAccountService.execute(origin);
 
             await PassAccountService.execute(originAcc.data, password);
-
+            
             const destinationAcc = await SelectAccountService.execute(destination);
 
             if(originAcc.data.id == destinationAcc.data.id) throw new Error(`400: Origin and Destination are the same`);

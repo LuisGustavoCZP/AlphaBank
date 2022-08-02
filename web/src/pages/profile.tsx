@@ -67,8 +67,8 @@ function prepareDate(dateString: string)
 {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const month = (date.getMonth() + 1).toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping:false});
+    const day = date.getDate().toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping:false});
 
     return `${day}/${month}/${year}`;
 }
