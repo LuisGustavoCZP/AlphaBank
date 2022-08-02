@@ -5,9 +5,10 @@ import { DataBox, DataBoxLabels } from "../components/DataBox";
 import { ProfileAccountsData } from "../components/ProfileAccountsData";
 import { ProfileUserData } from "../components/ProfileUserData";
 import { ReceiptData } from "../components/ReceiptData";
+import { IExtract } from "../providers/UserProvider";
 
 interface PropTypes{
-    transaction: any;
+    transaction: IExtract;
 }
 
 export function ReceiptsPage (props: PropTypes)

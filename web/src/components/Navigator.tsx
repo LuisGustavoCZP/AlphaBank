@@ -13,11 +13,11 @@ const regexBalance = new RegExp("[\\d]", "gi");
 
 export function Navigator (props : any)
 {
-    const { userData, showBalance, showingBalance, account, selectAccount } = useUser();
+    const { userData, showBalance, showingBalance, account, selectAccount, extract } = useUser();
     /* const [acc, setAcc] = useState(user?.accounts[0]); */
     const [opened, setOpened] = useState(false);
 
-    let balance = currency.format(account? account.balance : 0).replace('R$', '').trim();
+    let balance = currency.format(extract?extract.account.balance : 0).replace('R$', '').trim();
     if(!showingBalance && false != showingBalance) balance = balance.replace(regexBalance, "*");
 
     return (
@@ -33,13 +33,13 @@ export function Navigator (props : any)
             </nav>
             <div className='flex relative h-10 w-full justify-center'>
                 <section className='absolute p-1 w-10/12 bg-slate-300 rounded-lg'>
-                    <h3 className='flex flex-row justify-between text-base'>
+                    <h3 className='flex flex-row justify-between text-base' onClick={()=>{setOpened(!opened);}}>
                         <AccountText className='header-gold' account={account} />
                         {
                             opened?
-                                <CaretUp size={24} onClick={()=>{setOpened(false);}} />
+                                <CaretUp size={24} />
                             :(
-                                <CaretDown size={24} onClick={()=>{setOpened(true);}} />
+                                <CaretDown size={24} />
                             )
                         }
                     </h3>

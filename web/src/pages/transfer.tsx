@@ -6,14 +6,14 @@ import { useState } from 'react';
 import { DataBox, DataBoxLabels } from '../components/DataBox';
 import { BankInput, BankInputType } from '../components/BankInput';
 import { AccountInput } from '../components/AccountInput';
-import { IAccount, useUser } from '../providers/UserProvider';
+import { IAccount, IAccountData, useUser } from '../providers/UserProvider';
 import { MoneyInput } from '../components/MoneyInput';
 import { Send } from '../libs/sender';
 import { ReceiptsPage } from './receipts';
 
 export function TransferPage ()
 {
-    const {account, userData} = useUser();
+    const {account, userData, updateExtract} = useUser();
     const [destAcc, setDestAcc] = useState<IAccount>();
     const [quanty, setQuanty] = useState<number>();
     const [pass, setPass] = useState<string>('');
@@ -55,6 +55,7 @@ export function TransferPage ()
 
         console.log('resp.data');
         console.log(resp.data);
+        updateExtract(account as IAccountData);
         setTransactionResult(resp.data);
     }
 

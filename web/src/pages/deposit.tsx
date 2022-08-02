@@ -6,16 +6,16 @@ import { useState } from 'react';
 import { DataBox, DataBoxLabels } from '../components/DataBox';
 import { BankInput, BankInputType } from '../components/BankInput';
 import { AccountInput } from '../components/AccountInput';
-import { IAccount, useUser } from '../providers/UserProvider';
+import { IAccount, IAccountData, IExtract, useUser } from '../providers/UserProvider';
 import { MoneyInput } from '../components/MoneyInput';
 import { Send } from '../libs/sender';
 import { ReceiptsPage } from './receipts';
 
 export function DepositPage ()
 {
-    const {account, userData} = useUser();
+    const {account, updateExtract, userData} = useUser();
     const [quanty, setQuanty] = useState<number>();
-    const [transactionResult, setTransactionResult] = useState();
+    const [transactionResult, setTransactionResult] = useState<IExtract>();
 
     function QuantyHandler (target : number)
     {
@@ -25,6 +25,7 @@ export function DepositPage ()
 
     async function DepositHandler ()
     {
+        
         const destination = {
             agency:account?.agency,
             agency_identifier:account?.agency_identifier,
@@ -37,7 +38,7 @@ export function DepositPage ()
         {
             return;
         }
-
+        updateExtract(account as IAccountData);
         setTransactionResult(resp.data);
     }
 

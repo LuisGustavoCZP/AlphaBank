@@ -1,15 +1,35 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { ReactNode, createContext, useState, useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Send } from '../libs/sender';
 
 interface ContextTypes 
 {
-  userData: IUserData;
-  loading: boolean;
+  userData?: IUserData;
+  loading?: boolean;
   login: (login: string, password: string) => void
   showBalance: (show : boolean) => void
-  showingBalance : boolean
-  account : IAccountData
+  showingBalance? : boolean
+  account? : IAccountData
   selectAccount : (account : IAccountData) => void
+  extract? : IExtract
+  updateExtract : (account : IAccountData) => void
+}
+
+export interface ITransaction
+{
+  id : string
+  origin : string
+  type : string
+  value : number
+  created_at: string
+}
+
+export interface IExtract 
+{
+  user : IUser
+  account : IAccountData
+  transactions : ITransaction[]
 }
 
 export interface IUser
@@ -41,7 +61,13 @@ export interface IUserData
   accounts: IAccountData[]
 }
 
-export const UserContext = createContext<Partial<ContextTypes>>({});
+export const UserContext = createContext<ContextTypes>(
+{
+  login: (login: string, password: string) => {console.log(login, password)},
+  showBalance: (show : boolean) => {console.log(show)},
+  selectAccount: (account : IAccountData) => {console.log(account)},
+  updateExtract : (account : IAccountData) => {console.log(account)}
+});
 
 interface UserProviderTypes 
 {
@@ -100,14 +126,22 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
   const [userData, setUserData] = useState<IUserData>(); 
   const [showingBalance, setShowingBalance] = useState(false);
   const [loading, setLoading] = useState(false);
+  /* let account : IAccountData = null as any; */
   const [account, setAccount] = useState<IAccountData>();
+  const [extract, setExtract] = useState<IExtract>();
 
-  function userApply (user : IUserData)
+  /* let extract: IExtract = null as any; */
+  /* const [] = useParams(); */
+
+  async function userApply (user : IUserData)
   {
     if(user && user.user) 
     {
+      if(user.accounts.length > 0) 
+      {
+        selectAccount(user.accounts[0]);
+      }
       setUserData(user);
-      if(user.accounts.length > 0) setAccount(user.accounts[0]);
     }
   }
 
@@ -127,15 +161,38 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
     setShowingBalance(show);
   }
 
-  const selectAccount = (_account : IAccountData) =>
+  const updateExtract = async (_account = account) =>
+  {
+    console.log("ATualizando extrato");
+    if(!_account) return {data:{}, messages:[]};
+    const acc = {
+      account: 
+      {
+        agency: _account.agency,
+        agency_identifier: _account.agency_identifier,
+        account: _account.account,
+        account_identifier: _account.account_identifier,
+        cpf: userData?.user.cpf
+      }
+    };
+    //console.log(acc);
+    const resp = await Send("extract", acc);
+    /* const p = ; */
+    console.log("extrato", resp);
+    setExtract(resp.data);
+  }
+
+  const selectAccount = async (_account : IAccountData) =>
   {
     setAccount(_account);
+    //account = _account;
+    await updateExtract(_account);
   }
 
   useEffect(()=>
   {
     setLoading(true);
-    UserCookie((user : IUserData) => {userApply(user); setLoading(false);});
+    if(!userData) UserCookie((user : IUserData) => {userApply(user); setLoading(false);});
   }, [])
 
   return (
@@ -147,7 +204,9 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
         showBalance,
         showingBalance,
         account,
-        selectAccount
+        selectAccount,
+        extract,
+        updateExtract
       }}
     >
       {children}

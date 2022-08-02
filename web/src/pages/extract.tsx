@@ -4,22 +4,22 @@ import { Private } from '../routes';
 import { useEffect, useState } from "react";
 import { DataBox, DataBoxLabels } from "../components/DataBox";
 import { ExtractData } from "../components/ExtractData";
-import { useUser } from '../providers/UserProvider';
+import { IExtract, useUser } from '../providers/UserProvider';
 
 export function ExtractPage ()
 {
-    const {userData, account} = useUser();
+    const {userData, account, extract} = useUser();
     const [transactionsData, setTransactionsData] = useState<JSX.Element[]>([]);
 
-    useEffect(() =>
-    {
-        const response = async () =>
+    /* useEffect(() =>
+    { */
+        const response = () =>
         {
             const extractDatas: any = [];
             const transactionsObject: any = {};
 
-            if(!account) return;
-            const resp = (await getData(userData?.user.cpf, account)).data;
+            if(!extract) return;
+            const resp = extract as IExtract;//(await getData(userData?.user.cpf, account)).data;
 
             for (const transactions of resp.transactions) {
                 const createdAt = prepareDate(transactions.created_at);
@@ -38,17 +38,18 @@ export function ExtractPage ()
                 extractDatas.push(<ExtractData key={createdAt} createdAt={createdAt} transactions={transactions as any} />);
             }
             
-            setTransactionsData(extractDatas);
+            return extractDatas;
+            //setTransactionsData(extractDatas);
         }
 
-        response();
-    }, []);
+        //response();
+    /* }, [extract]); */
 
     return (
         <Private>
             <div>
                 <Navigator />
-                <div className="bg-[#eaedf0] flex-col items-center justify-center">
+                <main className="flex-col items-center justify-center">
                     {/* <div className="relative flex-col bg-[#337782] w-full h-52 mb-10 rounded-b-3xl">
                         <ArrowLeft className="absolute left-6 top-6" size={32} color='white' />
                         <div className="absolute flex items-end justify-center m-auto left-0 right-0 top-0 bottom-0 w-40 h-28 text-center">
@@ -60,10 +61,10 @@ export function ExtractPage ()
                     </div> */}
                     <div className="px-6 flex-col flex-nowrap gap-8 h-screen">
                         <DataBox label={DataBoxLabels.EXTRATO_DE_TRANSAÇOES}>
-                            {transactionsData}
+                            {response()}
                         </DataBox>
                     </div>
-                </div>
+                </main>
             </div>
         </Private>
     );
