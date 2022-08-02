@@ -22,16 +22,16 @@ class AccountDataValidator
         const validAgencyI = new AgencyIValidator(user.agency_identifier);
         const validAccount = new AccountValidator(user.account);
         const validAccountI = new AccountIValidator(user.account_identifier);
-        const validCPF = new CPFValidator(user.cpf);
+        const validCPF = user.cpf != undefined? new CPFValidator(user.cpf) : null;
 
-        this.errors = this.errors.concat(`${validAgency.errors}${validAgencyI.errors}${validAccount.errors}${validAccountI.errors}${validCPF.errors}`)
+        this.errors = this.errors.concat(`${validAgency.errors}${validAgencyI.errors}${validAccount.errors}${validAccountI.errors}${validCPF?validCPF.errors:''}`)
     
         const userData: Partial<TransactionAccount> = {
             agency:validAgency.data,
             agency_identifier:validAgencyI.data,
             account:validAccount.data,
             account_identifier:validAccountI.data,
-            cpf:validCPF.data
+            cpf:validCPF?validCPF.data:''
         }
 
         return userData;
