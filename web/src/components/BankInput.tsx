@@ -2,6 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { FormEvent } from "react";
+import '../styles/inputs.css';
 
 export interface BankInputProps
 {
@@ -12,6 +13,7 @@ export interface BankInputProps
     onInput? : (e : HTMLInputElement) => void
     value? : string
     className? : string
+    isError? : boolean
 }
 
 let inputCount = 0;
@@ -28,14 +30,14 @@ export enum BankInputType {
 }
 
 const bankInputRegex = [
-    /* CPF: */      '[\\d\\.-]+',
+    /* CPF: */      '[\\d.-]+',
     /* Date: */     '[\\d\\.-]+',
     /* Password: */ '[\\w\\d]+',
     /* Agency: */   '[\\d-]+',
     /* Account: */  '(\\d-)+',
     /* Value:  */   '(\\d)+',
     /* Name: */     '[a-zA-Z ]+',
-    /* Email: */    '[\w-\.]+@([\w-]+\.)+[\w-]{2,4}'
+    /* Email: */    '[\\w-\.]+@([\\w-]+\\.)+[\\w-]{2,4}'
 ];
 
 const bankInputTypes = [
@@ -70,7 +72,7 @@ export function BankInput (props : BankInputProps)
             if(matchs && matchs.length > 0) target.value = matchs[0];
         }
         if(props.onInput) props.onInput(target);
-        console.log(target.value);
+        //console.log(target.value);
     }
 
     function InputCreation ()
@@ -78,13 +80,12 @@ export function BankInput (props : BankInputProps)
         if(!(props.readonly))
             return (
                 <input type="text"
-                className="ml-2"
+                className="ml-2 ipt w-full"
                 id={id}
                 typeof={props.type? bankInputTypes[props.type] : 'text'}
                 placeholder={props.placeholder?props.placeholder:''}
                 onInput={InputChanged}
                 value={props.value}
-                className="input"
                 />
             );
         else 
@@ -101,7 +102,7 @@ export function BankInput (props : BankInputProps)
         
         <>
             { InputCreation () }
-            {props.label?<label htmlFor={id}>{props.label}</label>:<></>}
+            {props.label?<label className={props.isError? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
         </>
     )
     

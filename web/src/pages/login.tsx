@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { BankInput, BankInputType } from "../components/BankInput";
 import { useUser } from "../providers/UserProvider";
 import { Public } from "../routes";
+import { Link } from 'react-router-dom';
+import ReactLogo  from "../assets/logo.svg";
+import '../styles/inputs.css';
 
 /* eslint-disable react/react-in-jsx-scope */
 export function LoginPage ()
@@ -33,11 +36,18 @@ export function LoginPage ()
 
     return (
         <Public>
-            <section className="flex flex-col w-full h-full justify-center items-center">
-                <BankInput label="" type={BankInputType.CPF} onInput={userInputHandler} value={userInput} placeholder={"Digite seu CPF"}></BankInput>
-                <BankInput label="" type={BankInputType.Password} onInput={passInputHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
-                <button onClick={loginHandler}>Entrar</button>
-            </section>
+            <div>
+                <section className="flex flex-col w-full h-full justify-center items-center">
+                    <div className="max-w-[75%] flex flex-col w-full h-full justify-center items-center" >
+                        <img src={ReactLogo} alt="Alpha Bunker" />
+                        <h3 className="titlePages">Login</h3>
+                        <BankInput type={BankInputType.CPF} onInput={userInputHandler} value={userInput} placeholder={"Digite seu CPF"}></BankInput>
+                        <BankInput  type={BankInputType.Password} onInput={passInputHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
+                        <button className="btn-primary-base w-full" onClick={loginHandler}>Entrar</button>
+                        <Link className="logintransfer" to={'/register'}>Crie sua conta</Link>
+                    </div>
+                </section>
+            </div>
         </Public>
     );
 }
