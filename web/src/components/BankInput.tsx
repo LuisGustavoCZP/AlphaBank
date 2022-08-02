@@ -106,7 +106,7 @@ export function BankInput (props : BankInputProps)
         <span className={props.className?props.className:''}>
             { InputCreation () }
             {props.label != undefined ?<label className={props.isError != undefined ? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
-        </>
+        </span>
     )
     
 }
