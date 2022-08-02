@@ -38,6 +38,10 @@ export function WithdrawPage ()
             cpf:userData?.user.cpf
         };
         const resp = await Send('withdraw', {origin, password:pass, quanty:quanty});
+        if(resp.messages.length > 0)
+        {
+            return;
+        }
     }
 
     return (

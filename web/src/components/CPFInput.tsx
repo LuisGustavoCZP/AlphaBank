@@ -8,6 +8,8 @@ interface CPFInput
     onInput? : (value : string) => void
     value? : string
     placeholder? : string
+    isError? : boolean
+    label? : string
 }
 
 export function CPFInput (props : CPFInput)
@@ -32,5 +34,5 @@ export function CPFInput (props : CPFInput)
         props.onInput(n);
     }
 
-    return (<BankInput placeholder={props.placeholder} type={BankInputType.CPF} className={`${props.className?props.className:''}`} onInput={InputHandle} value={cpf}></BankInput>);
+    return (<BankInput placeholder={props.placeholder} isError={props.isError} label={props.label} type={BankInputType.CPF} className={`${props.className?props.className:''}`} onInput={InputHandle} value={cpf}></BankInput>);
 }

@@ -7,6 +7,8 @@ interface MoneyInput
     className?:string
     onInput? : (value : number) => void
     value? : number
+    isError? : boolean
+    label? : string
 }
 
 export function MoneyInput (props : MoneyInput)
@@ -38,5 +40,5 @@ export function MoneyInput (props : MoneyInput)
         props.onInput(m);
     }
 
-    return (<BankInput type={BankInputType.Value} className={`${props.className?props.className:''}`} onInput={InputHandle} placeholder='Valor' value={money > 0?money.toFixed(2):''}></BankInput>);
+    return (<BankInput type={BankInputType.Value} isError={props.isError} label={props.label} className={`${props.className?props.className:''}`} onInput={InputHandle} placeholder='Valor' value={money > 0?money.toFixed(2):''}></BankInput>);
 }

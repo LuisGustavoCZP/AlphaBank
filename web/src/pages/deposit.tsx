@@ -31,6 +31,10 @@ export function DepositPage ()
             cpf:userData?.user.cpf
         };
         const resp = await Send('deposit', {destination, quanty:quanty});
+        if(resp.messages.length > 0)
+        {
+            return;
+        }
     }
 
     return (

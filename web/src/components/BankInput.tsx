@@ -31,13 +31,13 @@ export enum BankInputType {
 
 const bankInputRegex = [
     /* CPF: */      /^[0-9\\.-]{1,14}$/gm,
-    /* Date: */     /^[0-9]{0,8}$/,
+    /* Date: */     /^[0-9/]{0,11}$/,
     /* Password: */ /^[A-Za-z\d]+$/,
     /* Agency: */   /^(\d){0,}(-{0,1})(\d){0,}$/,
     /* Account: */  /^(\d){0,}(-{0,1})(\d){0,}$/,
     /* Value:  */   /^[\d\\.]+$/,
     /* Name: */     /^[A-Za-z ]+$/,
-    /* Email: */    /^[A-Za-z\d@]+$/
+    /* Email: */    /^[A-Za-z\d@\\.]+$/
 ];
 
 const bankInputTypes = [
@@ -105,7 +105,7 @@ export function BankInput (props : BankInputProps)
     return (
         <span className={props.className?props.className:''}>
             { InputCreation () }
-            {props.label != undefined ?<label className={props.isError != undefined ? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
+            {props.label != undefined && props.label != '' ?<label className={props.isError != undefined ? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
         </span>
     )
     

@@ -45,6 +45,10 @@ export function TransferPage ()
         };
 
         const resp = await Send('transfer', {origin, password:pass, destAcc, quanty:quanty});
+        if(resp.messages.length > 0)
+        {
+            return;
+        }
     }
 
     return (
