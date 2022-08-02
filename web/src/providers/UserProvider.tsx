@@ -8,8 +8,8 @@ interface ContextTypes
   login: (login: string, password: string) => void
   showBalance: (show : boolean) => void
   showingBalance : boolean
-  account : IAccount
-  selectAccount : (account : IAccount) => void
+  account : IAccountData
+  selectAccount : (account : IAccountData) => void
 }
 
 export interface IUser
@@ -26,6 +26,11 @@ export interface IAccount
   agency_identifier: string
   account: string
   account_identifier : string
+  
+}
+
+export interface IAccountData extends IAccount
+{
   balance: number
   created_at : string
 }
@@ -33,7 +38,7 @@ export interface IAccount
 export interface IUserData
 {
   user: IUser
-  accounts: IAccount[]
+  accounts: IAccountData[]
 }
 
 export const UserContext = createContext<Partial<ContextTypes>>({});
@@ -95,7 +100,7 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
   const [userData, setUserData] = useState<IUserData>(); 
   const [showingBalance, setShowingBalance] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [account, setAccount] = useState<IAccount>();
+  const [account, setAccount] = useState<IAccountData>();
 
   function userApply (user : IUserData)
   {
@@ -122,7 +127,7 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
     setShowingBalance(show);
   }
 
-  const selectAccount = (_account : IAccount) =>
+  const selectAccount = (_account : IAccountData) =>
   {
     setAccount(_account);
   }

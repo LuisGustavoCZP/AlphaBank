@@ -2,15 +2,24 @@
 import { Navigator } from '../components/Navigator';
 import { Private } from '../routes';
 import "../styles/transactions.css";
+import { useState } from 'react';
+
 import { DataBox, DataBoxLabels } from '../components/DataBox';
 import { BankInput, BankInputType } from '../components/BankInput';
 import { AccountInput } from '../components/AccountInput';
 import { IAccount, useUser } from '../providers/UserProvider';
-import { useState } from 'react';
+import { MoneyInput } from '../components/MoneyInput';
 
 export function WithdrawPage ()
 {
     const {account} = useUser();
+    const [quanty, setQuanty] = useState<number>();
+
+    function QuantyHandler (target : number)
+    {
+        setQuanty(target);
+        //console.log("my", target);
+    }
 
     return (
         <Private>
@@ -24,7 +33,7 @@ export function WithdrawPage ()
                                 <AccountInput readonly value={account}/>
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
-                                <BankInput type={BankInputType.Value} className='flex-grow' placeholder='Valor'></BankInput>
+                                <MoneyInput className='flex-grow' onInput={QuantyHandler} value={quanty} />
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
                                 <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>

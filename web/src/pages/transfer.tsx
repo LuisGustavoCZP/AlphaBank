@@ -2,25 +2,29 @@
 import { Navigator } from '../components/Navigator';
 import { Private } from '../routes';
 import "../styles/transactions.css";
+import { useState } from 'react';
 import { DataBox, DataBoxLabels } from '../components/DataBox';
 import { BankInput, BankInputType } from '../components/BankInput';
 import { AccountInput } from '../components/AccountInput';
 import { IAccount, useUser } from '../providers/UserProvider';
-import { useState } from 'react';
+import { MoneyInput } from '../components/MoneyInput';
 
 export function TransferPage ()
 {
     const {account} = useUser();
-    const [acc, setAcc] = useState<IAccount>();
+    const [destAcc, setDestAcc] = useState<IAccount>();
+    const [quanty, setQuanty] = useState<number>();
 
-    function AccountHandler (target : HTMLInputElement)
+    function AccountHandler (target : IAccount)
     {
-        console.log(target.value);
+        setDestAcc(target);
+        //console.log(target);
     }
 
-    function AgencyHandler (target : HTMLInputElement)
+    function QuantyHandler (target : number)
     {
-        console.log(target.value);
+        setQuanty(target);
+        //console.log("my", target);
     }
 
     return (
@@ -36,10 +40,10 @@ export function TransferPage ()
                             </li>
                             <li className='flex flex-grow flex-col w-full'>
                                 <h3>Destino</h3>
-                                <AccountInput onAccount={AccountHandler} onAgency={AgencyHandler} value={acc}/>
+                                <AccountInput onAccount={AccountHandler} value={destAcc}/>
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
-                                <BankInput type={BankInputType.Value} className='flex-grow' placeholder='Valor' />
+                                <MoneyInput className='flex-grow' onInput={QuantyHandler} value={quanty} />
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
                                 <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha' />

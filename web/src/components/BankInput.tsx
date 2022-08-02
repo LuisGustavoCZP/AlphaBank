@@ -33,9 +33,9 @@ const bankInputRegex = [
     /* CPF: */      /^[0-9]{1,11}/gm,
     /* Date: */     /^[0-9]{0,8}$/,
     /* Password: */ /^[A-Za-z\d]+$/,
-    /* Agency: */   /^[\d]+$/,
-    /* Account: */  /^[\d]+$/,
-    /* Value:  */   /^[\d]+$/,
+    /* Agency: */   /^(\d){0,}(-{0,1})(\d){0,}$/,
+    /* Account: */  /^(\d){0,}(-{0,1})(\d){0,}$/,
+    /* Value:  */   /^[\d\\.]+$/,
     /* Name: */     /^[A-Za-z ]+$/,
     /* Email: */    /^[A-Za-z\d@]+$/
 ];
@@ -74,7 +74,7 @@ export function BankInput (props : BankInputProps)
             }else{
                 target.value = target.value.slice(0, -1);
             }
-            console.log(target.value);
+            //console.log(target.value);
         }
         if(props.onInput) props.onInput(target);
         //console.log(target.value);
@@ -106,7 +106,7 @@ export function BankInput (props : BankInputProps)
         <span className={props.className?props.className:''}>
             { InputCreation () }
             {props.label != undefined ?<label className={props.isError != undefined ? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
-        </>
+        </span>
     )
     
 }
