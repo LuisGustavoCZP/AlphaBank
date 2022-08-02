@@ -10,12 +10,14 @@ import { AccountInput } from '../components/AccountInput';
 import { IAccount, useUser } from '../providers/UserProvider';
 import { MoneyInput } from '../components/MoneyInput';
 import { Send } from '../libs/sender';
+import { ReceiptsPage } from './receipts';
 
 export function WithdrawPage ()
 {
     const {account, userData} = useUser();
     const [quanty, setQuanty] = useState<number>();
     const [pass, setPass] = useState<string>('');
+    const [transactionResult, setTransactionResult] = useState();
 
     function QuantyHandler (target : number)
     {
@@ -42,6 +44,8 @@ export function WithdrawPage ()
         {
             return;
         }
+
+        setTransactionResult(resp.data);
     }
 
     return (
@@ -49,7 +53,10 @@ export function WithdrawPage ()
             <div>
                 <Navigator></Navigator>
                 <main className='flex w-full h-full flex-col justify-center px-6'>
-                    <DataBox className='mb-0' label={DataBoxLabels.SAQUE}>
+                {
+                    transactionResult 
+                    ? <ReceiptsPage transaction={transactionResult}/> 
+                    : <DataBox className='mb-0' label={DataBoxLabels.SAQUE}>
                         <ul className='flex flex-grow flex-col'>
                             <li className='flex flex-grow flex-col flex-shrink'>
                                 <h3>Origem</h3>
@@ -66,6 +73,7 @@ export function WithdrawPage ()
                             </li>
                         </ul>
                     </DataBox>
+                }
                 </main>
             </div>
         </Private>

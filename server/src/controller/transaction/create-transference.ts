@@ -8,9 +8,8 @@ class CreateTransference
     {
         try 
         {
-            const {origin, destination, quanty, password} = req.body;
-            //console.log("Passou por aqui!");
-            const response = await CreateTransferenceService.execute(origin, password, destination, quanty);
+            const {origin, destAcc, quanty, password} = req.body;
+            const response = await CreateTransferenceService.execute(origin, password, destAcc, quanty);
             new ResponseWriter().success(res, 202, response)
         }
         catch(e)

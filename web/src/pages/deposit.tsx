@@ -9,11 +9,13 @@ import { AccountInput } from '../components/AccountInput';
 import { IAccount, useUser } from '../providers/UserProvider';
 import { MoneyInput } from '../components/MoneyInput';
 import { Send } from '../libs/sender';
+import { ReceiptsPage } from './receipts';
 
 export function DepositPage ()
 {
     const {account, userData} = useUser();
     const [quanty, setQuanty] = useState<number>();
+    const [transactionResult, setTransactionResult] = useState();
 
     function QuantyHandler (target : number)
     {
@@ -35,6 +37,8 @@ export function DepositPage ()
         {
             return;
         }
+
+        setTransactionResult(resp.data);
     }
 
     return (
@@ -42,23 +46,27 @@ export function DepositPage ()
             <div>
                 <Navigator></Navigator>
                 <main className='flex w-full h-full flex-col justify-center px-6'>
-                    <DataBox className='mb-0' label={DataBoxLabels.DEPOSITO}>
-                        <ul className='flex flex-grow flex-col'>
-                            <li className='flex flex-grow flex-col flex-shrink'>
-                                <h3>Origem</h3>
-                                <AccountInput readonly value={account}/>
-                            </li>
-                            <li className='flex flex-grow flex-col w-full mt-2'>
-                                <MoneyInput className='flex-grow' onInput={QuantyHandler} value={quanty} />
-                            </li>
-                            <li className='flex flex-grow flex-col w-full mt-2'>
-                                <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>
-                            </li>
-                            <li className='flex flex-grow flex-col w-full mt-2'>
-                                <button className='btn-primary-base' onClick={DepositHandler}>Depositar</button>
-                            </li>
-                        </ul>
-                    </DataBox>
+                    {
+                    transactionResult 
+                    ? <ReceiptsPage transaction={transactionResult}/> 
+                    : <DataBox className='mb-0' label={DataBoxLabels.DEPOSITO}>
+                            <ul className='flex flex-grow flex-col'>
+                                <li className='flex flex-grow flex-col flex-shrink'>
+                                    <h3>Origem</h3>
+                                    <AccountInput readonly value={account}/>
+                                </li>
+                                <li className='flex flex-grow flex-col w-full mt-2'>
+                                    <MoneyInput className='flex-grow' onInput={QuantyHandler} value={quanty} />
+                                </li>
+                                <li className='flex flex-grow flex-col w-full mt-2'>
+                                    <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>
+                                </li>
+                                <li className='flex flex-grow flex-col w-full mt-2'>
+                                    <button className='btn-primary-base' onClick={DepositHandler}>Depositar</button>
+                                </li>
+                            </ul>
+                      </DataBox>
+                }
                 </main>
             </div>
         </Private>

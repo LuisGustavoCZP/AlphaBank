@@ -9,6 +9,7 @@ import { AccountInput } from '../components/AccountInput';
 import { IAccount, useUser } from '../providers/UserProvider';
 import { MoneyInput } from '../components/MoneyInput';
 import { Send } from '../libs/sender';
+import { ReceiptsPage } from './receipts';
 
 export function TransferPage ()
 {
@@ -16,6 +17,7 @@ export function TransferPage ()
     const [destAcc, setDestAcc] = useState<IAccount>();
     const [quanty, setQuanty] = useState<number>();
     const [pass, setPass] = useState<string>('');
+    const [transactionResult, setTransactionResult] = useState();
 
     function AccountHandler (target : IAccount)
     {
@@ -44,11 +46,16 @@ export function TransferPage ()
             cpf:userData?.user.cpf
         };
 
-        const resp = await Send('transfer', {origin, password:pass, destAcc, quanty:quanty});
+        const resp = await Send('transference', {origin, password:pass, destAcc, quanty:quanty});
+
         if(resp.messages.length > 0)
         {
             return;
         }
+
+        console.log('resp.data');
+        console.log(resp.data);
+        setTransactionResult(resp.data);
     }
 
     return (
@@ -56,7 +63,10 @@ export function TransferPage ()
             <div>
                 <Navigator></Navigator>
                 <main className='flex w-full h-full flex-col justify-center px-6'>
-                    <DataBox className='mb-0 boxpaint' label={DataBoxLabels.TRANSFERÊNCIA}>
+                {
+                    transactionResult 
+                    ? <ReceiptsPage transaction={transactionResult}/> 
+                    : <DataBox className='mb-0 boxpaint' label={DataBoxLabels.TRANSFERÊNCIA}>
                         <ul className='flex flex-grow flex-col'>
                             <li className='flex flex-grow flex-col flex-shrink'>
                                 <h3>Origem</h3>
@@ -77,6 +87,7 @@ export function TransferPage ()
                             </li>
                         </ul>
                     </DataBox>
+                }
                 </main>
             </div>
         </Private>
