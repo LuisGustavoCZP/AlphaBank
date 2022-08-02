@@ -14,6 +14,7 @@ export enum DataBoxLabels{
 
 interface PropTypes{
     label: DataBoxLabels;
+    className?: string;
     children: React.ReactNode;
 }
 
@@ -31,7 +32,7 @@ function chooseIcon(label: DataBoxLabels){
 
 export function DataBox (props: PropTypes){
     return (
-        <div className="px-3 py-4 text-left bg-white rounded-lg text-[#C98E26] text-base font-medium mb-9">
+        <div className={`px-3 py-4 text-left bg-white rounded-lg text-[#C98E26] text-base font-medium mb-9${props.className?` ${props.className}`:''}`}>
             <div className="flex mb-4">
                 {chooseIcon(props.label)}
                 <p className="mx-3">{props.label}</p>
