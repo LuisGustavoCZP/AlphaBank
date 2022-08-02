@@ -18,11 +18,7 @@ export function RegisterPage ()
     const [passInput, setPassInput] = useState('');
     const [passConfirm, setpassConfirm] = useState('');
 
-    let nameError = ''; 
-    let cpfError = ''; 
-    let dateError = '';
-    let emailError = '';
-    let passError = '';
+    const [errors, setErros] = useState<any>({});
     const [passCError, setPassCError] = useState('');
 
     /*function inputHandler (target : HTMLInputElement){
@@ -93,13 +89,13 @@ export function RegisterPage ()
         }
 
         const birthdate = dateInput.split("/").reverse().join("-");
-        console.log(birthdate)
+        console.log(birthdate);
 
         const user = {
             name: nameInput,
             cpf: cpfInput,
             birthdate: birthdate,
-            emailInput: emailInput,
+            email: emailInput,
             password: passInput
         }
         console.log(`Registring ${nameInput}`);
@@ -108,7 +104,13 @@ export function RegisterPage ()
 
         if(resp.messages.length > 0)
         {
-            
+            const obj : any = {};
+            resp.messages.forEach((msg : string) => 
+            {
+                const t = msg.split(":");
+                obj[t[0]] = t[1];
+            });
+            setErros(obj);
         }
     }
 
@@ -119,12 +121,12 @@ export function RegisterPage ()
                     <div className="max-w-[75%] flex flex-col w-full h-full justify-center items-center" >
                         <img src={ReactLogo} alt="Alpha Bunker" width="103px" height="103px" />
                         <h3 className="titlePages">Crie sua conta</h3>
-                        <BankInput className="input" isError={nameError != ''} label={nameError} type={BankInputType.Name} onInput={nameHandler} value={nameInput} placeholder={"Digite seu Nome"} ></BankInput>
-                        <BankInput className="input" isError={dateError != ''} label={dateError} type={BankInputType.Date} onInput={dateHandler} value={dateInput} placeholder={"Digite sua Data de Nascimento"} ></BankInput>
+                        <BankInput className="input" isError={errors.name && errors.name != ''} label={errors.name?errors.name:''} type={BankInputType.Name} onInput={nameHandler} value={nameInput} placeholder={"Digite seu Nome"} ></BankInput>
+                        <BankInput className="input" isError={errors.date && errors.date != ''} label={errors.date?errors.date:''} type={BankInputType.Date} onInput={dateHandler} value={dateInput} placeholder={"Digite sua Data de Nascimento"} ></BankInput>
                         {/* <BankInput className="input" isError={cpfError != ''} label={cpfError} type={BankInputType.CPF} onInput={cpfHandler} value={cpfInput} placeholder={"Digite seu CPF"} ></BankInput> */}
-                        <CPFInput isError={cpfError != ''} label={cpfError} onInput={cpfHandler} value={cpfInput} placeholder={"Digite seu CPF"}/>
-                        <BankInput className="input" isError={emailError != ''} label={emailError} type={BankInputType.Email} onInput={emailHandler} value={emailInput} placeholder={"Digite seu Email"} ></BankInput>
-                        <BankInput className="input" isError={passError != ''} label={passError} type={BankInputType.Password} onInput={passHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
+                        <CPFInput isError={errors.cpf && errors.cpf != ''} label={errors.cpf?errors.cpf:''} onInput={cpfHandler} value={cpfInput} placeholder={"Digite seu CPF"}/>
+                        <BankInput className="input" isError={errors.email && errors.email != ''} label={errors.email?errors.email:''} type={BankInputType.Email} onInput={emailHandler} value={emailInput} placeholder={"Digite seu Email"} ></BankInput>
+                        <BankInput className="input" isError={errors.pass && errors.pass != ''} label={errors.pass?errors.pass:''} type={BankInputType.Password} onInput={passHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
                         <BankInput className="input" isError={passCError != ''} label={passCError} type={BankInputType.Password} onInput={passConfirmHandler} value={passConfirm} placeholder={"Confirme sua Senha"}></BankInput>
                         <button className="btn-primary-base w-full" onClick={registerHandler}>Cadastrar</button>
                         <Link className="logintransfer" to={'/login'}>Entrar</Link>

@@ -14,8 +14,7 @@ export async function Send (url : string, json : any)
 
     const responseJson = await response.json();
     console.log(responseJson);
-    const user = responseJson.data;
-    return user;
+    return responseJson;
   } catch (error) {
       console.log(error);
       return (null as unknown) as any;        
