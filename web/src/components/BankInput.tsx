@@ -30,7 +30,6 @@ export enum BankInputType {
 }
 
 const bankInputRegex = [
-<<<<<<< HEAD
     /* CPF: */      /^[0-9]{1,11}/gm,
     /* Date: */     /^[0-9]{0,8}$/,
     /* Password: */ /^[A-Za-z\d]+$/,
@@ -39,16 +38,6 @@ const bankInputRegex = [
     /* Value:  */   /^[\d]+$/,
     /* Name: */     /^[A-Za-z ]+$/,
     /* Email: */    /^[A-Za-z\d@]+$/
-=======
-    /* CPF: */      '[\\d.-]+',
-    /* Date: */     '[\\d\\.-]+',
-    /* Password: */ '[\\w\\d]+',
-    /* Agency: */   '[\\d-]+',
-    /* Account: */  '[\\d-]+',
-    /* Value:  */   '(\\d)+',
-    /* Name: */     '[a-zA-Z ]+',
-    /* Email: */    '[\\w-\.]+@([\\w-]+\\.)+[\\w-]{2,4}'
->>>>>>> 9926c690532f38168d97580852cba073068b9ff3
 ];
 
 const bankInputTypes = [
@@ -95,16 +84,9 @@ export function BankInput (props : BankInputProps)
     {
         if(!(props.readonly))
             return (
-<<<<<<< HEAD
                 <input type={props.type != undefined? bankInputTypes[props.type] : 'text'}
                 className="ml-2 ipt w-full"
                 id={id}
-=======
-                <input
-                className="ipt w-full"
-                id={id}
-                type={props.type? bankInputTypes[props.type] : 'text'}
->>>>>>> 9926c690532f38168d97580852cba073068b9ff3
                 placeholder={props.placeholder?props.placeholder:''}
                 onInput={InputChanged}
                 value={props.value}
@@ -123,13 +105,8 @@ export function BankInput (props : BankInputProps)
     return (
         <span className={props.className?props.className:''}>
             { InputCreation () }
-<<<<<<< HEAD
             {props.label != undefined ?<label className={props.isError != undefined ? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
         </>
-=======
-            {props.label?<label className={`text-[12px]${props.isError? " error": ""}`} htmlFor={id}>{props.label}</label>:<></>}
-        </span>
->>>>>>> 9926c690532f38168d97580852cba073068b9ff3
     )
     
 }
