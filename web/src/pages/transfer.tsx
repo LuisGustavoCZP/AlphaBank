@@ -18,15 +18,24 @@ export function TransferPage ()
             <div>
                 <Navigator></Navigator>
                 <main className='flex w-full h-full flex-col justify-center px-6'>
-                    <DataBox label={DataBoxLabels.TRANSFERÊNCIA}>
-                        <ul>
-                            <li>
+                    <DataBox className='mb-0' label={DataBoxLabels.TRANSFERÊNCIA}>
+                        <ul className='flex flex-grow flex-col'>
+                            <li className='flex flex-grow flex-col flex-shrink'>
                                 <h3>Origem</h3>
                                 <AccountInput readonly value={account}/>
                             </li>
-                            <li>
+                            <li className='flex flex-grow flex-col w-full'>
                                 <h3>Destino</h3>
                                 <AccountInput value={acc}/>
+                            </li>
+                            <li className='flex flex-grow flex-col w-full'>
+                                <BankInput className='flex-grow' placeholder=''></BankInput>
+                            </li>
+                            <li className='flex flex-grow flex-col w-full'>
+                                <BankInput className='flex-grow' placeholder=''></BankInput>
+                            </li>
+                            <li>
+                                <button className='btn-primary-base'>Transferir</button>
                             </li>
                         </ul>
                     </DataBox>

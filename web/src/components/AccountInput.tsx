@@ -16,8 +16,8 @@ export function AccountInput (props : AccountInputProps)
 
     return (
         <div className={`flex flex-row justify-between${props.className?` ${props.className}`:''}`}>
-            <BankInput className="flex flex-row" label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={props.onAccount} value={agTxt} />
-            <BankInput className="flex flex-row" label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={props.onAgency} value={acTxt}/>
+            <BankInput className="flex flex-col" label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={props.onAccount} value={agTxt} />
+            <BankInput className="flex flex-col" label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={props.onAgency} value={acTxt}/>
         </div>
     );
 }

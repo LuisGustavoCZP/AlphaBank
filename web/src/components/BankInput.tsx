@@ -80,7 +80,7 @@ export function BankInput (props : BankInputProps)
         if(!(props.readonly))
             return (
                 <input type="text"
-                className="ml-2 ipt w-full"
+                className="ipt w-full"
                 id={id}
                 typeof={props.type? bankInputTypes[props.type] : 'text'}
                 placeholder={props.placeholder?props.placeholder:''}
@@ -99,11 +99,10 @@ export function BankInput (props : BankInputProps)
     }
 
     return (
-        
-        <>
+        <span className={props.className?props.className:''}>
             { InputCreation () }
-            {props.label?<label className={props.isError? "error": ""} htmlFor={id}>{props.label}</label>:<></>}
-        </>
+            {props.label?<label className={`text-[12px]${props.isError? " error": ""}`} htmlFor={id}>{props.label}</label>:<></>}
+        </span>
     )
     
 }
