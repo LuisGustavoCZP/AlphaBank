@@ -13,6 +13,16 @@ export function TransferPage ()
     const {account} = useUser();
     const [acc, setAcc] = useState<IAccount>();
 
+    function AccountHandler (target : HTMLInputElement)
+    {
+        console.log(target.value);
+    }
+
+    function AgencyHandler (target : HTMLInputElement)
+    {
+        console.log(target.value);
+    }
+
     return (
         <Private>
             <div>
@@ -26,13 +36,13 @@ export function TransferPage ()
                             </li>
                             <li className='flex flex-grow flex-col w-full'>
                                 <h3>Destino</h3>
-                                <AccountInput value={acc}/>
+                                <AccountInput onAccount={AccountHandler} onAgency={AgencyHandler} value={acc}/>
                             </li>
-                            <li className='flex flex-grow flex-col w-full'>
-                                <BankInput className='flex-grow' placeholder=''></BankInput>
+                            <li className='flex flex-grow flex-col w-full mt-2'>
+                                <BankInput type={BankInputType.Value} className='flex-grow' placeholder='Valor' />
                             </li>
-                            <li className='flex flex-grow flex-col w-full'>
-                                <BankInput className='flex-grow' placeholder=''></BankInput>
+                            <li className='flex flex-grow flex-col w-full mt-2'>
+                                <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha' />
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
                                 <button className='btn-primary-base'>Transferir</button>

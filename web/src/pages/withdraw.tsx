@@ -23,11 +23,11 @@ export function WithdrawPage ()
                                 <h3>Origem</h3>
                                 <AccountInput readonly value={account}/>
                             </li>
-                            <li className='flex flex-grow flex-col w-full'>
-                                <BankInput className='flex-grow' placeholder=''></BankInput>
+                            <li className='flex flex-grow flex-col w-full mt-2'>
+                                <BankInput type={BankInputType.Value} className='flex-grow' placeholder='Valor'></BankInput>
                             </li>
-                            <li className='flex flex-grow flex-col w-full'>
-                                <BankInput className='flex-grow' placeholder=''></BankInput>
+                            <li className='flex flex-grow flex-col w-full mt-2'>
+                                <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
                                 <button className='btn-primary-base'>Sacar</button>

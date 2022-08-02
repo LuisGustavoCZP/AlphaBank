@@ -13,11 +13,12 @@ export function AccountInput (props : AccountInputProps)
 {
     const agTxt = props.value?`${props.value.agency}-${props.value.agency_identifier}`:'';
     const acTxt = props.value?`${props.value.account}-${props.value.account_identifier}`:'';
+    
 
     return (
         <div className={`flex flex-row justify-between${props.className?` ${props.className}`:''}`}>
-            <BankInput className="flex flex-col" label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={props.onAccount} value={agTxt} />
-            <BankInput className="flex flex-col" label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={props.onAgency} value={acTxt}/>
+            <BankInput className="flex flex-col w-4/12" label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={props.onAccount} value={agTxt} />
+            <BankInput className="flex flex-col w-5/12" label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={props.onAgency} value={acTxt}/>
         </div>
     );
 }

@@ -34,7 +34,7 @@ const bankInputRegex = [
     /* Date: */     '[\\d\\.-]+',
     /* Password: */ '[\\w\\d]+',
     /* Agency: */   '[\\d-]+',
-    /* Account: */  '(\\d-)+',
+    /* Account: */  '[\\d-]+',
     /* Value:  */   '(\\d)+',
     /* Name: */     '[a-zA-Z ]+',
     /* Email: */    '[\\w-\.]+@([\\w-]+\\.)+[\\w-]{2,4}'
@@ -79,10 +79,10 @@ export function BankInput (props : BankInputProps)
     {
         if(!(props.readonly))
             return (
-                <input type="text"
+                <input
                 className="ipt w-full"
                 id={id}
-                typeof={props.type? bankInputTypes[props.type] : 'text'}
+                type={props.type? bankInputTypes[props.type] : 'text'}
                 placeholder={props.placeholder?props.placeholder:''}
                 onInput={InputChanged}
                 value={props.value}
