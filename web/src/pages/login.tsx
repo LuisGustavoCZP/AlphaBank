@@ -48,8 +48,8 @@ export function LoginPage ()
                     <div className="max-w-[75%] flex flex-col w-full h-full justify-center items-center" >
                         <img src={ReactLogo} alt="Alpha Bunker" />
                         <h3 className="titlePages">Login</h3>
-                        <CPFInput onInput={cpfInputHandler} value={userInput} placeholder={"Digite seu CPF"}/>
-                        <BankInput  type={BankInputType.Password} onInput={passInputHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
+                        <CPFInput className="m-[10px]" onInput={cpfInputHandler} value={userInput} placeholder={"Digite seu CPF"}/>
+                        <BankInput className="m-[10px]" type={BankInputType.Password} onInput={passInputHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
                         <button className="btn-primary-base w-full" onClick={loginHandler}>Entrar</button>
                         <Link className="logintransfer" to={'/register'}>Crie sua conta</Link>
                     </div>

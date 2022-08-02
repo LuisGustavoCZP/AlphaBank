@@ -3,9 +3,8 @@
 @tailwind base;
 
 .ipt{
-   @apply bg-[#F7F7F7] focus:outline-none focus:ring-1 focus:ring-[#3FA7B8] rounded-[5px] disabled:bg-[#D2D2D2] disabled:text-[#A8A8A8];
+   @apply bg-[#F7F7F7] focus:outline-none focus:ring-1 focus:ring-[#3FA7B8] rounded-[5px] disabled:bg-[#D2D2D2] disabled:text-[#A8A8A8] text-[#353535];
    border: 1px solid #D2D2D2;
-   color: #353535;
    font-weight: 400;
    font-size: 14px;
    /* margin: 10px; */
@@ -13,15 +12,15 @@
 }
 
 .ipt::placeholder{
-   color: #727272;
+   @apply text-[#727272];
 }
 
 label{
-   color: #A8A8A8;
+   @apply text-[#A8A8A8];
 }
 
 label.error{
-   color: #FF5959;
+   @apply text-[#FF5959] text-[12px];
 }
 
 .titlePages{
