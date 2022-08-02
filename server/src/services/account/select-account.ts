@@ -35,7 +35,7 @@ class SelectAccountService
                 {
                     for(const acc of selectedAcc)
                     {
-                        const selectedUser = await UsersTable.select({id:acc.owner});
+                        /* const selectedUser = await UsersTable.select({id:acc.owner});
 
                         if(selectedUser[0].cpf == validAccountData.data.cpf)
                         {
@@ -43,7 +43,11 @@ class SelectAccountService
                                 data: acc,
                                 messages: []
                             } as APIResponse;
-                        }
+                        } */
+                        return {
+                            data: acc,
+                            messages: []
+                        } as APIResponse;
                     }
 
                     throw new Error(`401: this CPF is not allowed`);

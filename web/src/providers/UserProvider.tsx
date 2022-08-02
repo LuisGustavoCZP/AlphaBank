@@ -68,7 +68,7 @@ async function UserCookie (callback : any)
     callback(user);
   } catch (error) {
       console.log(error);
-      return (null as unknown) as IUserData;        
+      callback((null as unknown) as IUserData);        
   }
 }
 

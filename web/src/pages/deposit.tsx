@@ -8,16 +8,29 @@ import { BankInput, BankInputType } from '../components/BankInput';
 import { AccountInput } from '../components/AccountInput';
 import { IAccount, useUser } from '../providers/UserProvider';
 import { MoneyInput } from '../components/MoneyInput';
+import { Send } from '../libs/sender';
 
 export function DepositPage ()
 {
-    const {account} = useUser();
+    const {account, userData} = useUser();
     const [quanty, setQuanty] = useState<number>();
 
     function QuantyHandler (target : number)
     {
         setQuanty(target);
         //console.log("my", target);
+    }
+
+    async function DepositHandler ()
+    {
+        const destination = {
+            agency:account?.agency,
+            agency_identifier:account?.agency_identifier,
+            account:account?.account,
+            account_identifier:account?.account_identifier,
+            cpf:userData?.user.cpf
+        };
+        const resp = await Send('deposit', {destination, quanty:quanty});
     }
 
     return (
@@ -38,7 +51,7 @@ export function DepositPage ()
                                 <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
-                                <button className='btn-primary-base'>Depositar</button>
+                                <button className='btn-primary-base' onClick={DepositHandler}>Depositar</button>
                             </li>
                         </ul>
                     </DataBox>
