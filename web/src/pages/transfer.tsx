@@ -28,7 +28,7 @@ export function TransferPage ()
             <div>
                 <Navigator></Navigator>
                 <main className='flex w-full h-full flex-col justify-center px-6'>
-                    <DataBox className='mb-0' label={DataBoxLabels.TRANSFERÊNCIA}>
+                    <DataBox className='mb-0 boxpaint' label={DataBoxLabels.TRANSFERÊNCIA}>
                         <ul className='flex flex-grow flex-col'>
                             <li className='flex flex-grow flex-col flex-shrink'>
                                 <h3>Origem</h3>

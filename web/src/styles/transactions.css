@@ -9,6 +9,10 @@
         @apply flex w-full h-full px-6 gap-8 flex-nowrap;
     }
 
+    .boxpaint{
+        @apply bg-[#ffffff] dark:bg-[#23292C] dark:ring-[#424245] dark:ring-1 rounded-[5px]
+    }
+
 
     /* #424245 */
 }
