@@ -23,20 +23,33 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .btn-primary-base{
-        @apply bg-[#338896] hover:bg-[#3FA7B8] disabled:bg-[#33889680] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded
+@layer components {
+
+    .btn-cancel-base {
+        @apply bg-[#E24B2D] hover:bg-[#F2664A] disabled:bg-[#E24B2D80] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded;
     }
 
-    .btn-secondary-base{
-        @apply bg-[#424245] hover:bg-[#5C5C5C] disabled:bg-[#42424580] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded
+    .btn-primary-base {
+        @apply bg-[#338896] hover:bg-[#3FA7B8] disabled:bg-[#33889680] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded;
     }
 
-    .btn-cancel-base{
-        @apply bg-[#E24B2D] hover:bg-[#F2664A] disabled:bg-[#E24B2D80] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded
+    .btn-secondary-base {
+        @apply bg-[#424245] hover:bg-[#5C5C5C] disabled:bg-[#42424580] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded;
     }
 
     .header-gold {
         @apply text-[#C98E26];
+    }
+
+    .btn {
+        @apply bg-[#338896] hover:bg-[#3FA7B8] disabled:bg-[#33889680] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded;
+    }
+
+    .btn.cancel {
+        @apply bg-[#E24B2D] hover:bg-[#F2664A] disabled:bg-[#E24B2D80] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded;
+    }
+
+    .btn.secondary {
+        @apply bg-[#424245] hover:bg-[#5C5C5C] disabled:bg-[#42424580] flex-row py-2.5 px-6 font-medium text-sm text-[#F7F7F7] disabled:text-[#F7F7F780] rounded;
     }
 }

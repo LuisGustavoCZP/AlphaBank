@@ -8,6 +8,7 @@ import '../styles/inputs.css';
 import { Send } from "../libs/sender";
 import { CPFInput } from "../components/CPFInput";
 import { DateInput } from "../components/DateInput";
+import { Button } from "../components/Button";
 
 /* eslint-disable react/react-in-jsx-scope */
 export function RegisterPage ()
@@ -76,7 +77,6 @@ export function RegisterPage ()
     function passConfirmHandler (target : HTMLInputElement)
     {
         const t = target as any;
-        console.log(t.value);
         setpassConfirm(t.value);
     }
 
@@ -127,7 +127,7 @@ export function RegisterPage ()
                         <CPFInput name='cpf' className="mt-[5px]" isError={errors.cpf && errors.cpf != ''} label={errors.cpf?errors.cpf:''} onInput={cpfHandler} value={cpfInput} placeholder={"Digite seu CPF"}/>
                         <BankInput name='password' className="input mt-[5px]" isError={errors.pass && errors.pass != ''} label={errors.pass?errors.pass:''} type={BankInputType.Password} onInput={passHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
                         <BankInput name='password-confirm' className="input mt-[5px]" isError={passCError != ''} label={passCError} type={BankInputType.Password} onInput={passConfirmHandler} value={passConfirm} placeholder={"Confirme sua Senha"}></BankInput>
-                        <button className="btn-primary-base w-full mt-[10px]" onClick={registerHandler}>Cadastrar</button>
+                        <Button className=" w-full mt-[10px]" onClick={registerHandler} label='Cadastrar' />
                         <Link className="logintransfer" to={'/login'}>Entrar</Link>
                     </div>
                 </section>

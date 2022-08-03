@@ -10,6 +10,8 @@ import { IAccount, IAccountData, useUser } from '../providers/UserProvider';
 import { MoneyInput } from '../components/MoneyInput';
 import { Send } from '../libs/sender';
 import { ReceiptsPage } from './receipts';
+import { ConfirmationModal } from '../components/ConfirmationModal';
+import { Button } from '../components/Button';
 
 export function TransferPage ()
 {
@@ -17,6 +19,7 @@ export function TransferPage ()
     const [destAcc, setDestAcc] = useState<IAccount>();
     const [quanty, setQuanty] = useState<number>();
     const [pass, setPass] = useState<string>('');
+    const [transactionData, setTransactionData] = useState<any>();
     const [transactionResult, setTransactionResult] = useState();
 
     function AccountHandler (target : IAccount)
@@ -36,17 +39,9 @@ export function TransferPage ()
         setPass(target.value);
     }
 
-    async function TransactionHandler ()
+    async function ConfirmHandler ()
     {
-        const origin = {
-            agency:account?.agency,
-            agency_identifier:account?.agency_identifier,
-            account:account?.account,
-            account_identifier:account?.account_identifier,
-            cpf:userData?.user.cpf
-        };
-
-        const resp = await Send('transference', {origin, password:pass, destAcc, quanty:quanty});
+        const resp = await Send('transference', transactionData);
 
         if(resp.messages.length > 0)
         {
@@ -59,11 +54,29 @@ export function TransferPage ()
         setTransactionResult(resp.data);
     }
 
+    async function UnConfirmHandler ()
+    {
+        setTransactionData(null);
+    }
+
+    async function TransactionHandler ()
+    {
+        const origin = {
+            agency:account?.agency,
+            agency_identifier:account?.agency_identifier,
+            account:account?.account,
+            account_identifier:account?.account_identifier,
+            cpf:userData?.user.cpf
+        };
+        setTransactionData({origin, password:pass, destAcc, quanty:quanty})
+    }
+
     return (
         <Private>
             <div>
                 <Navigator></Navigator>
                 <main className='flex w-full h-full flex-col justify-center px-6'>
+                {transactionData ? <ConfirmationModal title='Confirmar deposito' handleConfirmModal={ConfirmHandler} setModal={UnConfirmHandler}/> : <></>}
                 {
                     transactionResult 
                     ? <ReceiptsPage transaction={transactionResult}/> 
@@ -84,7 +97,7 @@ export function TransferPage ()
                                 <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha' value={pass} onInput={PassHandler}/>
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
-                                <button className='btn-primary-base' onClick={TransactionHandler}>Transferir</button>
+                                <Button onClick={TransactionHandler} label='Transferir' />
                             </li>
                         </ul>
                     </DataBox>

@@ -14,6 +14,7 @@ interface ContextTypes
   selectAccount : (account : IAccountData) => void
   extract? : IExtract
   updateExtract : (account : IAccountData) => Promise<any>
+  logout : () => Promise<any>
 }
 
 export interface ITransaction
@@ -66,7 +67,8 @@ export const UserContext = createContext<ContextTypes>(
   login: (login: string, password: string) => {console.log(login, password)},
   showBalance: (show : boolean) => {console.log(show)},
   selectAccount: (account : IAccountData) => {console.log(account)},
-  updateExtract : async (account : IAccountData) => {console.log(account)}
+  updateExtract : async (account : IAccountData) => {console.log(account)},
+  logout : async () => {console.log('')}
 });
 
 interface UserProviderTypes 
@@ -133,7 +135,7 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
   /* let extract: IExtract = null as any; */
   /* const [] = useParams(); */
 
-  async function userApply (user : IUserData)
+  async function userApply (user : IUserData | undefined)
   {
     if(user && user.user) 
     {
@@ -141,8 +143,8 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
       {
         selectAccount(user.accounts[0]);
       }
-      setUserData(user);
     }
+    setUserData(user);
   }
 
   const login = async (
@@ -154,6 +156,14 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
     const user = await UserLogin(login, password);
     userApply(user);
     setLoading(false);
+  }
+
+  const logout = async () =>
+  {
+    console.log("Fez o logout");
+    const resp = await Send("/user/logout", {});
+    console.log(resp);
+    window.location.reload();
   }
 
   const showBalance = (show = !showingBalance) =>
@@ -206,7 +216,8 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
         account,
         selectAccount,
         extract,
-        updateExtract
+        updateExtract,
+        logout
       }}
     >
       {children}

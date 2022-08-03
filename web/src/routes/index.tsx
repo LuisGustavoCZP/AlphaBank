@@ -8,7 +8,6 @@ import { TransferRoute } from './transfer';
 import { DepositRoute } from './deposit';
 import { WithdrawRoute } from './withdraw';
 import { ExtractRoute } from './extract';
-import { HomeRoute } from './home';
 import { ProfileRoute } from './profile';
 import { useUser } from '../providers/UserProvider';
 
@@ -20,7 +19,7 @@ export function Private ({ children }: ChildrenTypes) {
     const {userData, loading} = useUser();
     //console.log(userData);
 
-    if (!userData) {
+    if (userData == undefined) {
         return <Navigate to="/login" />;
     }
 
@@ -30,7 +29,7 @@ export function Private ({ children }: ChildrenTypes) {
 export function Public ({ children }: ChildrenTypes) {
     const {userData, loading} = useUser();
 
-    if (userData) {
+    if (userData != undefined) {
         return <Navigate to="/extract" />;
     }
 
@@ -38,7 +37,7 @@ export function Public ({ children }: ChildrenTypes) {
 }
 
 export function Router () 
-{ 
+{
     return (
         <Routes>
             {<Route path='/' element={<Navigate to="/extract"/>} />}

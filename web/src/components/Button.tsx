@@ -4,13 +4,14 @@ import { MouseEventHandler } from "react";
 
 interface PropTypes{
     label: string;
-    category: 'primary' | 'secondary' | 'cancel';
+    category?: '' | 'primary' | 'secondary' | 'cancel';
     onClick: MouseEventHandler<HTMLButtonElement>; 
+    className?: string
 }
 
 export function Button (props: PropTypes)
 {
     return (
-        <button className={`btn-${props.category}-base`} onClick={props.onClick}>{props.label}</button>
+        <button className={`${props.className?`${props.className} `:''}btn${props.category || props.category != ''?` ${props.category}`:''}`} onClick={props.onClick}>{props.label}</button>
     );
 }

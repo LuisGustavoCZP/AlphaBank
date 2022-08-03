@@ -10,36 +10,51 @@ import { IAccount, IAccountData, IExtract, useUser } from '../providers/UserProv
 import { MoneyInput } from '../components/MoneyInput';
 import { Send } from '../libs/sender';
 import { ReceiptsPage } from './receipts';
+import { ConfirmationModal } from '../components/ConfirmationModal';
+import { Button } from '../components/Button';
 
 export function DepositPage ()
 {
     const {account, updateExtract, userData} = useUser();
     const [quanty, setQuanty] = useState<number>();
+    const [transactionData, setTransactionData] = useState<any>();
     const [transactionResult, setTransactionResult] = useState<IExtract>();
 
     function QuantyHandler (target : number)
     {
         setQuanty(target);
-        //console.log("my", target);
     }
 
-    async function DepositHandler ()
+    async function ConfirmHandler ()
     {
-        
-        const destination = {
-            agency:account?.agency,
-            agency_identifier:account?.agency_identifier,
-            account:account?.account,
-            account_identifier:account?.account_identifier,
-            cpf:userData?.user.cpf
-        };
-        const resp = await Send('deposit', {destination, quanty:quanty});
+        const resp = await Send('deposit', transactionData);
         if(resp.messages.length > 0)
         {
             return;
         }
         await updateExtract(account as IAccountData);
         setTransactionResult(resp.data);
+        setTransactionData(null);
+    }
+
+    async function UnConfirmHandler ()
+    {
+        setTransactionData(null);
+    }
+
+    async function DepositHandler ()
+    {
+        const destination = {
+            agency:account?.agency,
+            agency_identifier:account?.agency_identifier,
+            account:account?.account,
+            account_identifier:account?.account_identifier,
+            cpf:userData?.user.cpf
+        }
+        setTransactionData({
+            destination: destination, 
+            quanty:quanty
+        });
     }
 
     return (
@@ -47,7 +62,8 @@ export function DepositPage ()
             <div>
                 <Navigator></Navigator>
                 <main className='flex w-full h-full flex-col justify-center px-6'>
-                    {
+                {transactionData ? <ConfirmationModal title='Confirmar deposito' handleConfirmModal={ConfirmHandler} setModal={UnConfirmHandler}/> : <></>}
+                {
                     transactionResult 
                     ? <ReceiptsPage transaction={transactionResult}/> 
                     : <DataBox className='mb-0' label={DataBoxLabels.DEPOSITO}>
@@ -63,7 +79,7 @@ export function DepositPage ()
                                     <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>
                                 </li>
                                 <li className='flex flex-grow flex-col w-full mt-2'>
-                                    <button className='btn-primary-base' onClick={DepositHandler}>Depositar</button>
+                                    <Button onClick={DepositHandler} label='Depositar' />
                                 </li>
                             </ul>
                       </DataBox>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import ReactLogo  from "../assets/logo.svg";
 import '../styles/inputs.css';
 import { CPFInput } from "../components/CPFInput";
+import { Button } from "../components/Button";
 
 /* eslint-disable react/react-in-jsx-scope */
 export function LoginPage ()
@@ -14,24 +15,16 @@ export function LoginPage ()
     const [userInput, setUserInput] = useState('');
     const [passInput, setPassInput] = useState('');
 
-    function userInputHandler (target : HTMLInputElement)
-    {
-        const t = target as any;
-        console.log(t.value);
-        
-        setUserInput(t.value);
-    }
-
     function cpfInputHandler (value : string)
     {
-        console.log(value);
+        //console.log(value);
         setUserInput(value);
     }
 
     function passInputHandler (target : HTMLInputElement)
     {
         const t = target as any;
-        console.log(t.type);
+        //console.log(t.type);
         setPassInput(t.value);
     }
 
@@ -50,7 +43,7 @@ export function LoginPage ()
                         <h3 className="titlePages">Login</h3>
                         <CPFInput className="m-[10px]" name='username' onInput={cpfInputHandler} value={userInput} placeholder={"Digite seu CPF"}/>
                         <BankInput className="m-[10px]" name='password' type={BankInputType.Password} onInput={passInputHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
-                        <button className="btn-primary-base w-full" onClick={loginHandler}>Entrar</button>
+                        <Button className="w-full" onClick={loginHandler} label='Entrar' />
                         <Link className="logintransfer" to={'/register'}>Crie sua conta</Link>
                     </div>
                 </section>

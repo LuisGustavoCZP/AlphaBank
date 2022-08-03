@@ -1,20 +1,21 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { BrowserRouter, RouterProps } from 'react-router-dom';
-import { UserProvider } from './providers/UserProvider';
+import { UserProvider, useUser } from './providers/UserProvider';
 import { Router } from './routes';
 
 /* import './App.css'; */
 
 function App()
 {
+	const {loading} = useUser();
 	return (
-		<div className="max-portrait">
-			<UserProvider>
+		<UserProvider>
+			<div className={`max-portrait${loading?' animate-pulse':''}`} >
 				<BrowserRouter>
 					<Router />
 				</BrowserRouter>
-			</UserProvider>
-		</div>
+			</div>
+		</UserProvider>
 	);
 }
 

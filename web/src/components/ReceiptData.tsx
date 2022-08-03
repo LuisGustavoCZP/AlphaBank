@@ -1,4 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
+import currency from '../libs/currency';
 
 interface PropTypes{
     transaction: any;
@@ -6,7 +7,7 @@ interface PropTypes{
 
 export function ReceiptData (props: PropTypes)
 {
-    const line = (props.transaction.value >= 0 ? '+' : '') + (props.transaction.value).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL', minimumFractionDigits: 2});
+    const line = (props.transaction.value >= 0 ? '+' : '') + currency.format(props.transaction.value);
 
     return (
         <div className="flex-col justify-evenly bg-[#F3F9F9] p-1 rounded text-[#727272] text-sm">
