@@ -1,7 +1,7 @@
 export async function Send (url : string, json : any)
 {
   try {        
-    const response = await fetch(`http://localhost:8000/${url}/`, 
+    const response = await fetch(`http://${window.location.hostname}/${url}/`, 
     {
         method: 'POST', 
         headers: 

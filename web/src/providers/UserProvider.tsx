@@ -76,8 +76,9 @@ interface UserProviderTypes
 
 async function UserCookie (callback : any)
 {
+  console.log(`${window.location.hostname}`)
   try {        
-    const response = await fetch('http://localhost:8000/user/', 
+    const response = await fetch(`http://${window.location.hostname}/user/`, 
     {
         method: 'POST', 
         headers: 
@@ -101,7 +102,7 @@ async function UserCookie (callback : any)
 async function UserLogin (cpf: string, password: string) : Promise<IUserData>
 {
   try {        
-    const response = await fetch('http://localhost:8000/user/login', 
+    const response = await fetch(`http://${window.location.hostname}/user/login`, 
     {
         method: 'POST', 
         headers: 
