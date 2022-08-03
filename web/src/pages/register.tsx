@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createElement, useState } from "react";
 import { BankInput, BankInputType } from "../components/BankInput";
 import { useUser } from "../providers/UserProvider";
 import { Public } from "../routes";
@@ -13,6 +13,7 @@ import { Button } from "../components/Button";
 /* eslint-disable react/react-in-jsx-scope */
 export function RegisterPage ()
 {
+    const { showingBalance, showBalance } = useUser();
     const [nameInput, setNameInput] = useState('');
     const [cpfInput, setCpfInput] = useState('');
     const [dateInput, setDateInput] = useState('');
@@ -112,6 +113,13 @@ export function RegisterPage ()
             });
             setErros(obj);
         }
+        
+        window.location.pathname = './login';
+        /* const url = new URL(window.location.href);
+        url.pathname = '/login';
+        console.log(url)
+        window.history.pushState({}, '', url);
+        showBalance(showingBalance != undefined?!showingBalance:false); */
     }
 
     return (
