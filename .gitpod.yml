@@ -2,7 +2,8 @@ image: gitpod/workspace-postgres
 
 tasks:
   - init: npm run install:all
-    command: npm run build:client
+    command: | 
+      npm run build:client
       
 ports: 
   - port: 8000
