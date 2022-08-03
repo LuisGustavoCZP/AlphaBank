@@ -1,4 +1,5 @@
 export const urlAPI = `${window.location.protocol}://${window.location.hostname}`;
+console.log(urlAPI);
 
 export async function Send (url : string, json : any)
 {
