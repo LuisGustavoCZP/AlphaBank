@@ -2,11 +2,11 @@ import { CookieOptions, Request, Response } from "express";
 import { LoginUserService } from "../../services";
 import { ResponseWriter } from "../../utils";
 
-const cookieOptions : CookieOptions = 
+const cookieOptions : any = 
 {
     sameSite:'none',
     secure:true,
-    httpOnly:true,
+    httpOnly:true
 }
 
 class LogoutUser
@@ -15,6 +15,7 @@ class LogoutUser
     {
         try 
         {
+            //res.cookie("token", '', cookieOptions);
             res.clearCookie("token", cookieOptions);
             new ResponseWriter().success(res, 201, {data:true, messages:[]});
         }

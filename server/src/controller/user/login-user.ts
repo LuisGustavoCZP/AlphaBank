@@ -6,7 +6,7 @@ const cookieOptions : CookieOptions =
 {
     sameSite:'none',
     secure:true,
-    httpOnly:true,
+    httpOnly:true
 }
 
 class LoginUser

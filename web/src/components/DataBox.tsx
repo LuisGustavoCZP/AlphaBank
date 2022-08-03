@@ -32,8 +32,8 @@ function chooseIcon(label: DataBoxLabels){
 
 export function DataBox (props: PropTypes){
     return (
-        <div className={`px-3 py-4 text-left bg-white rounded-lg text-[#C98E26] text-base font-medium mb-9${props.className?` ${props.className}`:''}`}>
-            <div className="flex mb-4">
+        <div className={`flex flex-col max-h-full h-fit w-full justify-center items-center px-3 py-4 text-left boxpaint rounded-lg text-[#C98E26] text-base font-medium ${props.className?` ${props.className}`:''}`}>
+            <div className="flex mb-4 w-full">
                 {chooseIcon(props.label)}
                 <p className="mx-3">{props.label}</p>
             </div>

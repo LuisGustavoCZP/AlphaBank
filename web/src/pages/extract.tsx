@@ -49,14 +49,12 @@ export function ExtractPage ()
         <Private>
             <div>
                 <Navigator />
-                <main className="flex h-full w-full flex-col items-center justify-center overflow-hidden px-6">
-                    <div className="flex flex-col items-center justify-center flex-nowrap h-full w-full overflow-hidden mt-3 mb-4">
-                        <DataBox label={DataBoxLabels.EXTRATO_DE_TRANSAÇOES} className="flex flex-col max-h-full h-fit w-full overflow-hidden mb-0">
-                            <div className='flex max-h-full h-fit w-full overflow-y-scroll justify-center'>
-                                <ul className='flex flex-col h-fit w-full'>{response()}</ul>
-                            </div>
-                        </DataBox>
-                    </div>
+                <main className="flex h-full w-full flex-col items-center justify-center overflow-hidden px-6 py-4">
+                    <DataBox label={DataBoxLabels.EXTRATO_DE_TRANSAÇOES}>
+                        <div className='flex max-h-full h-fit w-full overflow-y-scroll justify-center'>
+                            <ul className='flex flex-col h-fit w-full'>{response()}</ul>
+                        </div>
+                    </DataBox>
                 </main>
             </div>
         </Private>

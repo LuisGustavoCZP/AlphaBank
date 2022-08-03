@@ -1,4 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
+import { Browser } from 'phosphor-react';
 import { ReactNode, createContext, useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Send, urlAPI } from '../libs/sender';
@@ -161,8 +162,7 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
   const logout = async () =>
   {
     console.log("Fez o logout");
-    const resp = await Send("/user/logout", {});
-    console.log(resp);
+    const resp = await Send("user/logout", {});
     window.location.reload();
   }
 

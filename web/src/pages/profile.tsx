@@ -43,8 +43,8 @@ export function ProfilePage ()
 
     return (
         <Private>
-            <div className="bg-[#eaedf0] flex-col items-center justify-center">
-                <div className="relative flex-col bg-[#337782] w-full h-52 mb-10 rounded-b-3xl">
+            <div>
+                <header className="relative flex-col bg-[#337782] w-full h-52 mb-10 rounded-b-3xl">
                     <Link to={'/'}><ArrowLeft className="absolute left-6 top-6" size={32} color='white' /></Link>
                     <div className="absolute flex items-end justify-center m-auto left-0 right-0 top-0 bottom-0 w-40 h-28 text-center">
                         <div className="absolute bg-white w-20 h-20 m-auto left-0 right-0 top-0 rounded-full">
@@ -52,16 +52,18 @@ export function ProfilePage ()
                         </div>
                         <span className="text-white font-medium text-xl">{profs.name}</span>
                     </div>
-                </div>
-                <div className="px-6 flex-col flex-nowrap gap-8 h-screen">
+                </header>
+                <main className="flex w-full h-full flex-col items-center justify-between px-6 py-4">
                     <DataBox label={DataBoxLabels.MEUS_DADOS}>
                         {profs.user}
                     </DataBox>
                     <DataBox label={DataBoxLabels.MINHAS_CONTAS_CORRENTES}>
-                        {profs.accounts}
+                        <div className='flex max-h-full h-fit w-full overflow-y-scroll justify-center'>
+                            <ul className='flex flex-col h-fit w-full p-1'>{profs.accounts}</ul>
+                        </div>
                     </DataBox>
-                    <Button category="cancel" label="Logout" onClick={logout} />
-                </div>
+                    <Button category="cancel" label="Logout" onClick={logout} /> 
+                </main>
             </div>
         </Private>
     );

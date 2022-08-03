@@ -21,8 +21,8 @@ export function Navigator (props : any)
     if(!showingBalance && false != showingBalance) balance = balance.replace(regexBalance, "*");
 
     return (
-        <header className='nav-header rounded-b-3xl mb-10'>
-            <span className='flex justify-between mt-9 mb-2 text-white w-10/12 text-xl'><h4>Bem vindo, {userData?.user.name}</h4><Link to={'/user'}><UserCircle size={28} /></Link></span>
+        <header className='nav-header rounded-b-3xl mb-6'>
+            <span className='flex justify-between mt-6 mb-2 text-white w-10/12 text-xl'><h4>Bem vindo, {userData?.user.name}</h4><Link to={'/user'}><UserCircle size={28} /></Link></span>
             <nav>
                 <ul className='flex flex-row w-full'>
                     <NavigatorItem title='Extract' to='/extract'><Bank size={36} /></NavigatorItem>
@@ -31,7 +31,7 @@ export function Navigator (props : any)
                     <NavigatorItem title='Sacar' to='/withdraw'><DownloadSimple size={36} /></NavigatorItem>
                 </ul>
             </nav>
-            <div className='flex relative h-10 w-full justify-center'>
+            <div className='flex relative h-11 w-full justify-center'>
                 <section className='absolute p-1 w-10/12 bg-slate-300 rounded-lg'>
                     <h3 className='flex flex-row justify-between text-base' onClick={()=>{setOpened(!opened);}}>
                         <AccountText className='header-gold' account={account} />
@@ -51,8 +51,8 @@ export function Navigator (props : any)
                                     {
                                         return (
                                             <li key={index}>
-                                                <button className='flex flex-row w-full justify-between text-base btn' onClick={() => {if(selectAccount) selectAccount(acc); setOpened(false);}}>
-                                                    <AccountText account={acc} />
+                                                <button className='flex flex-row w-full justify-between text-base btn p-2 mb-1' onClick={() => {if(selectAccount) selectAccount(acc); setOpened(false);}}>
+                                                    <AccountText className='justify-between w-full text-[12px]' account={acc} />
                                                 </button>
                                             </li>
                                         );
@@ -60,7 +60,7 @@ export function Navigator (props : any)
                                 }
                             </ul>
                         :
-                            <h4 className='flex flex-row items-center mx-4 my-2 h-9'>
+                            <h4 className='flex flex-row items-center mx-4 my-2 h-7'>
                                 {
                                     showingBalance?
                                         <Eye size={24} onClick={()=>{if (showBalance) showBalance(false);}} />

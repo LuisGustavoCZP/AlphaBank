@@ -10,7 +10,7 @@ export function ReceiptData (props: PropTypes)
     const line = (props.transaction.value >= 0 ? '+' : '') + currency.format(props.transaction.value);
 
     return (
-        <div className="flex-col justify-evenly bg-[#F3F9F9] p-1 rounded text-[#727272] text-sm">
+        <div className="flex flex-col w-full justify-evenly bg-[#F3F9F9] p-1 rounded text-[#727272] text-sm">
             <p>Tipo: {prepareType(props.transaction.type)}</p>
             <p className="text-[#A2A2A2] my-4">Data: {prepareDate(props.transaction.date)}</p>
             {

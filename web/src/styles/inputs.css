@@ -2,12 +2,17 @@
 @layer components {
 /* @tailwind base; */
    .ipt{
-      @apply bg-[#F7F7F7] focus:outline-none focus:ring-1 focus:ring-[#3FA7B8] rounded-[5px] disabled:bg-[#D2D2D2] disabled:text-[#A8A8A8] text-[#353535];
-      border: 1px solid #D2D2D2;
+      @apply bg-[#F7F7F7] ring-[1px] ring-[#D2D2D2] focus:outline-none focus:ring-[1px] focus:ring-[#3FA7B8] rounded-[5px] disabled:bg-[#D2D2D2] disabled:text-[#A8A8A8] text-[#353535];
+      /* border: 1px solid #D2D2D2; */
       font-weight: 400;
       font-size: 14px;
       /* margin: 10px; */
       padding: 5px;
+      box-sizing: border-box;
+   }
+
+   .ipt.readonly {
+      @apply bg-[#D2D2D2] text-[#727272];
    }
 
    .ipt::placeholder{

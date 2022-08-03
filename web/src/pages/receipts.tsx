@@ -14,10 +14,11 @@ interface PropTypes{
 export function ReceiptsPage (props: PropTypes)
 {
     return (
-        <div className="px-6 flex-col flex-nowrap gap-8 h-screen">
-            <DataBox label={DataBoxLabels.COMPROVANTE_DE_TRANSAÇAO}>
-                <ReceiptData  transaction={props.transaction}/>
-            </DataBox>
-        </div>
+        <DataBox label={DataBoxLabels.COMPROVANTE_DE_TRANSAÇAO}>
+            <ReceiptData  transaction={props.transaction}/>
+        </DataBox>
     );
 }
+{/* <div className="px-6 flex-col flex-nowrap gap-8 h-screen">
+            
+        </div> */}

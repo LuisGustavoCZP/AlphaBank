@@ -61,13 +61,15 @@ export function DepositPage ()
         <Private>
             <div>
                 <Navigator></Navigator>
-                <main className='flex w-full h-full flex-col justify-center px-6'>
-                {transactionData ? <ConfirmationModal title='Confirmar deposito' handleConfirmModal={ConfirmHandler} setModal={UnConfirmHandler}/> : <></>}
+                <main className='flex w-full h-full flex-col justify-center px-6 py-4'>
+                {
+                    transactionData ? <ConfirmationModal title='Confirmar deposito' handleConfirmModal={ConfirmHandler} setModal={UnConfirmHandler}/> : <></> 
+                }
                 {
                     transactionResult 
                     ? <ReceiptsPage transaction={transactionResult}/> 
-                    : <DataBox className='mb-0' label={DataBoxLabels.DEPOSITO}>
-                            <ul className='flex flex-grow flex-col'>
+                    : <DataBox label={DataBoxLabels.DEPOSITO}>
+                            <ul className='flex flex-grow flex-col w-full'>
                                 <li className='flex flex-grow flex-col flex-shrink'>
                                     <h3>Origem</h3>
                                     <AccountInput name='origin' readonly value={account}/>

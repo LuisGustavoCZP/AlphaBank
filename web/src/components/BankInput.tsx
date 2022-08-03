@@ -87,7 +87,7 @@ export function BankInput (props : BankInputProps)
             return (
                 <input
                 type={props.type != undefined? bankInputTypes[props.type] : 'text'}
-                className="ml-2 ipt w-full"
+                className="ipt w-full"
                 id={id}
                 placeholder={props.placeholder?props.placeholder:''}
                 onInput={InputChanged}
@@ -97,7 +97,8 @@ export function BankInput (props : BankInputProps)
             );
         else 
             return (
-                <h4  
+                <h4
+                    className="ipt readonly w-full"
                     id={id}
                 >
                     {(!props.value) && props.placeholder?props.placeholder:(props.value?props.value:'')}

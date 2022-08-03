@@ -60,7 +60,7 @@ export function AccountInput (props : AccountInputProps)
     }
 
     return (
-        <div className={`flex flex-row justify-between${props.className?` ${props.className}`:''}`}>
+        <div className={`flex flex-row w-full overflow-hidden justify-between${props.className?` ${props.className}`:''}`}>
             <BankInput className="flex flex-col w-4/12" name={`${props.name}-agency`} label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={InputAgency} value={agTxt} />
             <BankInput className="flex flex-col w-5/12" name={`${props.name}-account`} label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={InputAccount} value={acTxt}/>
         </div>
