@@ -1,0 +1,13 @@
+image: gitpod/workspace-postgres
+
+tasks:
+  - init: npm run install:all
+    command: |
+      npm run build:client
+      npm run dev:server
+      
+ports: 
+  - port: 8000
+    onOpen: open-browser
+  - port: 5432
+    onOpen: ignore

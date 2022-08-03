@@ -9,9 +9,11 @@
     "dev:server": "cd server && npm run dev",
     "start:client": "start \"Client\" npm run dev:build",
     "start:server": "start \"Server\" npm run dev:server",
+    "build:client": "cd web && npm run build",
+    "build:server": "cd server && npm run build",
     "dev": "npm run start:server && npm run dev:client",
     "start": "npm run start:client && npm run start:server",
-    "build": "cd web && npm run build && cd ../server && npm run build"
+    "build": "npm run build:client && cd ../server && npm run build"
   },
   "repository": {
     "type": "git",
