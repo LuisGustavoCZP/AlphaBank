@@ -1,9 +1,15 @@
+---
 image: gitpod/workspace-postgres
 
 tasks:
   - init: npm run install:all
-    command: | 
-      npm run build:client
+    command: |
+      export HMR_HOST=`gp url 3000`
+      npm run build
+  - command: npm run dev:server
+    env:
+      PORT: 8000
+      POSTGRES_CONNECTION_STRING: postgres://gitpod@localhost/express-typescript
       
 ports: 
   - port: 8000
@@ -11,7 +17,7 @@ ports:
   - port: 5432
     onOpen: ignore
 
-gihub: 
+github: 
   prebuilds:
     master: true
     branches: true
