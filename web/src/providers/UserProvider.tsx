@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { ReactNode, createContext, useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Send } from '../libs/sender';
+import { Send, urlAPI } from '../libs/sender';
 
 interface ContextTypes 
 {
@@ -76,9 +76,8 @@ interface UserProviderTypes
 
 async function UserCookie (callback : any)
 {
-  console.log(`${window.location.hostname}`)
   try {        
-    const response = await fetch(`http://${window.location.hostname}/user/`, 
+    const response = await fetch(`${urlAPI}/user/`, 
     {
         method: 'POST', 
         headers: 
@@ -102,7 +101,7 @@ async function UserCookie (callback : any)
 async function UserLogin (cpf: string, password: string) : Promise<IUserData>
 {
   try {        
-    const response = await fetch(`http://${window.location.hostname}/user/login`, 
+    const response = await fetch(`${urlAPI}/user/login`, 
     {
         method: 'POST', 
         headers: 

@@ -1,7 +1,9 @@
+export const urlAPI = `${window.location.protocol}://${window.location.hostname}`;
+
 export async function Send (url : string, json : any)
 {
   try {        
-    const response = await fetch(`http://${window.location.hostname}/${url}/`, 
+    const response = await fetch(`${urlAPI}/${url}/`, 
     {
         method: 'POST', 
         headers: 
