@@ -1,6 +1,6 @@
 import { ExceptionTreatment, BCrypt } from "../../utils";
 import { APIResponse } from "../../models";
-import { UsersTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import PasswordValidator from "../../validators/strings/password";
 
 class PassUserService 
@@ -16,7 +16,7 @@ class PassUserService
             }
             const pw = validPassword.data;
 
-            const owner = await UsersTable.select({id:userid});
+            const owner = await db.UsersTable.select({id:userid});
             if(!owner || owner.length == 0) 
             {
                 throw new Error(`400: this account doesn't exist`)

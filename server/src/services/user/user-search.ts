@@ -1,6 +1,6 @@
 import { APIResponse, User } from "../../models";
 import { ExceptionTreatment } from "../../utils";
-import { UsersTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import CPFValidator from "../../validators/strings/cpf";
 
 class UserSearchService 
@@ -18,7 +18,7 @@ class UserSearchService
                 throw new Error(`400: ${validUserData.errors}`)
             }
 
-            const selectedUser = await UsersTable.select({cpf: validUserData.data});
+            const selectedUser = await db.UsersTable.select({cpf: validUserData.data});
 
             if (selectedUser)
             {

@@ -1,6 +1,6 @@
 import { APIResponse, User } from "../../models";
 import { ExceptionTreatment } from "../../utils";
-import { AccountsTable } from "../../clients/postgres";
+import db from "../../clients/database";
 
 class AccountsUserService 
 {
@@ -8,7 +8,7 @@ class AccountsUserService
     {
         try 
         {
-            const accountDatas = await AccountsTable.select({owner:userid});
+            const accountDatas = await db.AccountsTable.select({owner:userid});
             const accounts = accountDatas.map(account => 
             {
                 const acc = Object.assign({}, account) as any;

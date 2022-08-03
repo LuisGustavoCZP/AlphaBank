@@ -55,7 +55,7 @@ export function TransferPage ()
 
         console.log('resp.data');
         console.log(resp.data);
-        updateExtract(account as IAccountData);
+        await updateExtract(account as IAccountData);
         setTransactionResult(resp.data);
     }
 
@@ -71,11 +71,11 @@ export function TransferPage ()
                         <ul className='flex flex-grow flex-col'>
                             <li className='flex flex-grow flex-col flex-shrink'>
                                 <h3>Origem</h3>
-                                <AccountInput readonly value={account}/>
+                                <AccountInput name='origin' readonly value={account}/>
                             </li>
                             <li className='flex flex-grow flex-col w-full'>
                                 <h3>Destino</h3>
-                                <AccountInput onAccount={AccountHandler} value={destAcc}/>
+                                <AccountInput name='destination' onAccount={AccountHandler} value={destAcc}/>
                             </li>
                             <li className='flex flex-grow flex-col w-full mt-2'>
                                 <MoneyInput className='flex-grow' onInput={QuantyHandler} value={quanty} />

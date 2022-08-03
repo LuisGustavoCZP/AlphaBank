@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { ExceptionTreatment } from "../../utils";
 import { Account, APIResponse, User } from "../../models";
 import { CreateUserService } from "../user";
-import { AccountsTable } from "../../clients/postgres";
+import db from "../../clients/database";
 
 class CreateAccountService 
 {
@@ -13,8 +13,8 @@ class CreateAccountService
             //, pass : string pw
             const resp = await CreateUserService.execute(user);
 
-            const ac = await AccountsTable.nextAccount();
-            const ag = await AccountsTable.nextAgency();
+            const ac = await db.AccountsTable.nextAccount();
+            const ag = await db.AccountsTable.nextAgency();
             
             const account = {
                 id: v4(),
@@ -26,7 +26,7 @@ class CreateAccountService
                 balance: 0
             } as Account;
 
-            const insertedAcc = await AccountsTable.insert(account);
+            const insertedAcc = await db.AccountsTable.insert(account);
 
             if (insertedAcc)
             {

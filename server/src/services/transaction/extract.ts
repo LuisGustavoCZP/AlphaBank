@@ -1,6 +1,6 @@
 import { ExceptionTreatment } from "../../utils";
 import { APIResponse, Transaction, TransactionAccount } from "../../models";
-import { TransactionTable, UsersTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import { SelectAccountService } from "../account";
 
 class CreateExtractService 
@@ -15,11 +15,11 @@ class CreateExtractService
                 throw new Error(`400: token is missing`);
             }
 
-            const owner = (await UsersTable.select({id:acc.data.owner}))[0] as any;
+            const owner = (await db.UsersTable.select({id:acc.data.owner}))[0] as any;
             delete owner["id"];
             delete owner["password"];
 
-            const resp = await TransactionTable.select({account:acc.data.id}) as Partial<Transaction>[];
+            const resp = await db.TransactionTable.select({account:acc.data.id}) as Partial<Transaction>[];
             
             resp.forEach(element => {
                 delete element["account"];

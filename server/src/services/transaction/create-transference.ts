@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 import { ExceptionTreatment } from "../../utils";
 import { APIResponse, Fee, Transaction, TransactionAccount, TransactionType } from "../../models";
-import { AccountsTable, TransactionTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import { PassAccountService, SelectAccountService } from "../account";
 
 class CreateTransferenceService 
@@ -31,8 +31,8 @@ class CreateTransferenceService
 
             //console.log("Transação de", originAcc.data.id, destinationAcc.data.id, originAcc.data.balance);
 
-            const newOriginAcc = await AccountsTable.update(originAcc.data.id, {balance:originAcc.data.balance-total});
-            await AccountsTable.update(destinationAcc.data.id, {balance:destinationAcc.data.balance+q});
+            const newOriginAcc = await db.AccountsTable.update(originAcc.data.id, {balance:originAcc.data.balance-total});
+            await db.AccountsTable.update(destinationAcc.data.id, {balance:destinationAcc.data.balance+q});
 
             const originTransaction : Transaction = {
                 id:v4(),
@@ -48,8 +48,8 @@ class CreateTransferenceService
                 value:-this.tax
             };
             
-            await TransactionTable.insert(originTransaction);
-            await TransactionTable.insert(taxTransaction);
+            await db.TransactionTable.insert(originTransaction);
+            await db.TransactionTable.insert(taxTransaction);
 
             const destTransaction : Transaction = {
                 id:v4(),
@@ -57,7 +57,7 @@ class CreateTransferenceService
                 type:TransactionType.Transference,
                 value:q
             };
-            await TransactionTable.insert(destTransaction);
+            await db.TransactionTable.insert(destTransaction);
 
             return {
                 data: {

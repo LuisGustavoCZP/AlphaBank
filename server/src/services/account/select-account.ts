@@ -1,6 +1,6 @@
 import { ExceptionTreatment } from "../../utils";
 import { Account, APIResponse, TransactionAccount } from "../../models";
-import { AccountsTable, UsersTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import AccountDataValidator from "../../validators/account-data";
 
 class SelectAccountService 
@@ -26,7 +26,7 @@ class SelectAccountService
                 account_identifier:validAccountData.data.account_identifier
             }
 
-            const selectedAcc = await AccountsTable.select(validAccount);
+            const selectedAcc = await db.AccountsTable.select(validAccount);
             
             if (selectedAcc)
             {

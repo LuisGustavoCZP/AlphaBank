@@ -1,6 +1,6 @@
 import { ExceptionTreatment } from "../../utils";
 import { APIResponse, Transaction, TransactionAccount } from "../../models";
-import { TransactionTable, UsersTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import { PassAccountService, SelectAccountService } from "../account";
 
 class CreateExtractService 
@@ -10,7 +10,7 @@ class CreateExtractService
         try 
         {
             const acc = await SelectAccountService.execute(account);
-            const owner = await UsersTable.select({id:acc.data.owner});
+            const owner = await db.UsersTable.select({id:acc.data.owner});
             /* if(acc.messages.length != 0) {
                 throw new Error(`404: account do not exist`);
             } */
@@ -18,7 +18,7 @@ class CreateExtractService
             await PassAccountService.execute(acc.data, password);
             //console.log("Extrato de", acc.data.id);
             
-            const resp = await TransactionTable.select({account:acc.data.id}) as Partial<Transaction>[];
+            const resp = await db.TransactionTable.select({account:acc.data.id}) as Partial<Transaction>[];
             
             resp.forEach(element => {
                 delete element["account"];

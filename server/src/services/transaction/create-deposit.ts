@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 import { ExceptionTreatment } from "../../utils";
 import { APIResponse, Fee, Transaction, TransactionAccount, TransactionType } from "../../models";
-import { AccountsTable, TransactionTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import { SelectAccountService } from "../account";
 
 class CreateDepositService 
@@ -20,7 +20,7 @@ class CreateDepositService
 
             const totalTax = q * (this.tax);
 
-            const newDestAcc = await AccountsTable.update(destinationAcc.data.id, {balance:destinationAcc.data.balance+(q - totalTax)});
+            const newDestAcc = await db.AccountsTable.update(destinationAcc.data.id, {balance:destinationAcc.data.balance+(q - totalTax)});
 
             const depositTransaction : Transaction = {
                 id:v4(),
@@ -36,8 +36,8 @@ class CreateDepositService
                 value:-totalTax
             };
 
-            await TransactionTable.insert(depositTransaction);
-            await TransactionTable.insert(taxTransaction);
+            await db.TransactionTable.insert(depositTransaction);
+            await db.TransactionTable.insert(taxTransaction);
             //console.log(dep);
 
             return {

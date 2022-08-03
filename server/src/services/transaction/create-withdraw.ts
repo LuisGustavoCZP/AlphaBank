@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 import { ExceptionTreatment } from "../../utils";
 import { APIResponse, Transaction, Fee, TransactionAccount, TransactionType } from "../../models";
-import { AccountsTable, TransactionTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import { PassAccountService, SelectAccountService } from "../account";
 
 class CreateWithdrawService 
@@ -25,7 +25,7 @@ class CreateWithdrawService
                 throw new Error(`412: account has insuficient founds`);
             }
 
-            const newDestAcc = await AccountsTable.update(originAcc.data.id, {balance:originAcc.data.balance-(total)});
+            const newDestAcc = await db.AccountsTable.update(originAcc.data.id, {balance:originAcc.data.balance-(total)});
 
             const withdrawTransaction : Transaction = {
                 id:v4(),
@@ -41,8 +41,8 @@ class CreateWithdrawService
                 value:-this.tax
             };
             
-            await TransactionTable.insert(withdrawTransaction);
-            await TransactionTable.insert(taxTransaction);
+            await db.TransactionTable.insert(withdrawTransaction);
+            await db.TransactionTable.insert(taxTransaction);
 
             return {
                 data: {

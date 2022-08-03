@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { APIResponse, User } from "../../models";
 import { ExceptionTreatment, BCrypt } from "../../utils";
 import UserDataValidator from "../../validators/user-data";
-import UsersTable from "../../clients/postgres/user";
+import db from "../../clients/database";
 
 class CreateUserService 
 {
@@ -19,7 +19,7 @@ class CreateUserService
                 throw new Error(`400: ${validUserData.errors}`)
             }
 
-            const selectedUser = await UsersTable.select({cpf:validUserData.data.cpf});
+            const selectedUser = await db.UsersTable.select({cpf:validUserData.data.cpf});
             if(selectedUser && selectedUser.length > 0)
             {
                 const finalUser = selectedUser[0];
@@ -38,7 +38,7 @@ class CreateUserService
             validUserData.data.id = v4();
             validUserData.data.password = await BCrypt.encrypt(validUserData.data.password as string);
 
-            const insertedUser = await UsersTable.insert(validUserData.data as User);
+            const insertedUser = await db.UsersTable.insert(validUserData.data as User);
 
             if (insertedUser)
             {

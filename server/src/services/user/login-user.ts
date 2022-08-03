@@ -1,6 +1,6 @@
 import { ExceptionTreatment } from "../../utils";
 import { APIResponse } from "../../models";
-import { UsersTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import { PassUserService, SelectUserService } from "./";
 
 class LoginUserService 
@@ -9,7 +9,7 @@ class LoginUserService
     {
         try 
         {
-            const owner = await UsersTable.select({cpf:user.cpf});
+            const owner = await db.UsersTable.select({cpf:user.cpf});
             if(!owner || owner.length == 0) {
                 throw new Error(`400: account do not exist`);
             }
@@ -27,7 +27,7 @@ class LoginUserService
         }
         catch (error)
         {
-            console.log("User error", error);
+            //console.log("User error", error);
             throw new ExceptionTreatment(
                 error as Error,
                 500,

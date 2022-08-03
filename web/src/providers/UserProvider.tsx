@@ -13,7 +13,7 @@ interface ContextTypes
   account? : IAccountData
   selectAccount : (account : IAccountData) => void
   extract? : IExtract
-  updateExtract : (account : IAccountData) => void
+  updateExtract : (account : IAccountData) => Promise<any>
 }
 
 export interface ITransaction
@@ -66,7 +66,7 @@ export const UserContext = createContext<ContextTypes>(
   login: (login: string, password: string) => {console.log(login, password)},
   showBalance: (show : boolean) => {console.log(show)},
   selectAccount: (account : IAccountData) => {console.log(account)},
-  updateExtract : (account : IAccountData) => {console.log(account)}
+  updateExtract : async (account : IAccountData) => {console.log(account)}
 });
 
 interface UserProviderTypes 

@@ -1,6 +1,6 @@
 import { APIResponse, User } from "../../models";
 import { ExceptionTreatment } from "../../utils";
-import { UsersTable } from "../../clients/postgres";
+import db from "../../clients/database";
 import { AccountsUserService } from "./";
 
 class SelectUserService 
@@ -10,7 +10,9 @@ class SelectUserService
     {
         try 
         {
-            const selectedUser = await UsersTable.select({id: userid});
+            //console.log(userid);
+            
+            const selectedUser = await db.UsersTable.select({id: userid});
             if(!selectedUser || selectedUser.length == 0) {
                 if(error) throw new Error(`400: account do not exist`);
                 else return {
