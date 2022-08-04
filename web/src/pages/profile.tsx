@@ -44,25 +44,25 @@ export function ProfilePage ()
     return (
         <Private>
             <div>
-                <header className="relative flex-col bg-[#337782] w-full h-52 mb-10 rounded-b-3xl">
-                    <Link to={'/'}><ArrowLeft className="absolute left-6 top-6" size={32} color='white' /></Link>
-                    <div className="absolute flex items-end justify-center m-auto left-0 right-0 top-0 bottom-0 w-40 h-28 text-center">
-                        <div className="absolute bg-white w-20 h-20 m-auto left-0 right-0 top-0 rounded-full">
+                <header className="bg-[#337782] w-full min-h-[208px] h-fit rounded-b-3xl overflow-hidden mb-2">
+                    <Link to={'/'}><ArrowLeft className="mt-5 ml-5" size={32} color='white' /></Link>
+                    <div className="flex flex-col items-center justify-center m-auto left-0 right-0 top-0 bottom-0 text-center">
+                        <div className="bg-white w-20 h-20 m-auto mb-3 rounded-full">
 
                         </div>
                         <span className="text-white font-medium text-xl">{profs.name}</span>
                     </div>
                 </header>
-                <main className="flex w-full h-full flex-col items-center justify-between px-6 py-4 overflow-hidden">
+                <main className="flex w-full max-h-full h-fit flex-col items-center justify-between px-6 py-4 overflow-hidden">
                     <DataBox label={DataBoxLabels.MEUS_DADOS}>
                         {profs.user}
                     </DataBox>
-                    <DataBox label={DataBoxLabels.MINHAS_CONTAS_CORRENTES}>
+                    <DataBox className='mt-4' label={DataBoxLabels.MINHAS_CONTAS_CORRENTES}>
                         <div className='flex max-h-full h-fit w-full overflow-y-scroll justify-center'>
                             <ul className='flex flex-col h-fit w-full p-1'>{profs.accounts}</ul>
                         </div>
                     </DataBox>
-                    <Button category="cancel" label="Logout" onClick={logout} /> 
+                    <Button className="mb-4 mt-4" category="cancel" label="Logout" onClick={logout} /> 
                 </main>
             </div>
         </Private>
