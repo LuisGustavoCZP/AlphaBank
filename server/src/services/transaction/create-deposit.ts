@@ -13,10 +13,10 @@ class CreateDepositService
         try 
         {
             //console.log(destination);
-            const destinationAcc = await SelectAccountService.execute(destination);
+            const destinationAcc = await SelectAccountService.execute(destination, "destination");
 
             const q = Number(quanty);
-            if(q <= 0) throw new Error(`400: Value need to be greather than 0`);
+            if(q <= 0) throw new Error(`400: value:need to be greather than 0`);
 
             const totalTax = q * (this.tax);
 

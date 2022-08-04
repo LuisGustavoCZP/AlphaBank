@@ -19,6 +19,7 @@ export function DepositPage ()
     const [quanty, setQuanty] = useState<number>();
     const [transactionData, setTransactionData] = useState<any>();
     const [transactionResult, setTransactionResult] = useState<IExtract>();
+    const [errors, setErros] = useState<any>({});
 
     function QuantyHandler (target : number)
     {
@@ -30,6 +31,21 @@ export function DepositPage ()
         const resp = await Send('deposit', transactionData);
         if(resp.messages.length > 0)
         {
+            const obj = {} as any;
+            resp.messages.forEach((msg : string) => 
+            {
+                const t = msg.split(":");
+                if(t[1].includes(':'))
+                {
+                    const tobj = {} as any;
+                    const tt = t[1].split(":");
+                    tobj[tt[0]] == tt[1];
+                    obj[t[0]] = tobj;
+                }
+                else obj[t[0]] = t[1];
+            });
+            setErros(obj);
+            UnConfirmHandler();
             return;
         }
         await updateExtract(account as IAccountData);
@@ -71,14 +87,14 @@ export function DepositPage ()
                     : <DataBox label={DataBoxLabels.DEPOSITO}>
                             <ul className='flex flex-grow flex-col w-full'>
                                 <li className='flex flex-grow flex-col flex-shrink'>
-                                    <h3 className='text-white'>Origem</h3>
-                                    <AccountInput name='origin' readonly value={account}/>
+                                    <h3 className='text-white'>Destino</h3>
+                                    <AccountInput errors={errors.destination} name='destination' readonly value={account}/>
                                 </li>
                                 <li className='flex flex-grow flex-col w-full mt-7'>
-                                    <MoneyInput className='flex-grow' onInput={QuantyHandler} value={quanty} />
+                                    <MoneyInput isError={errors.value && errors.value != ''} label={errors.value?errors.value:''} className='flex-grow' onInput={QuantyHandler} value={quanty} />
                                 </li>
-                                <li className='flex flex-grow flex-col w-full mt-5'>
-                                    <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>
+                                <li className='flex flex-grow flex-col w-full mt-3'>
+                                    <BankInput isError={errors.password && errors.password != ''} label={errors.password?errors.password:''} type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>
                                 </li>
                                 <li className='flex flex-grow flex-col w-full mt-4'>
                                     <Button onClick={DepositHandler} label='Depositar' />

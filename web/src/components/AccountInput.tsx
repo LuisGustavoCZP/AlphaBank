@@ -8,13 +8,13 @@ interface AccountInputProps {
     value?: IAccount
     readonly?: boolean
     onAccount?: (target: IAccount) => void
-    
+    errors?: any;
     /* onAgency?: (target: HTMLInputElement) => void */
 }
 /* eslint-disable react/react-in-jsx-scope */
 export function AccountInput (props : AccountInputProps)
 {
-    const {value:acc} = props;
+    const {value:acc, errors} = props;
 
     const [ac, setAc] = useState<string>(acc?.account || '');
     const [acI, setAcI] = useState<string>(acc?.account_identifier || '');
@@ -59,10 +59,16 @@ export function AccountInput (props : AccountInputProps)
         props.onAccount(nacc);
     }
 
+    const name1 = `${props.name}-agency`;
+    const name2 = `${props.name}-account`;
+
     return (
-        <div className={`flex flex-row w-full overflow-hidden justify-between${props.className?` ${props.className}`:''}`}>
-            <BankInput className="flex flex-col w-4/12" name={`${props.name}-agency`} label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={InputAgency} value={agTxt} />
-            <BankInput className="flex flex-col w-5/12" name={`${props.name}-account`} label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={InputAccount} value={acTxt}/>
+        <div className={`flex flex-col w-full overflow-hidden justify-between${props.className?` ${props.className}`:''}`}>
+            <span className="flex flex-row w-full overflow-hidden justify-between">
+            <BankInput className="flex flex-col w-4/12" name={name1} label='Agência' type={BankInputType.Agency} readonly={props.readonly} onInput={InputAgency} value={agTxt} />
+            <BankInput className="flex flex-col w-5/12" name={name2} label='Conta' type={BankInputType.Account} readonly={props.readonly} onInput={InputAccount} value={acTxt}/>
+            </span>
+            {errors?<p className="error">{errors}</p>:<></>}
         </div>
     );
 }

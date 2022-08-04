@@ -7,7 +7,7 @@ class SelectAccountService
 {
     private dataValidator = AccountDataValidator;
 
-    public async execute (account : TransactionAccount) : Promise<APIResponse<Account>>
+    public async execute (account : TransactionAccount, info = '') : Promise<APIResponse<Account>>
     {
         try 
         {
@@ -16,7 +16,7 @@ class SelectAccountService
 
             if(validAccountData.errors)
             {
-                throw new Error(`400: ${validAccountData.errors}`)
+                throw new Error(`400: ${info?`${info}:`:''}${validAccountData.errors}`)
             }
 
             const validAccount = {
@@ -50,12 +50,12 @@ class SelectAccountService
                         } as APIResponse;
                     }
 
-                    throw new Error(`401: this CPF is not allowed`);
+                    throw new Error(`401: ${info?`${info}:`:''}cpf:CPF is not allowed`);
                 }
 
             }
 
-            throw new Error(`404: account was not found`);
+            throw new Error(`404: ${info?`${info}:`:''}account was not found`);
         }
         catch (error)
         {

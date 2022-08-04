@@ -14,7 +14,7 @@ class SelectUserService
             
             const selectedUser = await db.UsersTable.select({id: userid});
             if(!selectedUser || selectedUser.length == 0) {
-                if(error) throw new Error(`400: account do not exist`);
+                if(error) throw new Error(`400: user:do not exist`);
                 else return {
                     data: null,
                     messages: []

@@ -11,7 +11,13 @@ interface PropTypes{
 
 export function Button (props: PropTypes)
 {
+    function onClick (e : any)
+    {
+        e.preventDefault();
+        props.onClick(e);
+    }
+
     return (
-        <button className={`${props.className?`${props.className} `:''}btn${props.category || props.category != ''?` ${props.category}`:''}`} onClick={props.onClick}>{props.label}</button>
+        <button className={`${props.className?`${props.className} `:''}btn${props.category || props.category != ''?` ${props.category}`:''}`} onClick={onClick}>{props.label}</button>
     );
 }

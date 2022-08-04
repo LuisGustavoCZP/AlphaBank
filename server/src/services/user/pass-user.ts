@@ -19,12 +19,12 @@ class PassUserService
             const owner = await db.UsersTable.select({id:userid});
             if(!owner || owner.length == 0) 
             {
-                throw new Error(`400: this account doesn't exist`)
+                throw new Error(`400: user:doesn't exist`)
             }
             
             if(!await BCrypt.check(pw, owner[0].password))
             {
-                throw new Error(`404: wrong password`);
+                throw new Error(`404: password:wrong password`);
             }
 
             return {

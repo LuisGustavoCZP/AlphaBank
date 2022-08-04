@@ -23,7 +23,7 @@
       @apply text-[#A8A8A8];
    }
 
-   label.error{
+   label.error, p.error{
       @apply text-[#FF5959] text-[12px];
    }
 

@@ -26,7 +26,7 @@ class CreateUserService
 
                 if(!await BCrypt.check(validUserData.data.password as string, finalUser.password))
                 {
-                    throw new Error(`404: wrong password`);
+                    throw new Error(`404: password:wrong password`);
                 }
                 //console.log("Achou ", selectedUser);
                 return {

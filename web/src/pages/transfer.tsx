@@ -21,6 +21,7 @@ export function TransferPage ()
     const [pass, setPass] = useState<string>('');
     const [transactionData, setTransactionData] = useState<any>();
     const [transactionResult, setTransactionResult] = useState();
+    const [errors, setErros] = useState<any>({});
 
     function AccountHandler (target : IAccount)
     {
@@ -45,10 +46,24 @@ export function TransferPage ()
 
         if(resp.messages.length > 0)
         {
+            const obj = {} as any;
+            resp.messages.forEach((msg : string) => 
+            {
+                const t = msg.split(":");
+                if(t[1].includes(':'))
+                {
+                    const tobj = {} as any;
+                    const tt = t[1].split(":");
+                    tobj[tt[0]] == tt[1];
+                    obj[t[0]] = tobj;
+                }
+                else obj[t[0]] = t[1];
+            });
+            setErros(obj);
+            UnConfirmHandler();
             return;
         }
 
-        console.log('resp.data');
         console.log(resp.data);
         await updateExtract(account as IAccountData);
         setTransactionResult(resp.data);
@@ -75,7 +90,7 @@ export function TransferPage ()
         <Private>
             <div>
                 <Navigator></Navigator>
-                <main className='flex w-full h-full flex-col justify-center px-6 py-4'>
+                <main className='flex w-full h-full flex-col justify-center px-6 pt-2'>
                 {transactionData ? <ConfirmationModal title='Confirmar Transferência' handleConfirmModal={ConfirmHandler} setModal={UnConfirmHandler}/> : <></>}
                 {
                     transactionResult 
@@ -84,19 +99,19 @@ export function TransferPage ()
                         <ul className='flex flex-grow flex-col w-full'>
                             <li className='flex flex-grow flex-col flex-shrink'>
                                 <h3 className='text-white'>Origem</h3>
-                                <AccountInput name='origin' readonly value={account}/>
+                                <AccountInput errors={errors.origin} name='origin' readonly value={account}/>
+                            </li>
+                            <li className='flex flex-grow flex-col mt-1'>
+                                <h3 className='text-white'>Destino</h3>
+                                <AccountInput errors={errors.destination} name='destination' onAccount={AccountHandler} value={destAcc}/>
                             </li>
                             <li className='flex flex-grow flex-col mt-2'>
-                                <h3 className='text-white'>Destino</h3>
-                                <AccountInput name='destination' onAccount={AccountHandler} value={destAcc}/>
+                                <MoneyInput isError={errors.value && errors.value != ''} label={errors.value?errors.value:''} className='flex-grow' onInput={QuantyHandler} value={quanty} />
                             </li>
-                            <li className='flex flex-grow flex-col mt-7'>
-                                <MoneyInput className='flex-grow' onInput={QuantyHandler} value={quanty} />
+                            <li className='flex flex-grow flex-col mt-2'>
+                                <BankInput isError={errors.password && errors.password != ''} label={errors.password?errors.password:''} type={BankInputType.Password} className='flex-grow' placeholder='Senha' value={pass} onInput={PassHandler}/>
                             </li>
-                            <li className='flex flex-grow flex-col mt-5'>
-                                <BankInput type={BankInputType.Password} className='flex-grow' placeholder='Senha' value={pass} onInput={PassHandler}/>
-                            </li>
-                            <li className='flex flex-grow flex-col mt-4'>
+                            <li className='flex flex-grow flex-col mt-2'>
                                 <Button className='w-full' onClick={TransactionHandler} label='Transferir' />
                             </li>
                         </ul>

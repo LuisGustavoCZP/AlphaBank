@@ -8,7 +8,7 @@ interface ContextTypes
 {
   userData?: IUserData;
   loading?: boolean;
-  login: (login: string, password: string) => void
+  login: (login: string, password: string) => Promise<IResponse>
   showBalance: (show : boolean) => void
   showingBalance? : boolean
   account? : IAccountData
@@ -16,6 +16,11 @@ interface ContextTypes
   extract? : IExtract
   updateExtract : (account : IAccountData) => Promise<any>
   logout : () => Promise<any>
+}
+
+export interface IResponse {
+  data : any,
+  messages: string[]
 }
 
 export interface ITransaction
@@ -65,7 +70,7 @@ export interface IUserData
 
 export const UserContext = createContext<ContextTypes>(
 {
-  login: (login: string, password: string) => {console.log(login, password)},
+  login: async (login: string, password: string) => {console.log(login, password); return (null as unknown) as IResponse},
   showBalance: (show : boolean) => {console.log(show)},
   selectAccount: (account : IAccountData) => {console.log(account)},
   updateExtract : async (account : IAccountData) => {console.log(account)},
@@ -92,16 +97,14 @@ async function UserCookie (callback : any)
     });
 
     const responseJson = await response.json();
-    if(responseJson.messages > 0) return (null as unknown) as IUserData;
-    const user = responseJson.data;
-    callback(user);
+    callback(responseJson);
   } catch (error) {
-      //console.log(error);
-      callback((null as unknown) as IUserData);        
+      console.log(error);
+      callback((null as unknown) as IResponse);        
   }
 }
 
-async function UserLogin (cpf: string, password: string) : Promise<IUserData>
+async function UserLogin (cpf: string, password: string) : Promise<IResponse>
 {
   try {        
     const response = await fetch(`${urlAPI}/user/login`, 
@@ -116,12 +119,10 @@ async function UserLogin (cpf: string, password: string) : Promise<IUserData>
     });
 
     const responseJson = await response.json();
-    console.log(responseJson);
-    if(responseJson.messages > 0) return (null as unknown) as IUserData;
-    return responseJson.data;  
+    return responseJson;
   } catch (error) {
       console.log(error);
-      return (null as unknown) as IUserData;        
+      return (null as unknown) as IResponse;        
   }
 }
 
@@ -130,12 +131,8 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
   const [userData, setUserData] = useState<IUserData>(); 
   const [showingBalance, setShowingBalance] = useState(false);
   const [loading, setLoading] = useState(false);
-  /* let account : IAccountData = null as any; */
   const [account, setAccount] = useState<IAccountData>();
   const [extract, setExtract] = useState<IExtract>();
-
-  /* let extract: IExtract = null as any; */
-  /* const [] = useParams(); */
 
   async function userApply (user : IUserData | undefined)
   {
@@ -145,8 +142,8 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
       {
         selectAccount(user.accounts[0]);
       }
+      setUserData(user);
     }
-    setUserData(user);
   }
 
   const login = async (
@@ -155,9 +152,13 @@ export const UserProvider = ({ children }: UserProviderTypes) =>
   ) => 
   {
     setLoading(true);
-    const user = await UserLogin(login, password);
-    userApply(user);
-    setLoading(false);
+    const response = await UserLogin(login, password);
+    if(response.messages.length == 0)
+    {
+      userApply(response.data);
+      setLoading(false);
+    }
+    return response;
   }
 
   const logout = async () =>

@@ -11,7 +11,7 @@ class LoginUserService
         {
             const owner = await db.UsersTable.select({cpf:user.cpf});
             if(!owner || owner.length == 0) {
-                throw new Error(`400: account do not exist`);
+                throw new Error(`400: user:do not exist`);
             }
 
             const userOwner = owner[0];
