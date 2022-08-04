@@ -12,11 +12,11 @@
     }
 
     body > div {
-        @apply flex w-full h-[95%] flex-col;
+        @apply flex w-full h-full max-h-full flex-col;
     }
 
     body > div > div, body > div > main {
-        @apply flex w-full h-full flex-col bg-[#EAEDF0] dark:bg-[#23292C];
+        @apply flex w-full h-full max-h-full flex-col bg-[#EAEDF0] dark:bg-[#23292C];
     }
 }
 
