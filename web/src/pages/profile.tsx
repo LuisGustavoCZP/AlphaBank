@@ -53,7 +53,7 @@ export function ProfilePage ()
                         <span className="text-white font-medium text-xl">{profs.name}</span>
                     </div>
                 </header>
-                <main className="flex w-full h-full flex-col items-center justify-between px-6 py-4">
+                <main className="flex w-full h-full flex-col items-center justify-between px-6 py-4 overflow-hidden">
                     <DataBox label={DataBoxLabels.MEUS_DADOS}>
                         {profs.user}
                     </DataBox>
