@@ -91,7 +91,7 @@ export function TransferPage ()
         <Private>
             <div>
                 <Navigator></Navigator>
-                <main className='flex w-full h-full flex-col justify-center px-6 pt-2'>
+                <main className='flex w-full h-full flex-col justify-center px-6 pt-2 overflow-hidden'>
                 {transactionData ? <ConfirmationModal title='Confirmar Transferência' handleConfirmModal={ConfirmHandler} setModal={UnConfirmHandler}/> : <></>}
                 {
                     transactionResult 

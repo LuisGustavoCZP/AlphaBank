@@ -78,7 +78,7 @@ export function DepositPage ()
         <Private>
             <div>
                 <Navigator></Navigator>
-                <main className='flex w-full h-full flex-col justify-center px-6 py-4'>
+                <main className='flex w-full h-full flex-col justify-center px-6 py-4 overflow-hidden'>
                 {
                     transactionData ? <ConfirmationModal title='Confirmar Depósito' handleConfirmModal={ConfirmHandler} setModal={UnConfirmHandler}/> : <></> 
                 }
