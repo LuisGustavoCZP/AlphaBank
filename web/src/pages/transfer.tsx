@@ -68,6 +68,7 @@ export function TransferPage ()
         console.log(resp.data);
         await updateExtract(account as IAccountData);
         setTransactionResult(resp.data);
+        setTransactionData(null);
     }
 
     async function UnConfirmHandler ()
