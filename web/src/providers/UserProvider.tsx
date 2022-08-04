@@ -92,7 +92,7 @@ async function UserCookie (callback : any)
     });
 
     const responseJson = await response.json();
-    //console.log(responseJson);
+    if(responseJson.messages > 0) return (null as unknown) as IUserData;
     const user = responseJson.data;
     callback(user);
   } catch (error) {
@@ -117,6 +117,7 @@ async function UserLogin (cpf: string, password: string) : Promise<IUserData>
 
     const responseJson = await response.json();
     console.log(responseJson);
+    if(responseJson.messages > 0) return (null as unknown) as IUserData;
     return responseJson.data;  
   } catch (error) {
       console.log(error);
