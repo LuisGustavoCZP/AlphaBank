@@ -2,8 +2,8 @@
 image: gitpod/workspace-postgres
 
 tasks:
-  - init: npm run install:all 
-      npm run build
+  - init: npm run install:all |
+      npm run build |
       psql -h localhost -U gitpod -f server/sql/start.sql
     command: |
       export HMR_HOST=`gp url 3000`
