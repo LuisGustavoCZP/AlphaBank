@@ -32,7 +32,7 @@ export function Navigator (props : any)
                 </ul>
             </nav>
             <div className='flex relative h-11 w-full justify-center'>
-                <section className='absolute p-1 w-10/12 bg-slate-300 rounded-lg'>
+                <section className='absolute p-1 w-10/12 bg-white rounded-lg font-bold'>
                     <h3 className='flex flex-row justify-between text-base' onClick={()=>{setOpened(!opened);}}>
                         <AccountText className='header-gold' account={account} />
                         {

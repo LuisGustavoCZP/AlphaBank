@@ -126,17 +126,17 @@ export function RegisterPage ()
         <Public>
             <div>
                 <section className="flex flex-col w-full h-full justify-center items-center">
-                    <div className="max-w-[75%] flex flex-col w-full h-full justify-center items-center" >
-                        <img src={ReactLogo} alt="Alpha Bunker" width="103px" height="103px" />
-                        <h3 className="titlePages">Crie sua conta</h3>
-                        <BankInput name='fullname' className="input mt-[5px]" isError={errors.name && errors.name != ''} label={errors.name?errors.name:''} type={BankInputType.Name} onInput={nameHandler} value={nameInput} placeholder={"Digite seu Nome"} ></BankInput>
-                        <DateInput name='birthdate' className="input mt-[5px]" isError={errors.date && errors.date != ''} label={errors.date?errors.date:''} onInput={dateHandler} value={dateInput} placeholder={"Digite sua Data de Nascimento"} />
-                        <BankInput name='email' className="input mt-[5px]" isError={errors.email && errors.email != ''} label={errors.email?errors.email:''} type={BankInputType.Email} onInput={emailHandler} value={emailInput} placeholder={"Digite seu Email"} ></BankInput>
-                        <CPFInput name='cpf' className="mt-[5px]" isError={errors.cpf && errors.cpf != ''} label={errors.cpf?errors.cpf:''} onInput={cpfHandler} value={cpfInput} placeholder={"Digite seu CPF"}/>
-                        <BankInput name='password' className="input mt-[5px]" isError={errors.pass && errors.pass != ''} label={errors.pass?errors.pass:''} type={BankInputType.Password} onInput={passHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
-                        <BankInput name='password-confirm' className="input mt-[5px]" isError={passCError != ''} label={passCError} type={BankInputType.Password} onInput={passConfirmHandler} value={passConfirm} placeholder={"Confirme sua Senha"}></BankInput>
-                        <Button className=" w-full mt-[10px]" onClick={registerHandler} label='Cadastrar' />
-                        <Link className="logintransfer" to={'/login'}>Entrar</Link>
+                    <div className="flex flex-col w-4/5 h-full justify-center items-center" >
+                        <img className="mb-4" src={ReactLogo} alt="Alpha Bunker" width="103px" height="103px" />
+                        <h3 className="titlePages text-[#F7F7F7]">Crie sua conta</h3>
+                        <BankInput name='fullname' className="input mt-7 w-full" isError={errors.name && errors.name != ''} label={errors.name?errors.name:''} type={BankInputType.Name} onInput={nameHandler} value={nameInput} placeholder={"Digite seu Nome"} ></BankInput>
+                        <DateInput name='birthdate' className="input mt-5 w-full" isError={errors.date && errors.date != ''} label={errors.date?errors.date:''} onInput={dateHandler} value={dateInput} placeholder={"Digite sua Data de Nascimento"} />
+                        <BankInput name='email' className="input mt-5 w-full" isError={errors.email && errors.email != ''} label={errors.email?errors.email:''} type={BankInputType.Email} onInput={emailHandler} value={emailInput} placeholder={"Digite seu Email"} ></BankInput>
+                        <CPFInput name='cpf' className=" mt-5 w-full" isError={errors.cpf && errors.cpf != ''} label={errors.cpf?errors.cpf:''} onInput={cpfHandler} value={cpfInput} placeholder={"Digite seu CPF"}/>
+                        <BankInput name='password' className="input mt-5 w-full" isError={errors.pass && errors.pass != ''} label={errors.pass?errors.pass:''} type={BankInputType.Password} onInput={passHandler} value={passInput} placeholder={"Digite sua Senha"}></BankInput>
+                        <BankInput name='password-confirm' className="input mt-5 w-full" isError={passCError != ''} label={passCError} type={BankInputType.Password} onInput={passConfirmHandler} value={passConfirm} placeholder={"Confirme sua Senha"}></BankInput>
+                        <Button className=" w-full mt-6" onClick={registerHandler} label='Cadastrar' />
+                        <Link className="logintransfer mt-2" to={'/login'}>Entrar</Link>
                     </div>
                 </section>
             </div>
