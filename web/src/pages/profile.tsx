@@ -53,7 +53,7 @@ export function ProfilePage ()
                         <span className="text-white font-medium text-xl">{profs.name}</span>
                     </div>
                 </header>
-                <main className="flex w-full h-full flex-col items-center justify-between px-6 py-4 overflow-hidden mb-6">
+                <main className="flex w-full h-full flex-col items-center justify-between px-6 py-4 overflow-hidden">
                     <DataBox label={DataBoxLabels.MEUS_DADOS}>
                         {profs.user}
                     </DataBox>
@@ -62,7 +62,7 @@ export function ProfilePage ()
                             <ul className='flex flex-col h-fit w-full p-1'>{profs.accounts}</ul>
                         </div>
                     </DataBox>
-                    <Button category="cancel" label="Logout" onClick={logout} /> 
+                    <Button className="mb-6" category="cancel" label="Logout" onClick={logout} /> 
                 </main>
             </div>
         </Private>
