@@ -57,7 +57,7 @@ export function ProfilePage ()
                     <DataBox label={DataBoxLabels.MEUS_DADOS}>
                         {profs.user}
                     </DataBox>
-                    <DataBox label={DataBoxLabels.MINHAS_CONTAS_CORRENTES}>
+                    <DataBox className='mt-4' label={DataBoxLabels.MINHAS_CONTAS_CORRENTES}>
                         <div className='flex max-h-full h-fit w-full overflow-y-scroll justify-center'>
                             <ul className='flex flex-col h-fit w-full p-1'>{profs.accounts}</ul>
                         </div>
