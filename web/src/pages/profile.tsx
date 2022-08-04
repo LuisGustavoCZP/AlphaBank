@@ -44,7 +44,7 @@ export function ProfilePage ()
     return (
         <Private>
             <div>
-                <header className="relative flex-row bg-[#337782] w-full min-h-[208px] h-fit mb-10 rounded-b-3xl overflow-hidden">
+                <header className="relative flex-row bg-[#337782] w-full min-h-[208px] h-fit rounded-b-3xl overflow-hidden mb-2">
                     <Link to={'/'}><ArrowLeft className="mt-5 ml-5" size={32} color='white' /></Link>
                     <div className="flex flex-col items-center justify-center m-auto left-0 right-0 top-0 bottom-0 text-center">
                         <div className="bg-white w-20 h-20 m-auto mb-3 rounded-full">
@@ -62,7 +62,7 @@ export function ProfilePage ()
                             <ul className='flex flex-col h-fit w-full p-1'>{profs.accounts}</ul>
                         </div>
                     </DataBox>
-                    <Button className="mb-6" category="cancel" label="Logout" onClick={logout} /> 
+                    <Button className="mb-4 mt-4" category="cancel" label="Logout" onClick={logout} /> 
                 </main>
             </div>
         </Private>
