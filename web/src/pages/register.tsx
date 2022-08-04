@@ -24,30 +24,6 @@ export function RegisterPage ()
     const [errors, setErros] = useState<any>({});
     const [passCError, setPassCError] = useState('');
 
-    /*function inputHandler (target : HTMLInputElement){
-        const type = target?.type;
-        const t = target as any;
-        console.log(type);
-
-        switch (type){
-            case '0':
-                setCpfInput(t.value);
-                break;
-            case '1':
-                setDateInput(t.value);
-                break;
-            case '2':
-                setPassInput(t.value);
-                break;
-            case '6':
-                setNameInput(t.value);
-                break;
-            case '7':
-                setEmailInput(t.value);
-                break;
-        }
-    }*/
-
     function cpfHandler (value : string){
         setCpfInput(value);
     }
@@ -90,7 +66,6 @@ export function RegisterPage ()
         }
 
         const birthdate = dateInput.split("/").reverse().join("-");
-        //console.log(birthdate);
 
         const user = {
             name: nameInput,
@@ -101,7 +76,6 @@ export function RegisterPage ()
         }
         console.log(`Registring ${nameInput}`);
         const resp = await Send("account/create", user);
-        //console.log(resp);
 
         if(resp.messages.length > 0)
         {
@@ -112,14 +86,10 @@ export function RegisterPage ()
                 obj[t[0]] = t[1];
             });
             setErros(obj);
+            return;
         }
         
         window.location.pathname = './login';
-        /* const url = new URL(window.location.href);
-        url.pathname = '/login';
-        console.log(url)
-        window.history.pushState({}, '', url);
-        showBalance(showingBalance != undefined?!showingBalance:false); */
     }
 
     return (
