@@ -6,7 +6,7 @@ tasks:
       npm run build
     command: |
       export HMR_HOST=`gp url 3000`
-  - command: psql
+  - command: psql -h localhost -U gitpod -f server/sql/start.sql
   - command: npm run dev:server
     env:
       PORT: 8000
