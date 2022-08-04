@@ -44,7 +44,7 @@ export function ProfilePage ()
     return (
         <Private>
             <div>
-                <header className="relative flex-row bg-[#337782] w-full min-h-[208px] h-fit rounded-b-3xl overflow-hidden mb-2">
+                <header className="bg-[#337782] w-full min-h-[208px] h-fit rounded-b-3xl overflow-hidden mb-2">
                     <Link to={'/'}><ArrowLeft className="mt-5 ml-5" size={32} color='white' /></Link>
                     <div className="flex flex-col items-center justify-center m-auto left-0 right-0 top-0 bottom-0 text-center">
                         <div className="bg-white w-20 h-20 m-auto mb-3 rounded-full">
@@ -53,7 +53,7 @@ export function ProfilePage ()
                         <span className="text-white font-medium text-xl">{profs.name}</span>
                     </div>
                 </header>
-                <main className="flex w-full h-full flex-col items-center justify-between px-6 py-4 overflow-hidden">
+                <main className="flex w-full max-h-full h-fit flex-col items-center justify-between px-6 py-4 overflow-hidden">
                     <DataBox label={DataBoxLabels.MEUS_DADOS}>
                         {profs.user}
                     </DataBox>
