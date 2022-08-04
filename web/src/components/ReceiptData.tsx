@@ -10,16 +10,16 @@ export function ReceiptData (props: PropTypes)
     const line = (props.transaction.value >= 0 ? '+' : '') + currency.format(props.transaction.value);
 
     return (
-        <div className="flex flex-col w-full justify-evenly bg-[#F3F9F9] p-1 rounded text-[#727272] text-sm">
+        <div className="flex flex-col w-full justify-evenly dark:bg-[#23292C] p-1 rounded text-[#A2A2A2] text-sm">
             <p>Tipo: {prepareType(props.transaction.type)}</p>
-            <p className="text-[#A2A2A2] my-4">Data: {prepareDate(props.transaction.date)}</p>
+            <p className="text-[#727272] my-4">Data: {prepareDate(props.transaction.date)}</p>
             {
                 props.transaction.destination 
                 ? 
-                <div className="flex-col my-4 justify-evenly bg-[#F3F9F9] p-1 rounded text-[#727272] text-sm">
-                    <p>Dados de destino:</p>
-                    <p className="text-[#A2A2A2]">Agência: {props.transaction.destination.agency}-{props.transaction.destination.agency_identifier}</p>
-                    <p className="text-[#A2A2A2]">Conta: {props.transaction.destination.account}-{props.transaction.destination.account_identifier}</p>
+                <div className="flex-col mb-4 justify-evenly p-1 rounded text-[#727272] text-sm">
+                    <p className='text-[#A2A2A2]'>Dados de destino:</p>
+                    <p className="text-[#727272]">Agência: {props.transaction.destination.agency}-{props.transaction.destination.agency_identifier}</p>
+                    <p className="text-[#727272]">Conta: {props.transaction.destination.account}-{props.transaction.destination.account_identifier}</p>
                 </div>
                 :
                 ''
