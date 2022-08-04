@@ -7,10 +7,10 @@ tasks:
       psql -h localhost -U gitpod -f server/sql/start.sql
     command: |
       export HMR_HOST=`gp url 3000`
-    command: npm run dev:server
-      env:
-        PORT: 8000
-        POSTGRES_CONNECTION_STRING: postgres://gitpod@localhost/express-typescript
+      npm run dev:server
+    env:
+      PORT: 8000
+      POSTGRES_CONNECTION_STRING: postgres://gitpod@localhost/express-typescript
       
 ports: 
   - port: 8000
