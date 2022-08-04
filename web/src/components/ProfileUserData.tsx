@@ -9,7 +9,7 @@ interface PropTypes{
 export function ProfileUserData (props: PropTypes)
 {
     return (
-        <div className="bg-[#F3F9F9] dark:bg-transparent p-1 w-full rounded text-[#727272] text-sm">
+        <div className="bg-[#F3F9F9] dark:bg-transparent p-1 w-full rounded text-[#727272] dark:text-[#A1A1A1] text-sm">
             <p>Nome: {props.name}</p>
             <p>Data de nascimento: {props.birthday}</p>
             <p>CPF: {props.cpf}</p>
