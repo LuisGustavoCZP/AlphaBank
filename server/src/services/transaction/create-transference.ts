@@ -26,7 +26,7 @@ class CreateTransferenceService
             const total = q + this.tax;
             if(originAcc.data.balance < total)
             {
-                throw new Error(`412: origin:has insuficient founds`);
+                throw new Error(`412: value:has insuficient founds`);
             }
 
             //console.log("Transação de", originAcc.data.id, destinationAcc.data.id, originAcc.data.balance);

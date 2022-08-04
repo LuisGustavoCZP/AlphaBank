@@ -12,6 +12,7 @@ import { Send } from '../libs/sender';
 import { ReceiptsPage } from './receipts';
 import { ConfirmationModal } from '../components/ConfirmationModal';
 import { Button } from '../components/Button';
+import { ArrowLeft } from 'phosphor-react';
 
 export function TransferPage ()
 {
@@ -94,7 +95,10 @@ export function TransferPage ()
                 {transactionData ? <ConfirmationModal title='Confirmar Transferência' handleConfirmModal={ConfirmHandler} setModal={UnConfirmHandler}/> : <></>}
                 {
                     transactionResult 
-                    ? <ReceiptsPage transaction={transactionResult}/> 
+                    ?   <>
+                            <ArrowLeft className="left-6 top-6" size={32} color='white' onClick={() => setTransactionResult(undefined)} />
+                            <ReceiptsPage transaction={transactionResult}/>
+                        </>
                     : <DataBox className='mb-0 boxpaint' label={DataBoxLabels.TRANSFERÊNCIA}>
                         <ul className='flex flex-grow flex-col w-full'>
                             <li className='flex flex-grow flex-col flex-shrink'>

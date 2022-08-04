@@ -1,6 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-import { ArrowLeft } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { DataBox, DataBoxLabels } from "../components/DataBox";
 import { ProfileAccountsData } from "../components/ProfileAccountsData";
@@ -16,7 +15,6 @@ export function ReceiptsPage (props: PropTypes)
 {
     return (
         <DataBox label={DataBoxLabels.COMPROVANTE_DE_TRANSAÇAO}>
-            <ArrowLeft className="absolute left-6 top-6" size={32} color='white' />
             <ReceiptData  transaction={props.transaction}/>
         </DataBox>
     );

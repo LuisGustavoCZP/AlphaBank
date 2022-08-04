@@ -10,7 +10,7 @@
     }
 
     .nav-btn {
-        @apply w-fit h-fit flex justify-center py-1 px-2 items-center bg-[#75ACB1];
+        @apply w-fit h-fit flex justify-center py-1 px-2 items-center bg-[#75ACB1] hover:bg-[#3FA7B8];
     }
 
     .nav-header {

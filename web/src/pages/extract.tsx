@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { DataBox, DataBoxLabels } from "../components/DataBox";
 import { ExtractData } from "../components/ExtractData";
 import { IExtract, useUser } from '../providers/UserProvider';
+import { BellSimple } from 'phosphor-react';
 
 export function ExtractPage ()
 {
@@ -50,7 +51,7 @@ export function ExtractPage ()
             <div>
                 <Navigator />
                 <main className="flex h-full w-full flex-col items-center justify-center overflow-hidden px-6 py-4">
-                    <DataBox label={DataBoxLabels.EXTRATO_DE_TRANSAÇOES}>
+                    <DataBox label={DataBoxLabels.EXTRATO_DE_TRANSAÇOES} icon={<BellSimple className='text-[#777777]' size={24}/>}>
                         <div className='flex max-h-full h-fit w-full overflow-y-scroll justify-center'>
                             <ul className='flex flex-col h-fit w-full'>{response()}</ul>
                         </div>

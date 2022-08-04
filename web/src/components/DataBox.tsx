@@ -16,6 +16,7 @@ interface PropTypes{
     label: DataBoxLabels;
     className?: string;
     children: React.ReactNode;
+    icon? : JSX.Element
 }
 
 function chooseIcon(label: DataBoxLabels){
@@ -33,10 +34,13 @@ function chooseIcon(label: DataBoxLabels){
 export function DataBox (props: PropTypes){
     return (
         <div className={`flex flex-col max-h-full h-fit w-full justify-center items-center px-3 py-4 text-left boxpaint rounded-lg text-[#C98E26] text-base font-medium ${props.className?` ${props.className}`:''}`}>
-            <div className="flex mb-4 w-full">
-                {chooseIcon(props.label)}
-                <p className="mx-3">{props.label}</p>
-            </div>
+            <span className="flex mb-4 w-full justify-between items-center">
+                <span className="flex w-full justify-start items-center">
+                    {chooseIcon(props.label)}
+                    <p className="mx-3">{props.label}</p>
+                </span>
+                {props.icon?props.icon:<></>}
+            </span>
             {props.children}
         </div>
     );

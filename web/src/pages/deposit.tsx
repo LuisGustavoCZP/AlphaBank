@@ -12,6 +12,7 @@ import { Send } from '../libs/sender';
 import { ReceiptsPage } from './receipts';
 import { ConfirmationModal } from '../components/ConfirmationModal';
 import { Button } from '../components/Button';
+import { ArrowLeft } from 'phosphor-react';
 
 export function DepositPage ()
 {
@@ -83,8 +84,11 @@ export function DepositPage ()
                 }
                 {
                     transactionResult 
-                    ? <ReceiptsPage transaction={transactionResult}/> 
-                    : <DataBox label={DataBoxLabels.DEPOSITO}>
+                    ?   <>
+                            <ArrowLeft className="left-6 top-6" size={32} color='white' onClick={() => setTransactionResult(undefined)} />
+                            <ReceiptsPage transaction={transactionResult}/>
+                        </>
+                    :   <DataBox label={DataBoxLabels.DEPOSITO}>
                             <ul className='flex flex-grow flex-col w-full'>
                                 <li className='flex flex-grow flex-col flex-shrink'>
                                     <h3 className='text-white'>Destino</h3>
@@ -93,14 +97,14 @@ export function DepositPage ()
                                 <li className='flex flex-grow flex-col w-full mt-7'>
                                     <MoneyInput isError={errors.value && errors.value != ''} label={errors.value?errors.value:''} className='flex-grow' onInput={QuantyHandler} value={quanty} />
                                 </li>
-                                <li className='flex flex-grow flex-col w-full mt-3'>
+                                {/* <li className='flex flex-grow flex-col w-full mt-3'>
                                     <BankInput isError={errors.password && errors.password != ''} label={errors.password?errors.password:''} type={BankInputType.Password} className='flex-grow' placeholder='Senha'></BankInput>
-                                </li>
+                                </li> */}
                                 <li className='flex flex-grow flex-col w-full mt-4'>
                                     <Button onClick={DepositHandler} label='Depositar' />
                                 </li>
                             </ul>
-                      </DataBox>
+                        </DataBox>
                 }
                 </main>
             </div>
