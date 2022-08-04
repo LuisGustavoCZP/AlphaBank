@@ -5,8 +5,12 @@ tasks:
   - init: npm run install:all
     command: |
       export HMR_HOST=`gp url 3000`
-      npm run build
-  - command: npm run dev:server
+  - command: psql
+      CREATE DATABASE "express-typescript";
+      \c "express-typescript"
+      \i server/sql/constructor.sql
+  - command: npm run build
+      npm run dev:server
     env:
       PORT: 8000
       POSTGRES_CONNECTION_STRING: postgres://gitpod@localhost/express-typescript
