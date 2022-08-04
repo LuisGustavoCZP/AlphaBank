@@ -6,9 +6,9 @@ tasks:
     command: |
       export HMR_HOST=`gp url 3000`
   - command: psql
-      CREATE DATABASE "express-typescript";
-      \c "express-typescript"
-      \i server/sql/constructor.sql
+      & CREATE DATABASE "express-typescript";
+      & \c "express-typescript"
+      & \i server/sql/constructor.sql
   - command: npm run build
       npm run dev:server
     env:
